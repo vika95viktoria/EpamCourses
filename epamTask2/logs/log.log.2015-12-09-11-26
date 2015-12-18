@@ -1,0 +1,50 @@
+09.12.2015 11:26:24 [Thread-1] INFO  bsu.by.port.entity.Ship  - Ship number 2 go to port Rotterdam
+09.12.2015 11:26:24 [Thread-1] INFO  bsu.by.port.entity.Port  - Ship number 2 moored in port Rotterdam
+09.12.2015 11:26:24 [Thread-1] INFO  bsu.by.port.entity.Ship  - Ship number 2 unloaded in Rotterdam
+09.12.2015 11:26:24 [Thread-1] INFO  bsu.by.port.entity.Port  - Ship number 2 left port Rotterdam
+09.12.2015 11:26:24 [Thread-4] INFO  bsu.by.port.entity.Ship  - Ship number 5 go to port Los-Angeles
+09.12.2015 11:26:24 [Thread-4] INFO  bsu.by.port.entity.Port  - Ship number 5 moored in port Los-Angeles
+09.12.2015 11:26:24 [Thread-4] INFO  bsu.by.port.entity.Ship  - Ship number 5 unloaded in Los-Angeles
+09.12.2015 11:26:24 [Thread-4] INFO  bsu.by.port.entity.Port  - Ship number 5 left port Los-Angeles
+09.12.2015 11:26:24 [Thread-2] INFO  bsu.by.port.entity.Ship  - Ship number 3 go to port Rotterdam
+09.12.2015 11:26:24 [Thread-2] INFO  bsu.by.port.entity.Port  - Ship number 3 moored in port Rotterdam
+09.12.2015 11:26:24 [Thread-2] INFO  bsu.by.port.entity.Ship  - Ship number 3 unloaded in Rotterdam
+09.12.2015 11:26:24 [Thread-2] INFO  bsu.by.port.entity.Port  - Ship number 3 left port Rotterdam
+09.12.2015 11:26:24 [Thread-0] INFO  bsu.by.port.entity.Ship  - Ship number 1 go to port Los-Angeles
+09.12.2015 11:26:24 [Thread-0] INFO  bsu.by.port.entity.Port  - Ship number 1 moored in port Los-Angeles
+09.12.2015 11:26:24 [Thread-0] INFO  bsu.by.port.entity.Ship  - Ship number 1 unloaded in Los-Angeles
+09.12.2015 11:26:24 [Thread-0] INFO  bsu.by.port.entity.Port  - Ship number 1 left port Los-Angeles
+09.12.2015 11:26:24 [Thread-3] INFO  bsu.by.port.entity.Ship  - Ship number 4 go to port Los-Angeles
+09.12.2015 11:26:24 [Thread-3] INFO  bsu.by.port.entity.Port  - Ship number 4 moored in port Los-Angeles
+09.12.2015 11:26:24 [Thread-3] INFO  bsu.by.port.entity.Ship  - Ship number 4 unloaded in Los-Angeles
+09.12.2015 11:26:24 [Thread-3] INFO  bsu.by.port.entity.Port  - Ship number 4 left port Los-Angeles
+09.12.2015 11:26:25 [Thread-1] INFO  bsu.by.port.entity.Ship  - Ship number 2 go away from port Rotterdam
+09.12.2015 11:26:25 [Thread-3] INFO  bsu.by.port.entity.Ship  - Ship number 4 go away from port Los-Angeles
+09.12.2015 11:26:25 [Thread-4] INFO  bsu.by.port.entity.Ship  - Ship number 5 go away from port Los-Angeles
+09.12.2015 11:26:25 [Thread-2] INFO  bsu.by.port.entity.Ship  - Ship number 3 go away from port Rotterdam
+09.12.2015 11:26:25 [Thread-0] INFO  bsu.by.port.entity.Ship  - Ship number 1 go away from port Los-Angeles
+09.12.2015 11:26:25 [Thread-1] INFO  bsu.by.port.entity.Ship  - Ship number 2 go to port Rotterdam
+09.12.2015 11:26:25 [Thread-1] INFO  bsu.by.port.entity.Port  - Ship number 2 moored in port Rotterdam
+09.12.2015 11:26:26 [Thread-1] INFO  bsu.by.port.entity.Ship  - Ship number 2 loaded in Rotterdam
+09.12.2015 11:26:26 [Thread-1] INFO  bsu.by.port.entity.Port  - Ship number 2 left port Rotterdam
+09.12.2015 11:26:26 [Thread-4] INFO  bsu.by.port.entity.Ship  - Ship number 5 go to port Los-Angeles
+09.12.2015 11:26:26 [Thread-4] INFO  bsu.by.port.entity.Port  - Ship number 5 moored in port Los-Angeles
+09.12.2015 11:26:26 [Thread-4] INFO  bsu.by.port.entity.Ship  - Ship number 5 loaded in Los-Angeles
+09.12.2015 11:26:26 [Thread-4] INFO  bsu.by.port.entity.Port  - Ship number 5 left port Los-Angeles
+09.12.2015 11:26:26 [Thread-2] INFO  bsu.by.port.entity.Ship  - Ship number 3 go to port Los-Angeles
+09.12.2015 11:26:26 [Thread-2] INFO  bsu.by.port.entity.Port  - Ship number 3 moored in port Los-Angeles
+09.12.2015 11:26:26 [Thread-2] INFO  bsu.by.port.entity.Ship  - Ship number 3 loaded in Los-Angeles
+09.12.2015 11:26:26 [Thread-2] INFO  bsu.by.port.entity.Port  - Ship number 3 left port Los-Angeles
+09.12.2015 11:26:26 [Thread-0] INFO  bsu.by.port.entity.Ship  - Ship number 1 go to port Los-Angeles
+09.12.2015 11:26:26 [Thread-0] INFO  bsu.by.port.entity.Port  - Ship number 1 moored in port Los-Angeles
+09.12.2015 11:26:26 [Thread-0] INFO  bsu.by.port.entity.Ship  - Ship number 1 loaded in Los-Angeles
+09.12.2015 11:26:26 [Thread-0] INFO  bsu.by.port.entity.Port  - Ship number 1 left port Los-Angeles
+09.12.2015 11:26:26 [Thread-3] INFO  bsu.by.port.entity.Ship  - Ship number 4 go to port Los-Angeles
+09.12.2015 11:26:26 [Thread-3] INFO  bsu.by.port.entity.Port  - Ship number 4 moored in port Los-Angeles
+09.12.2015 11:26:26 [Thread-3] INFO  bsu.by.port.entity.Ship  - Ship number 4 loaded in Los-Angeles
+09.12.2015 11:26:26 [Thread-3] INFO  bsu.by.port.entity.Port  - Ship number 4 left port Los-Angeles
+09.12.2015 11:26:26 [Thread-1] INFO  bsu.by.port.entity.Ship  - Ship number 2 go away from port Rotterdam
+09.12.2015 11:26:26 [Thread-4] INFO  bsu.by.port.entity.Ship  - Ship number 5 go away from port Los-Angeles
+09.12.2015 11:26:26 [Thread-2] INFO  bsu.by.port.entity.Ship  - Ship number 3 go away from port Los-Angeles
+09.12.2015 11:26:26 [Thread-0] INFO  bsu.by.port.entity.Ship  - Ship number 1 go away from port Los-Angeles
+09.12.2015 11:26:26 [Thread-3] INFO  bsu.by.port.entity.Ship  - Ship number 4 go away from port Los-Angeles
