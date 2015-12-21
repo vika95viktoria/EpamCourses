@@ -86,3 +86,6 @@ $RECYCLE.BIN/
 *.jar
 *.war
 *.ear
+*.log
+*.logs
+/logs/
