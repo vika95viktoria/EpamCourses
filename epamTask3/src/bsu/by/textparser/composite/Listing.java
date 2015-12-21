@@ -50,12 +50,4 @@ public class Listing implements TextPart {
     public ArrayList<TextPart> getTextParts() {
         return new ArrayList<TextPart>();
     }
-
-    public String getWord() {
-        return listing;
-    }
-
-    public void setWord(String listing) {
-        this.listing = listing;
-    }
 }

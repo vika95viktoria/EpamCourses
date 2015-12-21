@@ -31,7 +31,7 @@ public class Word implements TextPart {
 
     @Override
     public String toString() {
-        return word;
+        return word+" ";
     }
 
     @Override
@@ -45,13 +45,5 @@ public class Word implements TextPart {
 
     public ArrayList<TextPart> getTextParts() {
         return new ArrayList<TextPart>();
-    }
-
-    public String getWord() {
-        return word;
-    }
-
-    public void setWord(String word) {
-        this.word = word;
     }
 }

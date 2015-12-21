@@ -23,7 +23,6 @@ public class ParagraphParser {
                 Text textInfo = ParagraphWithoutListingParser.parse(notListing);
                 text.add(textInfo);
             }
-
         }
         return text;
     }

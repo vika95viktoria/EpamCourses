@@ -31,7 +31,7 @@ public class Punctuation implements TextPart {
 
     @Override
     public String toString() {
-        return symbol;
+        return symbol + " ";
     }
 
     @Override
@@ -45,13 +45,5 @@ public class Punctuation implements TextPart {
 
     public ArrayList<TextPart> getTextParts() {
         return new ArrayList<TextPart>();
-    }
-
-    public String getWord() {
-        return symbol;
-    }
-
-    public void setWord(String symbol) {
-        this.symbol = symbol;
     }
 }

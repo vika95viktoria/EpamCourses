@@ -9,13 +9,14 @@ import java.util.regex.Pattern;
  * Created by Виктория on 16.12.2015.
  */
 public class WordParser {
-    private static final String WORDS_REGEX = "^((\\s{1,})?)([А-Яа-я\\w]+)(\\s?)";
+    private static final String WORDS_REGEX = "^((\\s+)?)([А-Яа-я\\w]+)(\\s?)";
+    private static final String SPACE_REGEX = "(\\s+)";
 
     public static Word parse(String wordSign) {
         Pattern pattern = Pattern.compile(WORDS_REGEX);
         Matcher matcher = pattern.matcher(wordSign);
         if (matcher.find()) {
-            return new Word(matcher.group());
+            return new Word(matcher.group().replaceAll(SPACE_REGEX,""));
         } else
             return null;
     }

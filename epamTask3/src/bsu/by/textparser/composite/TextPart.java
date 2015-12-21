@@ -17,8 +17,4 @@ public interface TextPart {
     TextType getTextType();
 
     ArrayList<TextPart> getTextParts();
-
-    String getWord();
-
-    void setWord(String word);
 }

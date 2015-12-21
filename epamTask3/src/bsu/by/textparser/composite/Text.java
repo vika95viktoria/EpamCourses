@@ -1,5 +1,8 @@
 package bsu.by.textparser.composite;
 
+import bsu.by.textparser.service.TextFormatter;
+import bsu.by.textparser.service.TextPrinter;
+
 import java.util.ArrayList;
 
 /**
@@ -31,10 +34,10 @@ public class Text implements TextPart {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (TextPart textPart : textParts) {
+        for(TextPart textPart:textParts){
             sb.append(textPart);
         }
-        return sb.toString();
+        return TextFormatter.formatText(sb.toString());
     }
 
     public TextType getTextType() {
@@ -48,13 +51,5 @@ public class Text implements TextPart {
 
     public ArrayList<TextPart> getTextParts() {
         return textParts;
-    }
-
-    public String getWord() {
-        throw new UnsupportedOperationException();
-    }
-
-    public void setWord(String word) {
-        throw new UnsupportedOperationException();
     }
 }
