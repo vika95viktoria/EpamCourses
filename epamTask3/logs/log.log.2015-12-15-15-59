@@ -1,2 +1,0 @@
-15.12.2015 15:59:01 [main] ERROR bsu.by.textparser.service.TextReader  - java.nio.file.NoSuchFileException: input.txt
-15.12.2015 15:59:30 [main] ERROR bsu.by.textparser.service.TextReader  - java.nio.charset.MalformedInputException: Input length = 1
