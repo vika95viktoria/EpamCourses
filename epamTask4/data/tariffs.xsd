@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.com/tariffs"
+        xmlns:tns="http://www.example.com/tariffs" elementFormDefault="qualified">
+    <element name="abstractTariff" type="tns:AbstractTariff" abstract="true"></element>
+    <element name="tariff" type="tns:Tariff" substitutionGroup="tns:abstractTariff"></element>
+    <element name="Tariffs">
+        <complexType>
+            <sequence>
+                <element ref="tns:abstractTariff"
+                         minOccurs="1"
+                         maxOccurs="unbounded" />
+            </sequence>
+        </complexType>
+    </element>
+    <complexType name="AbstractTariff">
+    <sequence>
+    <element name="payroll">
+        <simpleType>
+            <restriction base="nonNegativeInteger">
+               <maxExclusive value="1000000"/>
+            </restriction>
+        </simpleType>
+        </element>
+    <element name="callPrices" type="tns:callPrices" />
+    </sequence>
+    </complexType>
+    <complexType name="Tariff">
+        <complexContent>
+            <extension base="tns:AbstractTariff">
+        <sequence>
+            <element name="sms" type="tns:price"/>
+            <element name="parameters" type="tns:parameters"/>
+        </sequence>
+        <attribute name="name" type="tns:tariffName" use="required" />
+                <attribute name="operatorName" >
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="Velcom"></enumeration>
+                        <enumeration value="life"></enumeration>
+                        <enumeration value="MTS"></enumeration>
+                    </restriction>
+                </simpleType>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="callPrices">
+        <sequence>
+            <element name="inNet" type="tns:price" />
+            <element name="outNet" type="tns:price" />
+            <element name="landline" type="tns:price" />
+        </sequence>
+    </complexType>
+    <complexType name="parameters">
+        <sequence>
+            <element name="favourites">
+                <simpleType>
+                    <restriction base="nonNegativeInteger">
+                        <maxExclusive value="6"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="tarification">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="minute"></enumeration>
+                    <enumeration value="second"></enumeration>
+                </restriction>
+            </simpleType>
+            </element>
+            <element name="payment" type="nonNegativeInteger" />
+        </sequence>
+    </complexType>
+    <simpleType name="tariffName">
+        <restriction base="ID">
+           <pattern value="([A-Za-z]+)[0-9]?"/>
+                </restriction>
+            </simpleType>
+    <simpleType name="price">
+        <restriction base="nonNegativeInteger">
+            <maxExclusive value="2000"/>
+        </restriction>
+    </simpleType>
+</schema>

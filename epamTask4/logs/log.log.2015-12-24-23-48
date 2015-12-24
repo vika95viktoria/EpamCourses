@@ -1,0 +1,1 @@
+24.12.2015 23:48:23 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because cvc-elt.1: Cannot find the declaration of element 'Tariffs'.

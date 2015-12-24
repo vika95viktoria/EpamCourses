@@ -1,0 +1,2 @@
+25.12.2015 00:48:29 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because cvc-datatype-valid.1.2.1: 'Easy to say' is not a valid value for 'NCName'.
+25.12.2015 00:48:37 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because cvc-datatype-valid.1.2.1: 'Easy to say' is not a valid value for 'NCName'.

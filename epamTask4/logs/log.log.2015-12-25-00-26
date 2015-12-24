@@ -1,0 +1,2 @@
+25.12.2015 00:26:27 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because cvc-pattern-valid: Value 'Smart1' is not facet-valid with respect to pattern '[A-Za-z]+' for type 'Name'.
+25.12.2015 00:26:55 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because cvc-pattern-valid: Value 'Easy to say' is not facet-valid with respect to pattern '([A-Za-z]+)[0-9]?' for type 'Name'.

@@ -1,0 +1,1 @@
+25.12.2015 00:23:26 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because src-attribute.4: Attribute 'name' has both a 'type' attribute and an anonymous 'simpleType' child. Only one of these is allowed for an attribute.
