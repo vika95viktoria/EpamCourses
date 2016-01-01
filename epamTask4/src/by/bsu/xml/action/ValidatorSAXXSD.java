@@ -1,4 +1,4 @@
-package bsu.by.xml.action;
+package by.bsu.xml.action;
 
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;

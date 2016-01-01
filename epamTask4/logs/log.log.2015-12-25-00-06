@@ -1,1 +1,0 @@
-25.12.2015 00:06:08 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because cvc-complex-type.4: Attribute 'name' must appear on element 'tariff'.

@@ -1,4 +1,4 @@
-package entity;
+package by.bsu.xml.entity;
 
 import javax.xml.bind.annotation.*;
 

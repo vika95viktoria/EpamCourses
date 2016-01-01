@@ -1,2 +1,0 @@
-25.12.2015 00:50:44 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because cvc-pattern-valid: Value 'Easy to say' is not facet-valid with respect to pattern '([A-Za-z\\s]+)[0-9]?' for type 'tariffName'.
-25.12.2015 00:50:55 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because cvc-datatype-valid.1.2.1: 'Easy to say' is not a valid value for 'NCName'.

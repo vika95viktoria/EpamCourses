@@ -1,5 +1,5 @@
 
-package entity;
+package by.bsu.xml.entity;
 
 import java.util.ArrayList;
 import java.util.List;

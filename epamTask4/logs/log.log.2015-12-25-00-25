@@ -1,1 +1,0 @@
-25.12.2015 00:25:29 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because cvc-pattern-valid: Value 'Business' is not facet-valid with respect to pattern '[0-9]' for type 'Name'.

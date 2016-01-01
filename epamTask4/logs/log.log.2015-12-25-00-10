@@ -1,2 +1,0 @@
-25.12.2015 00:10:44 [main] INFO  bsu.by.xml.main.Main  - data/tariffs.xml is valid.
-25.12.2015 00:10:53 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because cvc-complex-type.2.4.a: Invalid content was found starting with element 'payroll'. One of '{"http://www.example.com/tariffs":operatorName}' is expected.

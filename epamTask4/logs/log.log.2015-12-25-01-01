@@ -1,1 +1,0 @@
-25.12.2015 01:01:13 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because cvc-maxExclusive-valid: Value '5' is not facet-valid with respect to maxExclusive '5' for type '#AnonType_favouritesparameters'.

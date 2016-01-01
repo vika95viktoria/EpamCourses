@@ -1,3 +1,0 @@
-25.12.2015 01:08:03 [main] ERROR bsu.by.xml.action.ValidatorSAXXSD  - validation data/tariffs.xml is not valid because cvc-maxExclusive-valid: Value '5' is not facet-valid with respect to maxExclusive '5' for type '#AnonType_favouritesparameters'.
-25.12.2015 01:08:20 [main] ERROR bsu.by.xml.action.ValidatorSAXXSD  - validation data/tariffs.xml is not valid because cvc-maxExclusive-valid: Value '5' is not facet-valid with respect to maxExclusive '5' for type '#AnonType_favouritesparameters'.
-25.12.2015 01:08:42 [main] INFO  bsu.by.xml.action.ValidatorSAXXSD  - data/tariffs.xml is valid.

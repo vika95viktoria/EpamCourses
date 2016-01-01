@@ -1,3 +1,0 @@
-25.12.2015 00:00:04 [main] INFO  bsu.by.xml.main.Main  - data/tariffs.xml is valid.
-25.12.2015 00:00:14 [main] INFO  bsu.by.xml.main.Main  - data/tariffs.xml is valid.
-25.12.2015 00:00:39 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because cvc-minInclusive-valid: Value '-100000' is not facet-valid with respect to minInclusive '0' for type 'nonNegativeInteger'.

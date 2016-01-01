@@ -1,1 +1,0 @@
-25.12.2015 00:21:27 [main] ERROR bsu.by.xml.main.Main  - validation data/tariffs.xml is not valid because cvc-enumeration-valid: Value 'mingffgute' is not facet-valid with respect to enumeration '[minute, second]'. It must be a value from the enumeration.
