@@ -102,7 +102,7 @@ public class TariffsStAXBuilder {
                     break;
             }
         }
-        throw new XMLStreamException("Unknown element in tag Student");
+        throw new XMLStreamException("Unknown element in tag Tariff");
     }
 
     private CallPrices getXMLCallPrices(XMLStreamReader reader) throws XMLStreamException {
@@ -134,7 +134,7 @@ public class TariffsStAXBuilder {
                     break;
             }
         }
-        throw new XMLStreamException("Unknown element in tag Address");
+        throw new XMLStreamException("Unknown element in tag CallPrices");
     }
 
     private Parameters getXMLParameters(XMLStreamReader reader) throws XMLStreamException {
@@ -166,7 +166,7 @@ public class TariffsStAXBuilder {
                     break;
             }
         }
-        throw new XMLStreamException("Unknown element in tag Address");
+        throw new XMLStreamException("Unknown element in tag Parameters");
     }
 
     private String getXMLText(XMLStreamReader reader) throws XMLStreamException {
