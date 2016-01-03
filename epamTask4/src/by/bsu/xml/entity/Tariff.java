@@ -46,6 +46,9 @@ public class Tariff
 
 
     public Parameters getParameters() {
+        if(parameters==null){
+            parameters = new Parameters();
+        }
         return parameters;
     }
 
@@ -74,4 +77,9 @@ public class Tariff
         this.operatorName = value;
     }
 
+    @Override
+    public String toString() {
+        return "name=" + name + ", operatorName=" + operatorName +", payroll="+payroll +" "+callPrices+", sms=" + sms +
+                " " + parameters;
+    }
 }

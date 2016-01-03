@@ -49,4 +49,11 @@ public class Parameters {
         this.payment = value;
     }
 
+    @Override
+    public String toString() {
+        return
+                "favourites=" + favourites +
+                ", tarification='" + tarification + '\'' +
+                ", payment=" + payment;
+    }
 }

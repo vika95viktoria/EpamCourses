@@ -51,4 +51,10 @@ public class CallPrices {
         this.landline = value;
     }
 
+    @Override
+    public String toString() {
+        return "inNet=" + inNet +
+                ", outNet=" + outNet +
+                ", landline=" + landline;
+    }
 }

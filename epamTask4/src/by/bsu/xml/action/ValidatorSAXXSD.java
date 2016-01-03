@@ -15,8 +15,9 @@ import java.io.IOException;
 /**
  * Created by Виктория on 25.12.2015.
  */
-public class ValidatorSAXXSD  {
+public class ValidatorSAXXSD {
     private static Logger logger = Logger.getLogger(ValidatorSAXXSD.class);
+
     public static void validate(String fileName, String schemaName) {
         String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
         SchemaFactory factory = SchemaFactory.newInstance(language);

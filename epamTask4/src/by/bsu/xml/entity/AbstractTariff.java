@@ -36,6 +36,9 @@ public class AbstractTariff {
 
 
     public CallPrices getCallPrices() {
+        if(callPrices==null){
+            callPrices = new CallPrices();
+        }
         return callPrices;
     }
 
@@ -44,4 +47,9 @@ public class AbstractTariff {
         this.callPrices = value;
     }
 
+    @Override
+    public String toString() {
+        return "payroll=" + payroll +
+                ", callPrices=" + callPrices;
+    }
 }
