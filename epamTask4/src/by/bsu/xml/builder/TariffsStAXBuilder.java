@@ -20,10 +20,11 @@ import java.util.List;
 /**
  * Created by Виктория on 04.01.2016.
  */
-public class TariffsStAXBuilder {
+public class TariffsStAXBuilder implements AbstractTariffsBuilder {
     private static Logger logger = Logger.getLogger(TariffsStAXBuilder.class);
     private ArrayList<Tariff> tariffs = new ArrayList<>();
     private XMLInputFactory inputFactory;
+    private final String defaultOperatorName = "Velcom";
 
     public TariffsStAXBuilder() {
         inputFactory = XMLInputFactory.newInstance();
@@ -71,7 +72,7 @@ public class TariffsStAXBuilder {
         if (reader.getAttributeValue(null, "operatorName") != null) {
             tariff.setOperatorName(reader.getAttributeValue(null, "operatorName"));
         } else {
-            tariff.setOperatorName("Velcom");
+            tariff.setOperatorName(defaultOperatorName);
         }
         String name;
         while (reader.hasNext()) {
@@ -176,5 +177,8 @@ public class TariffsStAXBuilder {
             text = reader.getText();
         }
         return text;
+    }
+    public String getClassName(){
+        return TariffsStAXBuilder.class.getSimpleName();
     }
 }

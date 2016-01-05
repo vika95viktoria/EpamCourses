@@ -1,0 +1,2 @@
+05.01.2016 23:01:30 [main] INFO  by.bsu.xml.action.ValidatorSAXXSD  - data/tariffs.xml is valid.
+05.01.2016 23:01:31 [main] INFO  by.bsu.xml.action.TariffMarshal  - XML-file has created

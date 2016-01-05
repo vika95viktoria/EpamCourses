@@ -9,7 +9,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _AbstractTariff_QNAME = new QName("http://www.example.com/tariffs", "abstractTariff");
+    private final static QName _AbstractTariff_QNAME = new QName("http://www.example.com/tariffs", "abstractTariffs");
     private final static QName _Tariff_QNAME = new QName("http://www.example.com/tariffs", "tariff");
 
 
@@ -41,13 +41,13 @@ public class ObjectFactory {
     }
 
 
-    @XmlElementDecl(namespace = "http://www.example.com/tariffs", name = "abstractTariff")
+    @XmlElementDecl(namespace = "http://www.example.com/tariffs", name = "abstractTariffs")
     public JAXBElement<AbstractTariff> createAbstractTariff(AbstractTariff value) {
         return new JAXBElement<AbstractTariff>(_AbstractTariff_QNAME, AbstractTariff.class, null, value);
     }
 
 
-    @XmlElementDecl(namespace = "http://www.example.com/tariffs", name = "tariff", substitutionHeadNamespace = "http://www.example.com/tariffs", substitutionHeadName = "abstractTariff")
+    @XmlElementDecl(namespace = "http://www.example.com/tariffs", name = "tariff", substitutionHeadNamespace = "http://www.example.com/tariffs", substitutionHeadName = "abstractTariffs")
     public JAXBElement<Tariff> createTariff(Tariff value) {
         return new JAXBElement<Tariff>(_Tariff_QNAME, Tariff.class, null, value);
     }

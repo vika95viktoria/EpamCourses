@@ -14,20 +14,26 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "abstractTariff"
+        "abstractTariffs"
 })
 @XmlRootElement(name = "Tariffs", namespace = "http://www.example.com/tariffs")
 public class Tariffs {
 
-    @XmlElementRef(name = "abstractTariff", namespace = "http://www.example.com/tariffs", type = JAXBElement.class)
-    protected List<JAXBElement<? extends AbstractTariff>> abstractTariff;
+    @XmlElementRef(name = "abstractTariffs", namespace = "http://www.example.com/tariffs", type = JAXBElement.class)
+    protected List<AbstractTariff> abstractTariffs;
 
 
-    public List<JAXBElement<? extends AbstractTariff>> getAbstractTariff() {
-        if (abstractTariff == null) {
-            abstractTariff = new ArrayList<JAXBElement<? extends AbstractTariff>>();
+    public List<AbstractTariff> getAbstractTariffs() {
+        if (abstractTariffs == null) {
+            abstractTariffs = new ArrayList< AbstractTariff>();
         }
-        return this.abstractTariff;
+        return this.abstractTariffs;
+    }
+    public boolean add(AbstractTariff tariff){
+        if (abstractTariffs == null) {
+            abstractTariffs = new ArrayList< AbstractTariff>();
+        }
+        return abstractTariffs.add(tariff);
     }
 
 }

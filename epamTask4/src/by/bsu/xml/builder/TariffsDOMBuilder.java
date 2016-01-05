@@ -21,10 +21,11 @@ import java.util.List;
 /**
  * Created by Виктория on 03.01.2016.
  */
-public class TariffsDOMBuilder {
+public class TariffsDOMBuilder implements AbstractTariffsBuilder {
     private static Logger logger = Logger.getLogger(TariffsDOMBuilder.class);
     private List<Tariff> tariffs;
     private DocumentBuilder docBuilder;
+    private final String defaultOperatorName = "Velcom";
 
     public TariffsDOMBuilder() {
         this.tariffs = new ArrayList<>();
@@ -32,7 +33,7 @@ public class TariffsDOMBuilder {
         try {
             docBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            logger.error("Ошибка конфигурации парсера: " + e);
+            logger.error("Error in parser's configuration " + e);
         }
     }
 
@@ -71,7 +72,7 @@ public class TariffsDOMBuilder {
         if (tariffElement.getAttribute("operatorName") != null) {
             tariff.setOperatorName(tariffElement.getAttribute("operatorName"));
         } else {
-            tariff.setOperatorName("Velcom");
+            tariff.setOperatorName(defaultOperatorName);
         }
         Integer payroll = Integer.parseInt(getElementTextContent(tariffElement, "payroll"));
         tariff.setPayroll(payroll);
@@ -101,5 +102,8 @@ public class TariffsDOMBuilder {
         callPrices.setOutNet(outNet);
         Integer landline = Integer.parseInt(getElementTextContent(callPricesElement, "landline"));
         callPrices.setLandline(landline);
+    }
+    public String getClassName(){
+        return TariffsDOMBuilder.class.getSimpleName();
     }
 }

@@ -15,6 +15,7 @@ public class TariffHandler extends DefaultHandler {
     private List<Tariff> tariffs;
     private Tariff tariff = null;
     private String current = null;
+    private final String defaultOperatorName = "Velcom";
 
     public TariffHandler() {
         tariffs = new ArrayList<>();
@@ -31,7 +32,7 @@ public class TariffHandler extends DefaultHandler {
             if (attrs.getLength() == 2) {
                 tariff.setOperatorName(attrs.getValue(1));
             } else {
-                tariff.setOperatorName("Velcom");
+                tariff.setOperatorName(defaultOperatorName);
             }
         } else {
             current = localName;

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Виктория on 03.01.2016.
  */
-public class TariffsSAXBuilder {
+public class TariffsSAXBuilder implements AbstractTariffsBuilder {
     private static Logger logger = Logger.getLogger(TariffsSAXBuilder.class);
     private List<Tariff> tariffs;
     private TariffHandler tariffHandler;
@@ -25,7 +25,7 @@ public class TariffsSAXBuilder {
             reader = XMLReaderFactory.createXMLReader();
             reader.setContentHandler(tariffHandler);
         } catch (SAXException e) {
-            logger.error("ошибка SAX парсера: " + e);
+            logger.error("SAX parser's error: " + e);
         }
     }
 
@@ -37,10 +37,13 @@ public class TariffsSAXBuilder {
         try {
             reader.parse(fileName);
         } catch (SAXException e) {
-            logger.error("ошибка SAX парсера: " + e);
+            logger.error("SAX parser's error: " + e);
         } catch (IOException e) {
-            logger.error("ошибка I/О потока: " + e);
+            logger.error("I/O stream's error: " + e);
         }
         tariffs = tariffHandler.getTariffs();
+    }
+    public String getClassName(){
+        return TariffsSAXBuilder.class.getSimpleName();
     }
 }
