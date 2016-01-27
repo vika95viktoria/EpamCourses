@@ -53,7 +53,7 @@ public class Parameters {
     public String toString() {
         return
                 "favourites=" + favourites +
-                ", tarification='" + tarification + '\'' +
-                ", payment=" + payment;
+                        ", tarification='" + tarification + '\'' +
+                        ", payment=" + payment;
     }
 }

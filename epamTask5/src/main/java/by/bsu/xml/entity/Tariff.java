@@ -1,4 +1,3 @@
-
 package by.bsu.xml.entity;
 
 import javax.xml.bind.annotation.*;
@@ -9,12 +8,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Tariff", namespace = "http://www.example.com/tariffs", propOrder = {
-    "sms",
-    "parameters"
+        "sms",
+        "parameters"
 })
 public class Tariff
-    extends AbstractTariff
-{
+        extends AbstractTariff {
 
     @XmlElement(namespace = "http://www.example.com/tariffs")
     @XmlSchemaType(name = "nonNegativeInteger")
@@ -40,7 +38,7 @@ public class Tariff
 
 
     public Parameters getParameters() {
-        if(parameters==null){
+        if (parameters == null) {
             parameters = new Parameters();
         }
         return parameters;
@@ -73,7 +71,7 @@ public class Tariff
 
     @Override
     public String toString() {
-        return "name=" + name + ", operatorName=" + operatorName +", payroll="+payroll +" "+callPrices+", sms=" + sms +
+        return "name=" + name + ", operatorName=" + operatorName + ", payroll=" + payroll + " " + callPrices + ", sms=" + sms +
                 " " + parameters;
     }
 }

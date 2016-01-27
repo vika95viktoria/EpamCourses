@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface AbstractTariffsBuilder {
     void buildTariffs(String fileName);
+
     List<Tariff> getTariffs();
 }

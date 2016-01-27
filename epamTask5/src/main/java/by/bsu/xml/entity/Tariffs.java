@@ -1,15 +1,9 @@
-
 package by.bsu.xml.entity;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -25,13 +19,14 @@ public class Tariffs {
 
     public List<AbstractTariff> getAbstractTariffs() {
         if (abstractTariffs == null) {
-            abstractTariffs = new ArrayList< AbstractTariff>();
+            abstractTariffs = new ArrayList<AbstractTariff>();
         }
         return this.abstractTariffs;
     }
-    public boolean add(AbstractTariff tariff){
+
+    public boolean add(AbstractTariff tariff) {
         if (abstractTariffs == null) {
-            abstractTariffs = new ArrayList< AbstractTariff>();
+            abstractTariffs = new ArrayList<AbstractTariff>();
         }
         return abstractTariffs.add(tariff);
     }

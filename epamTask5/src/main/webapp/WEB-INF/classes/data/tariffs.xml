@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tariffs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xmlns="http://www.example.com/tariffs"
-          xsi:schemaLocation="http://www.example.com/tariffs tariffs.xsd">
-    <tariff name = "Business" operatorname= "Velcom">
+         xmlns="http://www.example.com/tariffs"
+         xsi:schemaLocation="http://www.example.com/tariffs tariffs.xsd">
+    <tariff name="Business" operatorname="Velcom">
         <payroll>69900</payroll>
         <callprices>
             <innet>500</innet>
@@ -16,7 +16,7 @@
             <payment>50000</payment>
         </parameters>
     </tariff>
-    <tariff name = "BusinessPro" operatorname= "Velcom">
+    <tariff name="BusinessPro" operatorname="Velcom">
         <payroll>69900</payroll>
         <callprices>
             <innet>109</innet>
@@ -30,7 +30,7 @@
             <payment>10000</payment>
         </parameters>
     </tariff>
-    <tariff name = "BusinessClass">
+    <tariff name="BusinessClass">
         <payroll>890000</payroll>
         <callprices>
             <innet>0</innet>
@@ -44,7 +44,7 @@
             <payment>890000</payment>
         </parameters>
     </tariff>
-    <tariff name = "SummerCalls" operatorname= "Velcom">
+    <tariff name="SummerCalls" operatorname="Velcom">
         <payroll>30000</payroll>
         <callprices>
             <innet>425</innet>
@@ -58,7 +58,7 @@
             <payment>10000</payment>
         </parameters>
     </tariff>
-    <tariff name = "EverybodyTalks">
+    <tariff name="EverybodyTalks">
         <payroll>70000</payroll>
         <callprices>
             <innet>450</innet>
@@ -72,7 +72,7 @@
             <payment>10000</payment>
         </parameters>
     </tariff>
-    <tariff name = "Smart1" operatorname= "Velcom">
+    <tariff name="Smart1" operatorname="Velcom">
         <payroll>120000</payroll>
         <callprices>
             <innet>199</innet>
@@ -86,7 +86,7 @@
             <payment>10000</payment>
         </parameters>
     </tariff>
-    <tariff name = "Shoes" operatorname= "Velcom">
+    <tariff name="Shoes" operatorname="Velcom">
         <payroll>85000</payroll>
         <callprices>
             <innet>425</innet>
@@ -100,7 +100,7 @@
             <payment>10000</payment>
         </parameters>
     </tariff>
-    <tariff name = "Excellent" operatorname= "MTS">
+    <tariff name="Excellent" operatorname="MTS">
         <payroll>70000</payroll>
         <callprices>
             <innet>350</innet>
@@ -114,7 +114,7 @@
             <payment>30000</payment>
         </parameters>
     </tariff>
-    <tariff name = "Talk" operatorname= "MTS">
+    <tariff name="Talk" operatorname="MTS">
         <payroll>40000</payroll>
         <callprices>
             <innet>400</innet>
@@ -128,7 +128,7 @@
             <payment>30000</payment>
         </parameters>
     </tariff>
-    <tariff name = "EasyToSay" operatorname= "MTS">
+    <tariff name="EasyToSay" operatorname="MTS">
         <payroll>3000</payroll>
         <callprices>
             <innet>550</innet>
@@ -142,7 +142,7 @@
             <payment>30000</payment>
         </parameters>
     </tariff>
-    <tariff name = "Ultra" operatorname= "MTS">
+    <tariff name="Ultra" operatorname="MTS">
         <payroll>420000</payroll>
         <callprices>
             <innet>0</innet>
@@ -156,7 +156,7 @@
             <payment>420000</payment>
         </parameters>
     </tariff>
-    <tariff name = "MtsSmart" operatorname= "MTS">
+    <tariff name="MtsSmart" operatorname="MTS">
         <payroll>110000</payroll>
         <callprices>
             <innet>59</innet>
@@ -170,7 +170,7 @@
             <payment>30000</payment>
         </parameters>
     </tariff>
-    <tariff name = "Start" operatorname= "life">
+    <tariff name="Start" operatorname="life">
         <payroll>0</payroll>
         <callprices>
             <innet>390</innet>
@@ -184,7 +184,7 @@
             <payment>0</payment>
         </parameters>
     </tariff>
-    <tariff name = "XS" operatorname= "life">
+    <tariff name="XS" operatorname="life">
         <payroll>30000</payroll>
         <callprices>
             <innet>0</innet>
@@ -198,7 +198,7 @@
             <payment>30000</payment>
         </parameters>
     </tariff>
-    <tariff name = "L" operatorname= "life">
+    <tariff name="L" operatorname="life">
         <payroll>100000</payroll>
         <callprices>
             <innet>0</innet>
