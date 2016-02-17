@@ -1,6 +1,8 @@
-package by.bsu.lowcost.connection;
+package com.epam.lowcost.connection;
 
-import by.bsu.lowcost.exception.ConnectionPoolException;
+import com.epam.lowcost.exception.ConnectionPoolException;
+import org.apache.log4j.Logger;
+import sun.rmi.runtime.Log;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,16 +19,17 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class ConnectionPool {
     private static ConnectionPool connectionPool;
-    private static AtomicBoolean created = new AtomicBoolean(false);
     private static Lock lock = new ReentrantLock();
     private final String URL;
     private final String USER;
     private final String PASSWORD;
     private final String DRIVER;
     private final int MAX_ACTIVE;
-    private BlockingQueue<Connection> availableConnections;
-    private BlockingQueue<Connection> busyConnections;
-    private AtomicBoolean access = new AtomicBoolean(true);
+    private BlockingQueue<ProxyConnection> availableConnections;
+    private BlockingQueue<ProxyConnection> busyConnections;
+    private static AtomicBoolean access = new AtomicBoolean(true);
+    private static AtomicBoolean created = new AtomicBoolean(false);
+    private static Logger logger = Logger.getLogger(ConnectionPool.class);
 
     private ConnectionPool(String driver, String url, String user, String password, int initialConnections, int maxActive) throws ConnectionPoolException {
 
@@ -35,15 +38,15 @@ public class ConnectionPool {
         this.USER = user;
         this.PASSWORD = password;
         this.MAX_ACTIVE = maxActive;
-        if (initialConnections > this.MAX_ACTIVE) {
-            initialConnections = this.MAX_ACTIVE;
+        if (initialConnections > MAX_ACTIVE) {
+            initialConnections = MAX_ACTIVE;
         }
-        availableConnections = new ArrayBlockingQueue<Connection>(maxActive);
-        busyConnections = new ArrayBlockingQueue<Connection>(maxActive);
+        availableConnections = new ArrayBlockingQueue<ProxyConnection>(maxActive);
+        busyConnections = new ArrayBlockingQueue<ProxyConnection>(maxActive);
         try {
             Class.forName(DRIVER).newInstance();
         } catch (ClassNotFoundException | IllegalAccessException |InstantiationException e) {
-            throw new ConnectionPoolException(e.getMessage(), e);
+            throw new ConnectionPoolException(e);
         }
 
         for (int i = 0; i < initialConnections; i++) {
@@ -67,19 +70,19 @@ public class ConnectionPool {
         return connectionPool;
     }
 
-    private Connection createNewConnection() throws ConnectionPoolException {
-        Connection connection = null;
+    private ProxyConnection createNewConnection() throws ConnectionPoolException {
+        ProxyConnection connection = null;
         try {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            connection = new ProxyConnection(DriverManager.getConnection(URL, USER, PASSWORD));
         } catch (SQLException e) {
-            throw new ConnectionPoolException(e);
+            logger.error(e);
         }
         return connection;
 
     }
 
-    public Connection getConnection() throws ConnectionPoolException {
-        Connection connection = null;
+    public ProxyConnection getConnection() throws ConnectionPoolException {
+        ProxyConnection connection = null;
         if (access.get()) {
             try {
                 connection = availableConnections.take();
@@ -102,10 +105,12 @@ public class ConnectionPool {
     }
 
     public void releaseConnection() throws ConnectionPoolException {
-        Connection connection = busyConnections.poll();
+        ProxyConnection connection = busyConnections.poll();
         try {
+            connection.setAutoCommit(true);
+            connection.setReadOnly(true);
             availableConnections.put(connection);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException | SQLException e) {
             throw new ConnectionPoolException(e);
         }
     }
@@ -122,7 +127,7 @@ public class ConnectionPool {
                     connection.close();
                 }
             } catch (SQLException e) {
-                throw new ConnectionPoolException(e);
+                logger.error(e);
             }
         }
         catch (InterruptedException e){

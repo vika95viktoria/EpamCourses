@@ -1,4 +1,4 @@
-package by.bsu.lowcost.exception;
+package com.epam.lowcost.exception;
 
 /**
  * Created by Виктория on 28.01.2016.
