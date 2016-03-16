@@ -10,21 +10,26 @@ import java.util.concurrent.Executor;
  */
 public class ProxyConnection implements Connection {
     private Connection connection;
+
     ProxyConnection(Connection connection) { // только в пакете
         this.connection = connection;
     }
+
     @Override
     public Statement createStatement() throws SQLException {
         return connection.createStatement();
     }
+
     @Override
     public void close() throws SQLException {
         connection.close();
     }
+
     @Override
     public void commit() throws SQLException {
         connection.commit();
     }
+
     @Override
     public boolean isClosed() throws SQLException {
         return connection.isClosed();
@@ -36,17 +41,12 @@ public class ProxyConnection implements Connection {
     }
 
     @Override
-    public void setReadOnly(boolean readOnly) throws SQLException {
-
-    }
-
-    @Override
     public boolean isReadOnly() throws SQLException {
         return false;
     }
 
     @Override
-    public void setCatalog(String catalog) throws SQLException {
+    public void setReadOnly(boolean readOnly) throws SQLException {
 
     }
 
@@ -56,13 +56,18 @@ public class ProxyConnection implements Connection {
     }
 
     @Override
-    public void setTransactionIsolation(int level) throws SQLException {
+    public void setCatalog(String catalog) throws SQLException {
 
     }
 
     @Override
     public int getTransactionIsolation() throws SQLException {
         return 0;
+    }
+
+    @Override
+    public void setTransactionIsolation(int level) throws SQLException {
+
     }
 
     @Override
@@ -101,13 +106,13 @@ public class ProxyConnection implements Connection {
     }
 
     @Override
-    public void setHoldability(int holdability) throws SQLException {
-
+    public int getHoldability() throws SQLException {
+        return 0;
     }
 
     @Override
-    public int getHoldability() throws SQLException {
-        return 0;
+    public void setHoldability(int holdability) throws SQLException {
+
     }
 
     @Override
@@ -191,11 +196,6 @@ public class ProxyConnection implements Connection {
     }
 
     @Override
-    public void setClientInfo(Properties properties) throws SQLClientInfoException {
-
-    }
-
-    @Override
     public String getClientInfo(String name) throws SQLException {
         return null;
     }
@@ -203,6 +203,11 @@ public class ProxyConnection implements Connection {
     @Override
     public Properties getClientInfo() throws SQLException {
         return null;
+    }
+
+    @Override
+    public void setClientInfo(Properties properties) throws SQLClientInfoException {
+
     }
 
     @Override
@@ -216,13 +221,13 @@ public class ProxyConnection implements Connection {
     }
 
     @Override
-    public void setSchema(String schema) throws SQLException {
-
+    public String getSchema() throws SQLException {
+        return null;
     }
 
     @Override
-    public String getSchema() throws SQLException {
-        return null;
+    public void setSchema(String schema) throws SQLException {
+
     }
 
     @Override
@@ -259,14 +264,15 @@ public class ProxyConnection implements Connection {
     public void rollback() throws SQLException {
         connection.rollback();
     }
-    @Override
-    public void setAutoCommit(boolean flag) throws SQLException {
-        connection.setAutoCommit(flag);
-    }
 
     @Override
     public boolean getAutoCommit() throws SQLException {
         return false;
+    }
+
+    @Override
+    public void setAutoCommit(boolean flag) throws SQLException {
+        connection.setAutoCommit(flag);
     }
 
     @Override
