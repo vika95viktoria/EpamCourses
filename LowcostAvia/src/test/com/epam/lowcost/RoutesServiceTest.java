@@ -20,9 +20,9 @@ public class RoutesServiceTest {
         RoutesDAO routesDAO = RoutesDAO.getInstance();
         List<Route> routes = service.getAllRoutes();
         List<Route> routeList = routesDAO.findAll();
-        Assert.assertEquals(routeList.size(),routes.size());
-        for(int i=0; i<routeList.size(); i++){
-            Assert.assertEquals(routeList.get(i).getId(),routes.get(i).getId());
+        Assert.assertEquals(routeList.size(), routes.size());
+        for (int i = 0; i < routeList.size(); i++) {
+            Assert.assertEquals(routeList.get(i).getId(), routes.get(i).getId());
         }
     }
 }

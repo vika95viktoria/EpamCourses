@@ -10,11 +10,12 @@ import com.epam.lowcost.resource.ConfigurationManager;
  * Created by Виктория on 03.03.2016.
  */
 public class CardService {
-    private static CardService cardService = new CardService();
-    private CreditCardDAO cardDAO = CreditCardDAO.getInstance();
     private static final String PRICE_PROPERTIES_FILE = "price.properties";
     private static final String LUGGAGE = "luggage";
     private static final String PRIORITY_PRICE = "priorityPrice";
+    private static CardService cardService = new CardService();
+    private CreditCardDAO cardDAO = CreditCardDAO.getInstance();
+
     private CardService() {
     }
 
@@ -22,6 +23,17 @@ public class CardService {
         return cardService;
     }
 
+    /**
+     * Update ticket info with new luggage and priority parameters
+     *
+     * @param priority
+     * @param luggage
+     * @param userId
+     * @param luggageChange
+     * @param priorChange
+     * @return
+     * @throws ServiceException
+     */
     public ServiceMessage editTicket(int priority, int luggage, Long userId, boolean luggageChange, boolean priorChange) throws ServiceException {
         ConfigurationManager priceManager = new ConfigurationManager();
         priceManager.loadProperties(PRICE_PROPERTIES_FILE);

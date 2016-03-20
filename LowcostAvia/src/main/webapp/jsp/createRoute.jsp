@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
-<fmt:setBundle basename="pagecontent" />
+<fmt:setBundle basename="pagecontent"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,16 +33,17 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><fmt:message key="createRoute.add.city" /></h4>
+                        <h4 class="modal-title"><fmt:message key="createRoute.add.city"/></h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="control-label" for="cityName"><fmt:message key="createRoute.city.name" /></label>
+                            <label class="control-label" for="cityName"><fmt:message
+                                    key="createRoute.city.name"/></label>
                             <input type="text" class="form-control" id="cityName" name="cityName">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary"><fmt:message key="createRoute.add" /></button>
+                        <button type="submit" class="btn btn-primary"><fmt:message key="createRoute.add"/></button>
                     </div>
                 </div>
 
@@ -54,7 +55,7 @@
     <form action="/airepam" method="POST" id="addRouteForm">
         <input type="hidden" name="command" value="addRoute"/>
         <div id="create-form" class="container-fluid" style="width:90%">
-            <legend><span id="createHeader"><fmt:message key="createRoute.create.route" /></span></legend>
+            <legend><span id="createHeader"><fmt:message key="createRoute.create.route"/></span></legend>
 
             <select class="form-control search-select" id="selectFromCr" name="from">
                 <option></option>
@@ -71,25 +72,30 @@
             </select>
 
 
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#cityCreator"><fmt:message key="createRoute.add.city" />
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#cityCreator"><fmt:message
+                    key="createRoute.add.city"/>
             </button>
 
 
             <div class="FormsPrices">
                 <div class="form-group">
-                    <label class="control-label" for="EconomyTicketCount"><fmt:message key="createRoute.economy.count" /></label>
+                    <label class="control-label" for="EconomyTicketCount"><fmt:message
+                            key="createRoute.economy.count"/></label>
                     <input type="number" class="form-control" id="EconomyTicketCount" name="economyCount">
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="BusinessTicketCount"><fmt:message key="createRoute.business.count" /></label>
+                    <label class="control-label" for="BusinessTicketCount"><fmt:message
+                            key="createRoute.business.count"/></label>
                     <input type="number" class="form-control" id="BusinessTicketCount" name="businessCount">
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="EconomyPrice"><fmt:message key="createRoute.economy.price" /></label>
+                    <label class="control-label" for="EconomyPrice"><fmt:message
+                            key="createRoute.economy.price"/></label>
                     <input type="number" class="form-control" id="EconomyPrice" name="economyPrice">
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="BusinessPrice"><fmt:message key="createRoute.business.price" /></label>
+                    <label class="control-label" for="BusinessPrice"><fmt:message
+                            key="createRoute.business.price"/></label>
                     <input type="number" class="form-control" id="BusinessPrice" name="businessPrice">
                 </div>
 
@@ -97,10 +103,10 @@
 
             <div class="clearfix">
                 <div class="labelForTime">
-                    <label class="control-label"><fmt:message key="createRoute.departure" /></label>
+                    <label class="control-label"><fmt:message key="createRoute.departure"/></label>
                 </div>
                 <div class="labelForTime">
-                    <label class="control-label"><fmt:message key="createRoute.arrival" /></label>
+                    <label class="control-label"><fmt:message key="createRoute.arrival"/></label>
                 </div>
                 <div class="input-group bootstrap-timepicker timepicker" id="timepickerFrom">
                     <input id="timepicker1" type="text" class="form-control input-small" name="timeFrom">
@@ -114,38 +120,38 @@
             </div>
 
             <div class="container-fluid" id="week">
-                <h4><fmt:message key="createRoute.flight.on" /></h4>
+                <h4><fmt:message key="createRoute.flight.on"/></h4>
                 <br>
                 <div>
                     <label>
-                        <input type="checkbox" name="week" value=1> <fmt:message key="createRoute.monday" />
+                        <input type="checkbox" name="week" value=1> <fmt:message key="createRoute.monday"/>
                     </label>
                     <label>
-                        <input type="checkbox" name="week" value=2> <fmt:message key="createRoute.tuesday" />
+                        <input type="checkbox" name="week" value=2> <fmt:message key="createRoute.tuesday"/>
                     </label>
                     <label>
-                        <input type="checkbox" name="week" value=3> <fmt:message key="createRoute.wednesday" />
+                        <input type="checkbox" name="week" value=3> <fmt:message key="createRoute.wednesday"/>
                     </label>
                     <label>
-                        <input type="checkbox" name="week" value=4> <fmt:message key="createRoute.thursday" />
+                        <input type="checkbox" name="week" value=4> <fmt:message key="createRoute.thursday"/>
                     </label>
                     <label>
-                        <input type="checkbox" name="week" value=5> <fmt:message key="createRoute.friday" />
+                        <input type="checkbox" name="week" value=5> <fmt:message key="createRoute.friday"/>
                     </label>
                     <label>
-                        <input type="checkbox" name="week" value=6> <fmt:message key="createRoute.saturday" />
+                        <input type="checkbox" name="week" value=6> <fmt:message key="createRoute.saturday"/>
                     </label>
                     <label>
-                        <input type="checkbox" name="week" value=0> <fmt:message key="createRoute.sunday" />
+                        <input type="checkbox" name="week" value=0> <fmt:message key="createRoute.sunday"/>
                     </label>
                 </div>
             </div>
             <div class="clearfix">
                 <div class="labelForTime">
-                    <label class="control-label"> <fmt:message key="createRoute.first.flight" /></label>
+                    <label class="control-label"> <fmt:message key="createRoute.first.flight"/></label>
                 </div>
                 <div class="labelForTime">
-                    <label class="control-label"> <fmt:message key="createRoute.last.flight" /></label>
+                    <label class="control-label"> <fmt:message key="createRoute.last.flight"/></label>
                 </div>
                 <div class='input-group date' id='datepickerInCreator' data-date-format="dd-mm-yyyy">
                     <input type='text' class="form-control " readonly='true' id="dtd" name="dateFrom"/>
@@ -164,7 +170,8 @@
             </div>
 
             <div class="clearfix">
-                <button type="submit" class="btn btn-success" style="float:right"><fmt:message key="createRoute.create" /></button>
+                <button type="submit" class="btn btn-success" style="float:right"><fmt:message
+                        key="createRoute.create"/></button>
             </div>
         </div>
     </form>

@@ -4,12 +4,13 @@ import com.epam.lowcost.connection.ConnectionPool;
 import com.epam.lowcost.domain.*;
 import com.epam.lowcost.exception.DAOException;
 import com.epam.lowcost.util.PriceGenerator;
-import static com.epam.lowcost.util.DAOConstants.*;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.epam.lowcost.util.DAOConstants.*;
 
 /**
  * Created by Виктория on 29.02.2016.
@@ -59,6 +60,14 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
         return false;
     }
 
+    /**
+     * Add tickets to database
+     *
+     * @param models
+     * @param userId
+     * @throws DAOException
+     */
+
     public void createTickets(List<TicketModel> models, Long userId) throws DAOException {
         Connection connection;
         PreparedStatement statement = null;
@@ -94,6 +103,14 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
         }
     }
 
+    /**
+     * Add luggage or priority for ticket after purchase
+     *
+     * @param luggage
+     * @param priority
+     * @param ticketId
+     * @throws DAOException
+     */
     public void updateLuggageAndPriority(int luggage, int priority, Long ticketId) throws DAOException {
         Connection connection;
         PreparedStatement statement = null;
@@ -113,6 +130,15 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
 
         }
     }
+
+    /**
+     * Return all necessary info for counting price
+     *
+     * @param flightId
+     * @param isBusiness
+     * @return
+     * @throws DAOException
+     */
 
     public PriceGenerator getTicketInfo(Long flightId, boolean isBusiness) throws DAOException {
         Connection connection;
@@ -157,6 +183,14 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
     public boolean remove(Ticket entity) {
         return false;
     }
+
+    /**
+     * Get all tickets for user
+     *
+     * @param userId
+     * @return
+     * @throws DAOException
+     */
 
     public List<Ticket> findAllForUserId(Long userId) throws DAOException {
         List<Ticket> tickets = new ArrayList<>();

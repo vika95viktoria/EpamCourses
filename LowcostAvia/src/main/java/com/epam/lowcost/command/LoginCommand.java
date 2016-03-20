@@ -8,7 +8,6 @@ import com.epam.lowcost.resource.ConfigurationManager;
 import com.epam.lowcost.security.PasswordHash;
 import com.epam.lowcost.service.UserService;
 import com.epam.lowcost.util.Validator;
-import static com.epam.lowcost.util.CommandConstants.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,17 +16,29 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static com.epam.lowcost.util.CommandConstants.*;
+
 /**
  * Created by Виктория on 18.02.2016.
  */
 public class LoginCommand extends ActionCommand {
+    /**
+     * Get password and username, check if valid, check if user with such credentials exists
+     *
+     * @param request
+     * @param response
+     * @throws ServiceException
+     * @throws ServletException
+     * @throws IOException
+     * @throws ValidationException
+     */
 
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServiceException, ServletException, IOException, ValidationException {
         String username = request.getParameter(PARAM_NAME_USERNAME);
         String password = request.getParameter(PARAM_NAME_PASSWORD);
         HttpSession session = request.getSession();
-        String language = (String)session.getAttribute(ATTRIBUTE_NAME_LANGUAGE);
+        String language = (String) session.getAttribute(ATTRIBUTE_NAME_LANGUAGE);
         UserService userService = UserService.getInstance();
         if (!Validator.validateLoginForm(username, password)) {
             request.setAttribute(ERROR_MESSAGE, ServiceMessage.LOGIN_FAIL.getValue(language));

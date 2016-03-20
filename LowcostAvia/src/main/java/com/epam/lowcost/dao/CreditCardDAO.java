@@ -4,13 +4,14 @@ import com.epam.lowcost.connection.ConnectionPool;
 import com.epam.lowcost.domain.CreditCard;
 import com.epam.lowcost.domain.ServiceMessage;
 import com.epam.lowcost.exception.DAOException;
-import static com.epam.lowcost.util.DAOConstants.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import static com.epam.lowcost.util.DAOConstants.*;
 
 /**
  * Created by Виктория on 25.02.2016.
@@ -77,6 +78,15 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
         }
         return true;
     }
+
+    /**
+     * Decreases money amount in database
+     *
+     * @param price
+     * @param userId
+     * @return ServiceMessage
+     * @throws DAOException
+     */
 
     public ServiceMessage updateAmount(double price, Long userId) throws DAOException {
         Connection connection;

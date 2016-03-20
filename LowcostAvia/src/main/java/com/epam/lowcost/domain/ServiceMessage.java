@@ -34,7 +34,7 @@ public enum ServiceMessage {
 
     public String getValue(String language) {
         ConfigurationManager manager = new ConfigurationManager();
-        String filename = "pagecontent_"+language+".properties";
+        String filename = "pagecontent_" + language + ".properties";
         manager.loadProperties(filename);
         return manager.getProperty(this.toString());
     }

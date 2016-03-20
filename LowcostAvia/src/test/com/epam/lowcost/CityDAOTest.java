@@ -14,7 +14,7 @@ public class CityDAOTest {
     public void testFindById() throws DAOException {
         CityDAO cityDAO = CityDAO.getInstance();
         City city = cityDAO.findEntityById(-5L);
-        Assert.assertEquals(0,city.getId());
-        Assert.assertEquals(null,city.getName());
+        Assert.assertEquals(0, city.getId());
+        Assert.assertEquals(null, city.getName());
     }
 }

@@ -1,5 +1,3 @@
-
-
 $("#selectFrom").on("select2:select", function (e) {
     $('#selectTo').select2('val', 'All');
     var e = document.getElementById("selectFrom");
@@ -8,7 +6,7 @@ $("#selectFrom").on("select2:select", function (e) {
     $.ajax({
         type: "POST",
         url: s,
-        data:'cityFrom='+from,
+        data: 'cityFrom=' + from,
         processData: false,
         success: function (data) {
             var json = JSON.parse(data);

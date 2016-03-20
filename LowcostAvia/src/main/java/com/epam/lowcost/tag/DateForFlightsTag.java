@@ -14,6 +14,7 @@ import java.util.Locale;
 public class DateForFlightsTag extends TagSupport {
     private Date date;
     private String locale;
+
     public void setDate(Date date) {
         this.date = date;
     }
@@ -21,7 +22,8 @@ public class DateForFlightsTag extends TagSupport {
     public void setLocale(String locale) {
         this.locale = locale;
     }
-    public  SimpleDateFormat formateDate(String locale) {
+
+    public SimpleDateFormat formateDate(String locale) {
         Locale locale1 = new Locale(locale.substring(0, 2), locale.substring(3, 5));
         Locale.setDefault(locale1);
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d");
@@ -29,10 +31,11 @@ public class DateForFlightsTag extends TagSupport {
     }
 
 
-    private  String format(Date date, SimpleDateFormat dateFormat) {
+    private String format(Date date, SimpleDateFormat dateFormat) {
         String formDate = dateFormat.format(date);
         return formDate;
     }
+
     @Override
     public int doStartTag() throws JspException {
         try {
@@ -42,6 +45,7 @@ public class DateForFlightsTag extends TagSupport {
         }
         return SKIP_BODY;
     }
+
     @Override
     public int doEndTag() throws JspException {
         return EVAL_PAGE;

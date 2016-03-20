@@ -2,8 +2,10 @@ package com.epam.lowcost.factory;
 
 
 import com.epam.lowcost.command.*;
-import static com.epam.lowcost.util.Commands.*;
+
 import java.util.HashMap;
+
+import static com.epam.lowcost.util.Commands.*;
 
 /**
  * Created by Виктория on 18.02.2016.

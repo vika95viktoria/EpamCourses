@@ -187,14 +187,3 @@
         </div>
     </div>
 </div>
-<script src="./js/messageResource.min.js"></script>
-<script src="./js/messageResource.js"></script>
-<script>
-
-function bla() {
-
-    var value = messageResource.get('home.title', 'error_ru_RU');
-    // value = messageResource.get('home.title', 'error');
-    console.log(value);
-}
-</script>

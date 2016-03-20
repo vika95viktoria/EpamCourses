@@ -196,14 +196,5 @@
 <script src="./js/jquery.validate.js"></script>
 <script type="text/javascript" src="./js/jquery.tooltipster.min.js"></script>
 <script type="text/javascript" src="../js/controllers/createRouteController.js"></script>
-<script>
-    $(document).ready(function () {
-        messageResource.init({
-            filePath : 'resource/'
-        });
-        var name = 'error_'+'${language}'
-        messageResource.load(name);
-    });
-</script>
 </body>
 </html>

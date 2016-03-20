@@ -20,6 +20,16 @@ import static com.epam.lowcost.util.CommandConstants.*;
  * Created by Виктория on 24.02.2016.
  */
 public class RegisterCommand extends ActionCommand {
+    /**
+     * Get parameters, check if valid, check if username is unique, add user to database, return to main page
+     *
+     * @param request
+     * @param response
+     * @throws ServiceException
+     * @throws ServletException
+     * @throws IOException
+     * @throws ValidationException
+     */
 
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServiceException, ServletException, IOException, ValidationException {

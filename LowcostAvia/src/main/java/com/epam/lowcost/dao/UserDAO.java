@@ -4,13 +4,14 @@ import com.epam.lowcost.connection.ConnectionPool;
 import com.epam.lowcost.domain.CreditCard;
 import com.epam.lowcost.domain.User;
 import com.epam.lowcost.exception.DAOException;
-import static com.epam.lowcost.util.DAOConstants.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import static com.epam.lowcost.util.DAOConstants.*;
 
 /**
  * Created by Виктория on 25.02.2016.
@@ -62,6 +63,15 @@ public class UserDAO extends AbstractDAO<Long, User> {
 
     }
 
+    /**
+     * Return user with given credentials
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws DAOException
+     */
+
     public User findByUsernamePassword(String username, String password) throws DAOException {
         User user = new User();
         Connection connection;
@@ -96,6 +106,13 @@ public class UserDAO extends AbstractDAO<Long, User> {
         return user;
     }
 
+    /**
+     * Check if user with such username exists
+     *
+     * @param username
+     * @return
+     * @throws DAOException
+     */
     public long persist(String username) throws DAOException {
         long id = -1;
         Connection connection;

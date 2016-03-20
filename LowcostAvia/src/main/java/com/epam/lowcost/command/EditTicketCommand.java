@@ -4,7 +4,6 @@ import com.epam.lowcost.domain.ServiceMessage;
 import com.epam.lowcost.exception.ServiceException;
 import com.epam.lowcost.service.CardService;
 import com.epam.lowcost.service.TicketService;
-import static com.epam.lowcost.util.CommandConstants.*;
 import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,10 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static com.epam.lowcost.util.CommandConstants.*;
+
 /**
  * Created by Виктория on 05.03.2016.
  */
 public class EditTicketCommand extends ActionCommand {
+    /**
+     * Get parameters, check if valid, add luggage or priority boarding to ticket
+     *
+     * @param request
+     * @param response
+     * @throws ServiceException
+     * @throws IOException
+     */
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException {
         HttpSession session = request.getSession();
@@ -37,7 +46,7 @@ public class EditTicketCommand extends ActionCommand {
             TicketService ticketService = TicketService.getInstance();
             ticketService.updateLuggageAndPriority(priority, luggage, ticketId);
         }
-        String language = (String)session.getAttribute(ATTRIBUTE_NAME_LANGUAGE);
+        String language = (String) session.getAttribute(ATTRIBUTE_NAME_LANGUAGE);
         response.getWriter().print(message.getValue(language));
 
 

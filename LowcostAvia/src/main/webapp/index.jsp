@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/select2.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/tooltipster.css"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>AirEpam</title>
 
 
@@ -26,11 +26,11 @@
     <%@include file="/jsp/header.jsp" %>
     <div id="welcome">
         <h1>
-            <open><fmt:message key="index.open" /></open>
+            <open><fmt:message key="index.open"/></open>
         </h1>
         <h2>
 
-            <start><fmt:message key="index.start" /></start>
+            <start><fmt:message key="index.start"/></start>
         </h2>
     </div>
 
@@ -45,12 +45,14 @@
                     <tr>
                         <td>
                             <input type="radio" name="radiog_dark" id="radio4" class="css-checkbox"
-                                   onclick="hideReturn()"/><label for="radio4" class="css-label radGroup2"><fmt:message key="index.one.way" /></label>
+                                   onclick="hideReturn()"/><label for="radio4" class="css-label radGroup2"><fmt:message
+                                key="index.one.way"/></label>
                         </td>
                         <td>
                             <input type="radio" name="radiog_dark" id="radio5" class="css-checkbox"
                                    onclick="openReturn()" checked="checked"/><label for="radio5"
-                                                                                    class="css-label radGroup2"><fmt:message key="index.return" /></label>
+                                                                                    class="css-label radGroup2"><fmt:message
+                                key="index.return"/></label>
                         </td>
                     </tr>
                 </table>
@@ -84,13 +86,13 @@
                     </div>
                     <div>
                         <select class="form-control" name="count">
-                            <option><fmt:message key="index.one" /></option>
-                            <option><fmt:message key="index.two" /></option>
-                            <option><fmt:message key="index.three" /></option>
-                            <option><fmt:message key="index.four" /></option>
-                            <option><fmt:message key="index.five" /></option>
+                            <option><fmt:message key="index.one"/></option>
+                            <option><fmt:message key="index.two"/></option>
+                            <option><fmt:message key="index.three"/></option>
+                            <option><fmt:message key="index.four"/></option>
+                            <option><fmt:message key="index.five"/></option>
                         </select>
-                        <button type="submit" class="btn btn-info"><fmt:message key="index.search" /></button>
+                        <button type="submit" class="btn btn-info"><fmt:message key="index.search"/></button>
                     </div>
                 </div>
             </form>

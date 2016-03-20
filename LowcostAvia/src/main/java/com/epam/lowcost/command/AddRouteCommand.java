@@ -10,7 +10,6 @@ import com.epam.lowcost.service.FlightService;
 import com.epam.lowcost.service.RoutesService;
 import com.epam.lowcost.util.DateUtils;
 import com.epam.lowcost.util.Validator;
-import static com.epam.lowcost.util.CommandConstants.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,11 +19,22 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 
+import static com.epam.lowcost.util.CommandConstants.*;
+
 /**
  * Created by Виктория on 05.03.2016.
  */
 public class AddRouteCommand extends ActionCommand {
-
+    /**
+     * Get all parameters,process them, check if valid, and redirect to success page
+     *
+     * @param request
+     * @param response
+     * @throws ServiceException
+     * @throws ServletException
+     * @throws IOException
+     * @throws ValidationException
+     */
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServiceException, ServletException, IOException, ValidationException {
         String from = request.getParameter(PARAM_NAME_FROM);
@@ -39,10 +49,10 @@ public class AddRouteCommand extends ActionCommand {
         String dateFrom = request.getParameter(PARAM_NAME_DATE_FROM);
         String dateTo = request.getParameter(PARAM_NAME_DATE_TO);
         HttpSession session = request.getSession();
-        String language = (String)session.getAttribute(ATTRIBUTE_NAME_LANGUAGE);
+        String language = (String) session.getAttribute(ATTRIBUTE_NAME_LANGUAGE);
         ServiceMessage message = Validator.validateAddRouteForm(from, to, economyCount, businessCount, economyPrice, businessPrice, timeFrom, timeTo, dateFrom, dateTo, days);
         if (!ServiceMessage.OK.equals(message)) {
-            request.setAttribute(ERROR_MESSAGE,message.getValue(language));
+            request.setAttribute(ERROR_MESSAGE, message.getValue(language));
             throw new ValidationException();
         }
         Date startDate = DateUtils.parseDate(dateFrom, timeFrom);
@@ -66,7 +76,7 @@ public class AddRouteCommand extends ActionCommand {
         flightService.generateFlights(flight, startDate, startDateArrival, endDate, days);
         ConfigurationManager configurationManager = new ConfigurationManager();
         configurationManager.loadProperties(PATH_PROPERTIES_FILE);
-        String page = configurationManager.getProperty(CREATE_PAGE_PATH);
+        String page = configurationManager.getProperty(INDEX_PATH);
         RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(page);
         dispatcher.forward(request, response);
 

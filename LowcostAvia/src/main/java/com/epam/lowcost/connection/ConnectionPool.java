@@ -17,6 +17,12 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by Виктория on 27.01.2016.
  */
 public class ConnectionPool {
+    private static final String PROPERTIES_FILE = "db.properties";
+    private static final String DRIVER_NAME = "driver";
+    private static final String URL_ADDRESS = "url";
+    private static final String USERNAME = "user";
+    private static final String PASS = "password";
+    private static final String MAX_ACTIVE_COUNT = "maxActive";
     private static ConnectionPool connectionPool;
     private static Lock lock = new ReentrantLock();
     private static AtomicBoolean access = new AtomicBoolean(true);
@@ -30,14 +36,17 @@ public class ConnectionPool {
     private BlockingQueue<ProxyConnection> availableConnections;
     private BlockingQueue<ProxyConnection> busyConnections;
 
+    /**
+     * Load properties form property file with configuration manager, create pool
+     */
     private ConnectionPool() {
         ConfigurationManager dbManager = new ConfigurationManager();
-        dbManager.loadProperties("db.properties");
-        DRIVER = dbManager.getProperty("driver");
-        URL = dbManager.getProperty("url");
-        USER = dbManager.getProperty("user");
-        PASSWORD = dbManager.getProperty("password");
-        MAX_ACTIVE = Integer.valueOf(dbManager.getProperty("maxActive"));
+        dbManager.loadProperties(PROPERTIES_FILE);
+        DRIVER = dbManager.getProperty(DRIVER_NAME);
+        URL = dbManager.getProperty(URL_ADDRESS);
+        USER = dbManager.getProperty(USERNAME);
+        PASSWORD = dbManager.getProperty(PASS);
+        MAX_ACTIVE = Integer.valueOf(dbManager.getProperty(MAX_ACTIVE_COUNT));
         availableConnections = new ArrayBlockingQueue<>(MAX_ACTIVE);
         busyConnections = new ArrayBlockingQueue<>(MAX_ACTIVE);
         try {
@@ -51,7 +60,11 @@ public class ConnectionPool {
         }
     }
 
-
+    /**
+     * Create connection pool if it is not created, return instance
+     *
+     * @return ConnectionPool
+     */
     public static ConnectionPool getInstance() {
         if (!created.get()) {
             try {
@@ -70,6 +83,7 @@ public class ConnectionPool {
         return connectionPool;
     }
 
+
     private ProxyConnection createNewConnection() {
         ProxyConnection connection = null;
         try {
@@ -81,6 +95,11 @@ public class ConnectionPool {
 
     }
 
+    /**
+     * Get connection from available, add it to busy connection
+     *
+     * @return Connection
+     */
     public ProxyConnection getConnection() {
         ProxyConnection connection = null;
         if (access.get()) {
@@ -94,6 +113,9 @@ public class ConnectionPool {
         return connection;
     }
 
+    /**
+     * Get connection from busy, add to available, check autocommit and read-only properties
+     */
     public void releaseConnection() {
         ProxyConnection connection = busyConnections.poll();
         try {
@@ -109,6 +131,9 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Destroy pool
+     */
     public void closeAllConnections() {
         access.set(false);
         try {

@@ -40,6 +40,16 @@ public class FlightService {
         return flights;
     }
 
+    /**
+     * Generate flights from startDate to finishDate considering days of flight
+     *
+     * @param flight
+     * @param startDate
+     * @param startDateArrival
+     * @param finishDate
+     * @param days
+     * @throws ServiceException
+     */
     public void generateFlights(Flight flight, Date startDate, Date startDateArrival, Date finishDate, String[] days) throws ServiceException {
         try {
             for (int i = 0; i < days.length; i++) {
@@ -59,6 +69,14 @@ public class FlightService {
         }
     }
 
+    /**
+     * Return min economy prices for all routes
+     *
+     * @param all
+     * @return
+     * @throws ServiceException
+     */
+
     public List<Double> getMinPrices(List<Route> all) throws ServiceException {
         List<Double> prices = new ArrayList<>();
         try {
@@ -71,6 +89,12 @@ public class FlightService {
         return prices;
     }
 
+    /**
+     * Get prices for all flights considering date of flight and amount of purchased tickets
+     *
+     * @param flights
+     * @throws ServiceException
+     */
     private void editPrices(List<Flight> flights) throws ServiceException {
         try {
             for (Flight flight : flights) {
@@ -123,6 +147,13 @@ public class FlightService {
         }
     }
 
+    /**
+     * Update the ticket amount if someone delete actual ticket
+     *
+     * @param isBusiness
+     * @param flightId
+     * @throws ServiceException
+     */
     public void returnTicket(boolean isBusiness, Long flightId) throws ServiceException {
         try {
             flightDAO.updateTicketCount(flightId, isBusiness);

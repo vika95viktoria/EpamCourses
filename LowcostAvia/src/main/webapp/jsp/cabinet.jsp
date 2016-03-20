@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
-<fmt:setBundle basename="pagecontent" />
+<fmt:setBundle basename="pagecontent"/>
 
 <!DOCTYPE html>
 <html>
@@ -34,23 +34,23 @@
                 <img src="pictures/user.png" id="user-icon">
             </div>
             <div class="col-xs-10" id="userinfo">
-                <span style="color: black"><fmt:message key="cabinet.login" />: ${currentUser}</span>
+                <span style="color: black"><fmt:message key="cabinet.login"/>: ${currentUser}</span>
                 <br>
                 <br>
-                <span style="color: black"><fmt:message key="cabinet.name" />: ${user.name} ${user.surname}</span>
+                <span style="color: black"><fmt:message key="cabinet.name"/>: ${user.name} ${user.surname}</span>
                 <br>
                 <br>
-                <span style="color: black"><fmt:message key="cabinet.email" />: ${user.email}</span>
+                <span style="color: black"><fmt:message key="cabinet.email"/>: ${user.email}</span>
                 <br>
                 <br>
-                <span style="color: black"><fmt:message key="cabinet.amount" />: ${user.card.amount} &euro;</span>
+                <span style="color: black"><fmt:message key="cabinet.amount"/>: ${user.card.amount} &euro;</span>
             </div>
         </div>
         <c:if test="${not empty tickets}">
             <div class="centered" id="ticketTable">
 <span>
 <br>
-    <fmt:message key="cabinet.tickets" />
+    <fmt:message key="cabinet.tickets"/>
      <br>
      </span>
             </div>
@@ -71,11 +71,13 @@
                         <tr>
                             <td><c:out value="${element.flight.route.cityFrom.name}"/></td>
                             <td><c:out value="${element.flight.route.cityTo.name}"/></td>
-                            <td><ctg:cabinetDate date="${element.flight.dateOut}" locale="${sessionScope.language}"/></td>
-                            <td><ctg:cabinetDate date="${element.flight.dateIn}" locale="${sessionScope.language}"/></td>
+                            <td><ctg:cabinetDate date="${element.flight.dateOut}"
+                                                 locale="${sessionScope.language}"/></td>
+                            <td><ctg:cabinetDate date="${element.flight.dateIn}"
+                                                 locale="${sessionScope.language}"/></td>
                             <td>
                                 <button type="button" class="btn btn-info " id="ticketInfoButton" data-toggle="modal"
-                                        data-target="#ticketInfo${a.count}"><fmt:message key="cabinet.info" />
+                                        data-target="#ticketInfo${a.count}"><fmt:message key="cabinet.info"/>
                                 </button>
                             </td>
                         </tr>
@@ -85,12 +87,12 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title"><fmt:message key="cabinet.ticketInfo" /></h4>
+                                        <h4 class="modal-title"><fmt:message key="cabinet.ticketInfo"/></h4>
                                     </div>
                                     <div class="modal-body clearfix">
                                         <div>
                                             <div class="col-xs-6">
-                                                <h4><fmt:message key="cabinet.userInfo" /></h4>
+                                                <h4><fmt:message key="cabinet.userInfo"/></h4>
                                             </div>
                                             <div class="col-xs-6">
                                                 <p>
@@ -100,7 +102,7 @@
                                         </div>
                                         <div>
                                             <div class="col-xs-6">
-                                                <h4><fmt:message key="cabinet.flight" /></h4>
+                                                <h4><fmt:message key="cabinet.flight"/></h4>
                                                 <br>
                                             </div>
                                             <div class="col-xs-6">
@@ -110,16 +112,18 @@
                                                     <c:out value="${element.flight.route.cityTo.name}"/>
                                                 </p>
                                                 <p>
-                                                    <ctg:cabinetDate date="${element.flight.dateOut}" locale="${sessionScope.language}"/>
+                                                    <ctg:cabinetDate date="${element.flight.dateOut}"
+                                                                     locale="${sessionScope.language}"/>
                                                     <i class="fa fa-long-arrow-right icon-black"></i>
-                                                    <ctg:cabinetDate date="${element.flight.dateIn}" locale="${sessionScope.language}"/>
+                                                    <ctg:cabinetDate date="${element.flight.dateIn}"
+                                                                     locale="${sessionScope.language}"/>
                                                 </p>
                                             </div>
                                         </div>
 
                                         <div id="luggageChange" class="luggageChange">
                                             <div class="col-xs-6">
-                                                <h4><fmt:message key="cabinet.luggage" /> </h4>
+                                                <h4><fmt:message key="cabinet.luggage"/></h4>
                                             </div>
                                             <div class="col-xs-6">
                                                 <c:choose>
@@ -127,13 +131,13 @@
                                                         <select class="form-control" name="count"
                                                                 id="luggageCount${a.count}">
                                                             <option></option>
-                                                            <option><fmt:message key="cabinet.15" /></option>
-                                                            <option><fmt:message key="cabinet.20" /></option>
-                                                            <option><fmt:message key="cabinet.25" /></option>
+                                                            <option><fmt:message key="cabinet.15"/></option>
+                                                            <option><fmt:message key="cabinet.20"/></option>
+                                                            <option><fmt:message key="cabinet.25"/></option>
                                                         </select>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        ${element.luggage} <fmt:message key="cabinet.kg" />
+                                                        ${element.luggage} <fmt:message key="cabinet.kg"/>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
@@ -143,7 +147,7 @@
 
                                         <div>
                                             <div class="col-xs-6">
-                                                <h4><fmt:message key="cabinet.boarding" /> </h4>
+                                                <h4><fmt:message key="cabinet.boarding"/></h4>
                                             </div>
                                             <div class="col-xs-6">
                                                 <c:choose>
@@ -152,7 +156,7 @@
                                                                type="number" name="prior" value="0" min="0" max="1"/>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <fmt:message key="cabinet.included" />
+                                                        <fmt:message key="cabinet.included"/>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
@@ -163,11 +167,11 @@
                                     <div class="modal-footer clearfix">
                                         <button type="button" class="btn btn-primary" data-toggle="modal"
                                                 data-target="#delete${a.count}" data-dismiss="modal" style="float:left">
-                                            <fmt:message key="cabinet.delete" />
+                                            <fmt:message key="cabinet.delete"/>
                                         </button>
                                         <button type="button" class="btn btn-success" data-dismiss="modal"
                                                 onclick="editTicket(${element.hasPriority},${element.luggage},${element.id},${a.count})">
-                                            <fmt:message key="cabinet.confirm" />
+                                            <fmt:message key="cabinet.confirm"/>
                                         </button>
                                     </div>
                                 </div>
@@ -180,15 +184,15 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title"> <fmt:message key="cabinet.sure" /></h4>
+                                        <h4 class="modal-title"><fmt:message key="cabinet.sure"/></h4>
                                     </div>
                                     <div class="modal-body">
-                                        <p><h4> <fmt:message key="cabinet.warning" /></h4></p>
+                                        <p><h4><fmt:message key="cabinet.warning"/></h4></p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary" data-dismiss="modal"
                                                 onclick="deleteTicket(${element.id},${element.flight.id},${element.flight.dateOut.getTime()},${element.isBusiness})">
-                                            <fmt:message key="cabinet.confirm.delete" />
+                                            <fmt:message key="cabinet.confirm.delete"/>
                                         </button>
                                     </div>
                                 </div>
@@ -209,7 +213,8 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                 <div class="alert alert-success fade in center" style="width: 100%">
-                    <strong><span style="align-content: center"><fmt:message key="cabinet.success.delete" /></span></strong>
+                    <strong><span style="align-content: center"><fmt:message
+                            key="cabinet.success.delete"/></span></strong>
                 </div>
             </div>
         </div>

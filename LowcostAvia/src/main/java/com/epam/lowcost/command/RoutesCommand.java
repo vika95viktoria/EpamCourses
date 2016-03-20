@@ -5,7 +5,6 @@ import com.epam.lowcost.exception.ServiceException;
 import com.epam.lowcost.resource.ConfigurationManager;
 import com.epam.lowcost.service.FlightService;
 import com.epam.lowcost.service.RoutesService;
-import static com.epam.lowcost.util.CommandConstants.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,10 +13,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static com.epam.lowcost.util.CommandConstants.*;
+
 /**
  * Created by Виктория on 20.02.2016.
  */
 public class RoutesCommand extends ActionCommand {
+    /**
+     * Get all routes and redirect to route page
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     * @throws ServiceException
+     */
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
         ConfigurationManager configurationManager = new ConfigurationManager();

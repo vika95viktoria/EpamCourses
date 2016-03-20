@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import static com.epam.lowcost.util.Commands.*;
+
 import static com.epam.lowcost.util.CommandConstants.*;
+import static com.epam.lowcost.util.Commands.*;
 
 /**
  * Created by Виктория on 07.03.2016.

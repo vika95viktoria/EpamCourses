@@ -215,22 +215,17 @@ $(document).ready(function () {
             cityName: "Please type the name of the city"
         }
     });
-    /*$("#loginForm").validate({
+    $("#loginForm").validate({
         rules: {
             password: "required",
             username: "required"
         },
         messages: {
-            username:  messageResource.get('error.login', 'error_ru_RU'),
-            password: messageResource.get( 'error.password', 'error_ru_RU')
+            username:  "Please provide username",
+            password: "Please provide password"
 
         }
-    });*/
-    messageResource.init({
-        filePath : 'resource/'
     });
-    var name = 'error_ru_RU';
-    messageResource.load(name);
 
     $("#signupForm").validate({
         rules: {

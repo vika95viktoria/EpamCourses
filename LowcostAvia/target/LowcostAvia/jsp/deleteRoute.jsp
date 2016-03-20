@@ -148,7 +148,7 @@
                 url: url,
                 data: $("#deleteForm").serialize(),
                 success: function (data) {
-                    if ('${not empty error}') {
+                    if (data == 'Incorrect password' || data == 'Неверный пароль') {
                         document.getElementById("incorrect").style.display = "block";
                     }
                     else {
@@ -165,13 +165,6 @@
         }
     });
 
-    $(document).ready(function () {
-        messageResource.init({
-            filePath : 'resource/'
-        });
-        var name = 'error_'+'${language}'
-        messageResource.load(name);
-    });
 </script>
 </body>
 </html>

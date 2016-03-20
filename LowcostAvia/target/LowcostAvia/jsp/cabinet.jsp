@@ -28,7 +28,6 @@
 <body>
 <div id="content">
     <%@include file="header.jsp" %>
-<%--    <ctg:headerTag></ctg:headerTag>--%>
     <div class="container-fluid">
         <div class="container-fluid">
             <div class="col-xs-2">
@@ -247,14 +246,5 @@
 <script type="text/javascript"
         src="http://cdn.datatables.net/plug-ins/f3e99a6c02/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 <script type="text/javascript" src="../js/controllers/cabinetController.js"></script>
-<script>
-    $(document).ready(function () {
-    messageResource.init({
-        filePath : 'resource/'
-    });
-    var name = 'error_'+'${language}'
-    messageResource.load(name);
-    });
-</script>
 </body>
 </html>

@@ -40,10 +40,10 @@ $("#createCity").submit(function (e) {
     }
 });
 
-$("#selectFrom").on("select2:select", function (e) {
-    $('#selectTo').select2('val', 'All');
-    var e = document.getElementById("selectFrom");
-    var e2 = document.getElementById("selectTo");
+$("#selectFromCr").on("select2:select", function (e) {
+    $('#selectToCr').select2('val', 'All');
+    var e = document.getElementById("selectFromCr");
+    var e2 = document.getElementById("selectToCr");
     e2.remove(e.selectedIndex);
 });
 $('#datepickerInCreator2').on('show', function (ev) {

@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
     $('#tabs').tooltipster({
@@ -31,15 +30,15 @@ $(document).ready(function () {
                 required: true,
                 minlength: 3
             },
-            newTimeIn:"required",
-            newTimeOut:"required",
+            newTimeIn: "required",
+            newTimeOut: "required",
         },
         messages: {
             password: "Please provide the password",
-            EditEconomyPrice:"Please enter economy price",
-            EditBusinessPrice:"Please enter business price",
-            newTimeOut:"Please enter the time of departure",
-            newTimeIn:"Please enter the time of arrival",
+            EditEconomyPrice: "Please enter economy price",
+            EditBusinessPrice: "Please enter business price",
+            newTimeOut: "Please enter the time of departure",
+            newTimeIn: "Please enter the time of arrival",
 
         }
         ,
@@ -51,11 +50,11 @@ $(document).ready(function () {
             $(element).tooltipster('hide');
         }
     });
-    var message="";
+    var message = "";
     $("#buyTicket").validate({
         ignore: ".ignore",
-        invalidHandler: function(e, validator){
-            if(validator.errorList.length)
+        invalidHandler: function (e, validator) {
+            if (validator.errorList.length)
                 $('#tabs a[href="#' + jQuery(validator.errorList[0].element).closest(".tab-pane").attr('id') + '"]').tab('show')
         },
         rules: {
@@ -69,10 +68,10 @@ $(document).ready(function () {
             passengerSurname4: "required",
             passengerName5: "required",
             passengerSurname5: "required",
-            radiog_dark:"required",
-            radiog_dark2:"required",
-            currentPrice:"required",
-            currentPrice2:"required"
+            radiog_dark: "required",
+            radiog_dark2: "required",
+            currentPrice: "required",
+            currentPrice2: "required"
         },
         messages: {
             passengerName1: "Please enter the name of the 1 passenger! ",
@@ -85,15 +84,15 @@ $(document).ready(function () {
             passengerSurname4: "Please  enter the surname of the 4 passenger! ",
             passengerName5: "Please  enter the name of the 5 passenger! ",
             passengerSurname5: "Please  enter the surname of the 5 passenger! ",
-            radiog_dark:"Please select the class of your ticket! ",
-            radiog_dark2:"Please select the class of your return ticket! ",
-            currentPrice:"Please select the flight! ",
-            currentPrice2:"Please select the flight! "
+            radiog_dark: "Please select the class of your ticket! ",
+            radiog_dark2: "Please select the class of your return ticket! ",
+            currentPrice: "Please select the flight! ",
+            currentPrice2: "Please select the flight! "
         },
         errorPlacement: function (error, element) {
             if (message.indexOf($(error).text()) == -1) {
-            message = message.concat($(error).text());
-        }
+                message = message.concat($(error).text());
+            }
             $('#tabs').tooltipster('update', message);
             $('#tabs').tooltipster('show');
         },
@@ -104,8 +103,6 @@ $(document).ready(function () {
         onlyOne: false,
         position: 'top-left'
     });
-
-
 
 
     $('#addRouteForm input[name="week"]').tooltipster({
@@ -221,7 +218,7 @@ $(document).ready(function () {
             username: "required"
         },
         messages: {
-            username:  "Please provide username",
+            username: "Please provide username",
             password: "Please provide password"
 
         }
@@ -233,8 +230,8 @@ $(document).ready(function () {
             cardType: "required",
             amount: {
                 required: true,
-                min:10,
-                max:10000
+                min: 10,
+                max: 10000
             },
             surname: "required",
             user: {
@@ -272,40 +269,40 @@ $(document).ready(function () {
             },
             email: "Please enter a valid email address",
             amount: {
-                required:"Please enter amount on your card",
-                min:"You should have at least 10 euro",
-                max:"We provide operations below 10 000 euro"
+                required: "Please enter amount on your card",
+                min: "You should have at least 10 euro",
+                max: "We provide operations below 10 000 euro"
             }
         }
     });
 })
-function changeToRus(){
+function changeToRus() {
     var s = "http://localhost:8080/airepam?command=changeLanguage&lang=rus";
     $.ajax({
         type: "POST",
         url: s,
         processData: false,
         success: function (data) {
-            if(window.location.href == "http://localhost:8080/airepam?command=logout") {
+            if (window.location.href == "http://localhost:8080/airepam?command=logout") {
                 window.location = window.location.href.split("?")[0];
             }
-            else{
+            else {
                 location.reload();
             }
         }
     });
 }
-function changeToEng(){
+function changeToEng() {
     var s = "http://localhost:8080/airepam?command=changeLanguage&lang=eng";
     $.ajax({
         type: "POST",
         url: s,
         processData: false,
         success: function (data) {
-            if(window.location.href == "http://localhost:8080/airepam?command=logout") {
+            if (window.location.href == "http://localhost:8080/airepam?command=logout") {
                 window.location = window.location.href.split("?")[0];
             }
-            else{
+            else {
                 location.reload();
             }
         }

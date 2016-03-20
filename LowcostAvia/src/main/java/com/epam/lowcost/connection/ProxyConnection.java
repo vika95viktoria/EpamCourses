@@ -8,10 +8,14 @@ import java.util.concurrent.Executor;
 /**
  * Created by Виктория on 16.02.2016.
  */
+
+/**
+ * Proxy pattern for connection
+ */
 public class ProxyConnection implements Connection {
     private Connection connection;
 
-    ProxyConnection(Connection connection) { // только в пакете
+    ProxyConnection(Connection connection) {
         this.connection = connection;
     }
 

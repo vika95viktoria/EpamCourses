@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
-<fmt:setBundle basename="pagecontent" />
+<fmt:setBundle basename="pagecontent"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,14 +36,17 @@
     <div class="container">
         <div class="container-fluid center">
             <div class="navbar-header " id="tabs">
-                <ul class='nav nav-wizard' >
+                <ul class='nav nav-wizard'>
 
-                    <li class="active"><a href='#ticket' data-toggle="tab"><fmt:message key="flightPage.ticket" /></a></li>
+                    <li class="active"><a href='#ticket' data-toggle="tab"><fmt:message key="flightPage.ticket"/></a>
+                    </li>
 
-                    <li><a href='#luggage' data-toggle="tab"><fmt:message key="flightPage.luggage" /></a></li>
+                    <li><a href='#luggage' data-toggle="tab"><fmt:message key="flightPage.luggage"/></a></li>
 
-                    <li><a href='#priority' data-toggle="tab" onclick="cost()"><fmt:message key="flightPage.priority" /></a></li>
-                    <li><a href='#payment' data-toggle="tab" onclick="cost()"><fmt:message key="flightPage.payment" /></a></li>
+                    <li><a href='#priority' data-toggle="tab" onclick="cost()"><fmt:message
+                            key="flightPage.priority"/></a></li>
+                    <li><a href='#payment' data-toggle="tab" onclick="cost()"><fmt:message
+                            key="flightPage.payment"/></a></li>
 
                 </ul>
             </div>
@@ -81,15 +84,15 @@
                             <c:choose>
                                 <c:when test="${not empty errorFlight}">
                           <span style="text-align:center">
-                            <h4><fmt:message key="errorFlight" /></h4></span>
+                            <h4><fmt:message key="errorFlight"/></h4></span>
                                 </c:when>
                                 <c:otherwise>
                                     <table class="table  table-bordered">
                                         <thead>
                                         <tr>
-                                            <th><fmt:message key="flightPage.dep.arr" /></th>
-                                            <th><fmt:message key="flightPage.economy" /></th>
-                                            <th><fmt:message key="flightPage.business" /></th>
+                                            <th><fmt:message key="flightPage.dep.arr"/></th>
+                                            <th><fmt:message key="flightPage.economy"/></th>
+                                            <th><fmt:message key="flightPage.business"/></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -107,17 +110,19 @@
                                                 <span>&euro;</span>
                                                 <br>
                                                 <div class="radio radio-success">
-                                                    <input type="radio" name="radiog_dark" id="radio21" onclick="disp()">
+                                                    <input type="radio" name="radiog_dark" id="radio21"
+                                                           onclick="disp()">
                                                     <label></label>
                                                 </div>
                                             </td>
-                                            <input type="hidden" name="currentPrice" id="currentPrice" />
+                                            <input type="hidden" name="currentPrice" id="currentPrice"/>
                                             <td>
                                                 <span id="businessPrice"></span>
                                                 <span>&euro;</span>
                                                 <br>
                                                 <div class="radio radio-success">
-                                                    <input type="radio" name="radiog_dark" id="radio22" onclick="disp()">
+                                                    <input type="radio" name="radiog_dark" id="radio22"
+                                                           onclick="disp()">
                                                     <label></label>
                                                 </div>
                                             </td>
@@ -155,15 +160,15 @@
                                 <c:choose>
                                     <c:when test="${not empty errorReturn}">
                            <span style="text-align:center">
-                            <h4><fmt:message key="errorFlight" /></h4></span>
+                            <h4><fmt:message key="errorFlight"/></h4></span>
                                     </c:when>
                                     <c:otherwise>
                                         <table class="table  table-bordered">
                                             <thead>
                                             <tr>
-                                                <th><fmt:message key="flightPage.dep.arr" /></th>
-                                                <th><fmt:message key="flightPage.economy" /></th>
-                                                <th><fmt:message key="flightPage.business" /></th>
+                                                <th><fmt:message key="flightPage.dep.arr"/></th>
+                                                <th><fmt:message key="flightPage.economy"/></th>
+                                                <th><fmt:message key="flightPage.business"/></th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -181,7 +186,8 @@
                                                     <span>&euro;</span>
                                                     <br>
                                                     <div class="radio radio-success">
-                                                        <input type="radio" name="radiog_dark2" id="radio23" onclick="disp2()">
+                                                        <input type="radio" name="radiog_dark2" id="radio23"
+                                                               onclick="disp2()">
                                                         <label></label>
                                                     </div>
                                                 </td>
@@ -189,7 +195,8 @@
                                                     <span>&euro;</span>
                                                     <br>
                                                     <div class="radio radio-success">
-                                                        <input type="radio" name="radiog_dark2" id="radio24" onclick="disp2()">
+                                                        <input type="radio" name="radiog_dark2" id="radio24"
+                                                               onclick="disp2()">
                                                         <label></label>
                                                     </div>
                                                 </td>
@@ -205,7 +212,7 @@
 
 
                 <div class="tab-pane fade" id="luggage">
-                    <span id="bags"><h3><fmt:message key="flightPage.bags" /></h3> </span>
+                    <span id="bags"><h3><fmt:message key="flightPage.bags"/></h3> </span>
                     <br>
                     <br>
                     <div class="container center">
@@ -221,21 +228,21 @@
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td><fmt:message key="cabinet.15" /></td>
+                                            <td><fmt:message key="cabinet.15"/></td>
                                             <td><span>${luggage15} &euro;</span></td>
                                             <td>
                                                 <input type="radio" name="luggage" value="15"/>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><fmt:message key="cabinet.20" /></td>
+                                            <td><fmt:message key="cabinet.20"/></td>
                                             <td><span>${luggage20} &euro;</span></td>
                                             <td>
                                                 <input type="radio" name="luggage" value="20"/>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><fmt:message key="cabinet.25" /></td>
+                                            <td><fmt:message key="cabinet.25"/></td>
                                             <td><span>${luggage25} &euro;</span></td>
                                             <td>
                                                 <input type="radio" name="luggage" value="25"/>
@@ -254,21 +261,21 @@
                                             </thead>
                                             <tbody>
                                             <tr>
-                                                <td><fmt:message key="cabinet.15" /></td>
+                                                <td><fmt:message key="cabinet.15"/></td>
                                                 <td><span>${luggage15} &euro;</span></td>
                                                 <td>
                                                     <input type="radio" name="luggage2" value="15"/>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td><fmt:message key="cabinet.20" /></td>
+                                                <td><fmt:message key="cabinet.20"/></td>
                                                 <td><span>${luggage20} &euro;</span></td>
                                                 <td>
                                                     <input type="radio" name="luggage2" value="20"/>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td><fmt:message key="cabinet.25" /></td>
+                                                <td><fmt:message key="cabinet.25"/></td>
                                                 <td><span>${luggage25} &euro;</span></td>
                                                 <td>
                                                     <input type="radio" name="luggage2" value="25"/>
@@ -287,7 +294,7 @@
 
 
                 <div class="tab-pane fade" id="priority">
-                    <span id="prior"><h3><fmt:message key="flightPage.priority" /></h3> </span>
+                    <span id="prior"><h3><fmt:message key="flightPage.priority"/></h3> </span>
                     <br>
                     <br>
 
@@ -325,33 +332,37 @@
                             <p>
                             <h4>
                                 <c:out value="${loop.count}  "/>
-                                <span><fmt:message key="flightPage.passenger" /></span>
+                                <span><fmt:message key="flightPage.passenger"/></span>
                             </h4>
                             </p>
                             <p>
-                                <label for="passengerName${loop.count}"><fmt:message key="flightPage.passenger.name" /></label>
+                                <label for="passengerName${loop.count}"><fmt:message
+                                        key="flightPage.passenger.name"/></label>
                                 <input id="passengerName${loop.count}" type="text" name="passengerName${loop.count}"
                                        class="names" value=""/>
                             </p>
 
                             <p>
-                                <label for="passengerSurname${loop.count}"><fmt:message key="flightPage.passenger.surname" /> </label>
+                                <label for="passengerSurname${loop.count}"><fmt:message
+                                        key="flightPage.passenger.surname"/> </label>
                                 <input id="passengerSurname${loop.count}" type="text"
                                        name="passengerSurname${loop.count}" class="surnames" value=""/>
                             </p>
                         </c:forEach>
                         <p>
-                            <span><h3><fmt:message key="flightPage.cost" /> : <span id="finalprice"></span> &euro; </h3></span>
+                            <span><h3><fmt:message key="flightPage.cost"/> : <span id="finalprice"></span> &euro; </h3></span>
                         </p>
 
                         <div class="clearfix">
                             <c:choose>
                                 <c:when test="${not empty role }">
-                                    <button type="submit" class="btn btn-primary"><fmt:message key="flightPage.buy" /></button>
+                                    <button type="submit" class="btn btn-primary"><fmt:message
+                                            key="flightPage.buy"/></button>
                                 </c:when>
                                 <c:otherwise>
                                     <button type="button" class="btn btn-disabled" data-toggle="tooltip"
-                                            title="<fmt:message key="flightPage.please" />"><fmt:message key="flightPage.buy" />
+                                            title="<fmt:message key="flightPage.please" />"><fmt:message
+                                            key="flightPage.buy"/>
                                     </button>
                                 </c:otherwise>
                             </c:choose>
@@ -379,14 +390,14 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" onclick="closeEdit()">&times;</button>
-                        <h3 class="modal-title"><fmt:message key="flightPage.change.flight" /></h3>
+                        <h3 class="modal-title"><fmt:message key="flightPage.change.flight"/></h3>
                     </div>
                     <form action="/airepam" id="editFlight" method="POST">
                         <input type="hidden" name="command" value="editFlight"/>
                         <div class="modal-body">
                             <div class="alert alert-dismissible alert-danger container-fluid"
                                  style="text-align: center; width:90%; display: none" id="incorrect">
-                                <strong><fmt:message key="deleteRoute.password.incorrect" /></strong>
+                                <strong><fmt:message key="deleteRoute.password.incorrect"/></strong>
                             </div>
                             <input type="hidden" name="flightId" id="EditingflightId"/>
                             <input type="hidden" name="newDateOut" id="newDateOut"/>
@@ -399,17 +410,19 @@
                                 </h4>
                                 <br>
                                 <br>
-                                <label class="control-label" for="EconomyPrice"><fmt:message key="createRoute.economy.price" /></label>
+                                <label class="control-label" for="EconomyPrice"><fmt:message
+                                        key="createRoute.economy.price"/></label>
                                 <input type="number" class="form-control" id="EditEconomyPrice" name="EditEconomyPrice">
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="BusinessPrice"><fmt:message key="createRoute.business.price" /></label>
+                                <label class="control-label" for="BusinessPrice"><fmt:message
+                                        key="createRoute.business.price"/></label>
                                 <input type="number" class="form-control" id="EditBusinessPrice"
                                        name="EditBusinessPrice">
                             </div>
                             <div class="clearfix">
                                 <div style="margin-bottom: 15px">
-                                    <label class="control-label"><fmt:message key="createRoute.departure" /></label>
+                                    <label class="control-label"><fmt:message key="createRoute.departure"/></label>
                                     <div class="input-group bootstrap-timepicker timepicker">
                                         <input id="timepicker3" type="text" class="form-control input-small"
                                                id="newTimeOut" name="newTimeOut">
@@ -417,7 +430,7 @@
                                     </div>
                                 </div>
                                 <div style="margin-bottom: 15px">
-                                    <label class="control-label"><fmt:message key="createRoute.arrival" /></label>
+                                    <label class="control-label"><fmt:message key="createRoute.arrival"/></label>
 
                                     <div class="input-group bootstrap-timepicker timepicker">
                                         <input id="timepicker4" type="text" class="form-control input-small"
@@ -426,12 +439,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <label class="control-label" for="password"><fmt:message key="deleteRoute.password" /></label>
+                            <label class="control-label" for="password"><fmt:message
+                                    key="deleteRoute.password"/></label>
                             <input type="password" class="form-control" id="password" name="password">
 
                             <p>
                             <div class="clearfix">
-                                <button type="submit" class="btn btn-primary" style="float: right;"><fmt:message key="flightPage.accept" />
+                                <button type="submit" class="btn btn-primary" style="float: right;"><fmt:message
+                                        key="flightPage.accept"/>
                                 </button>
                             </div>
                             </p>
@@ -488,7 +503,7 @@
         var m2 = addZero(d2.getMinutes());
         x.innerHTML = h + ":" + m;
         x2.innerHTML = h2 + ":" + m2;
-        if('${language == "ru_RU"}'=='true'){
+        if ('${language == "ru_RU"}' == 'true') {
             x3.innerHTML = d.getDate() + " " + monthNamesRus[d.getMonth()];
         }
         else {
@@ -513,7 +528,7 @@
         var m2 = addZero(d2.getMinutes());
         x.innerHTML = h + ":" + m;
         x2.innerHTML = h2 + ":" + m2;
-        if('${language == "ru_RU"}'=='true'){
+        if ('${language == "ru_RU"}' == 'true') {
             x3.innerHTML = d.getDate() + " " + monthNamesRus[d.getMonth()];
         }
         else {
@@ -606,7 +621,7 @@
     }
 
     $("#editFlight").submit(function (e) {
-        if($("#editFlight").valid()) {
+        if ($("#editFlight").valid()) {
             var url = "http://localhost:8080/airepam?command=editFlight";
 
             $.ajax({
@@ -655,7 +670,7 @@
             else {
                 var timeOut = h2 + ":" + m2 + " AM";
             }
-            if('${language == "ru_RU"}'=='true'){
+            if ('${language == "ru_RU"}' == 'true') {
                 x3.innerHTML = d.getDate() + " " + monthNamesRus[d.getMonth()] + " " + h + ":" + m + " - " + h2 + ":" + m2;
             }
             else {

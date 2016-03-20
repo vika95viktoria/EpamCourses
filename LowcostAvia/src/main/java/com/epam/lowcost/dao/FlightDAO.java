@@ -5,9 +5,6 @@ import com.epam.lowcost.domain.*;
 import com.epam.lowcost.exception.DAOException;
 import com.epam.lowcost.resource.ConfigurationManager;
 
-import static com.epam.lowcost.util.DAOConstants.*;
-import static com.epam.lowcost.util.CommandConstants.*;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,6 +12,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import static com.epam.lowcost.util.CommandConstants.*;
+import static com.epam.lowcost.util.DAOConstants.*;
 
 /**
  * Created by Виктория on 24.02.2016.
@@ -93,6 +93,13 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
         return true;
     }
 
+    /**
+     * Check if such fligth already existed
+     *
+     * @param entity
+     * @return
+     * @throws DAOException
+     */
     private long persist(Flight entity) throws DAOException {
         Long flightId = -1L;
         Connection connection;
@@ -264,6 +271,13 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
         return flights;
     }
 
+    /**
+     * Find min economy price for this route
+     *
+     * @param id
+     * @return
+     * @throws DAOException
+     */
     public Double findMinPrice(Long id) throws DAOException {
         Connection connection;
         PreparedStatement statement = null;
@@ -313,6 +327,14 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
         }
     }
 
+    /**
+     * Check amount of seats on flight and money on user's card. If everything is ok, decreases amount of seats and money on card
+     *
+     * @param userId
+     * @param ticketModels
+     * @return ServiceMessage
+     * @throws DAOException
+     */
 
     public ServiceMessage buyTicket(Long userId, List<TicketModel> ticketModels) throws DAOException {
         ConfigurationManager priceManager = new ConfigurationManager();
@@ -375,7 +397,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
         return ServiceMessage.OK_BUY;
     }
 
-    private void rollback(Connection connection, Connection connection2) throws DAOException{
+    private void rollback(Connection connection, Connection connection2) throws DAOException {
         try {
             connection.rollback();
             connection2.rollback();

@@ -756,14 +756,6 @@
         });
         $('[data-toggle="tooltip"]').tooltip();
         $('[data-toggle="tooltip2"]').tooltip();
-
-            messageResource.init({
-                filePath : 'resource/'
-            });
-            var name = 'error_'+'${language}'
-            messageResource.load(name);
-
-
     });
 </script>
 </body>

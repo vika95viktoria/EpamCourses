@@ -7,7 +7,6 @@ import com.epam.lowcost.exception.ServiceException;
 import com.epam.lowcost.resource.ConfigurationManager;
 import com.epam.lowcost.service.FlightService;
 import com.epam.lowcost.service.RoutesService;
-import static com.epam.lowcost.util.CommandConstants.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +17,8 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+
+import static com.epam.lowcost.util.CommandConstants.*;
 
 /**
  * Created by Виктория on 20.02.2016.
@@ -46,6 +47,13 @@ public class FlightsCommand extends ActionCommand {
 
     }
 
+    /**
+     * Fing flights by route id
+     *
+     * @param request
+     * @throws ServiceException
+     */
+
     private void findByRoute(HttpServletRequest request) throws ServiceException {
         Long id = Long.valueOf(request.getParameter(PARAM_NAME_ROUTE_ID));
         FlightService flightService = FlightService.getInstance();
@@ -62,6 +70,13 @@ public class FlightsCommand extends ActionCommand {
 
     }
 
+    /**
+     * Find flights for search criteria
+     *
+     * @param request
+     * @throws ParseException
+     * @throws ServiceException
+     */
     private void search(HttpServletRequest request) throws ParseException, ServiceException {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String from = request.getParameter(PARAM_NAME_SELECT_FROM);

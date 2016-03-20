@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import static com.epam.lowcost.util.Commands.*;
+
 import static com.epam.lowcost.util.CommandConstants.*;
+import static com.epam.lowcost.util.Commands.*;
 
 @WebFilter(urlPatterns = {"/airepam*"})
 public class UnauthorizedFilter implements Filter {

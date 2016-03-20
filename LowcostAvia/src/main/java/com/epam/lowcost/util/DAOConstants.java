@@ -5,7 +5,7 @@ package com.epam.lowcost.util;
  */
 public final class DAOConstants {
     public static final String ID = "id";
-    public static final String NAME= "name";
+    public static final String NAME = "name";
     public static final String ID_TO = "idTo";
     public static final String ID_FROM = "idFrom";
     public static final String TYPE = "type";
@@ -25,9 +25,9 @@ public final class DAOConstants {
     public static final String PASSENGER_NAME = "passName";
     public static final String PASSENGER_SURNAME = "passSurname";
     public static final String USERNAME = "username";
-    public static final String PASSWORD= "password";
-    public static final String EMAIL= "email";
-    public static final String SURNAME= "surname";
-    public static final String IS_ADMIN= "isAdmin";
-    public static final String CARD_ID= "cardId";
+    public static final String PASSWORD = "password";
+    public static final String EMAIL = "email";
+    public static final String SURNAME = "surname";
+    public static final String IS_ADMIN = "isAdmin";
+    public static final String CARD_ID = "cardId";
 }

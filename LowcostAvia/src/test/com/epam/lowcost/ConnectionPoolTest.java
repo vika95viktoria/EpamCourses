@@ -23,10 +23,10 @@ public class ConnectionPoolTest {
     public void testPoolSize() throws SQLException {
         ConnectionPool pool = ConnectionPool.getInstance();
         List<Connection> connections = new ArrayList<>();
-        for(int i=0; i<10; i++){
+        for (int i = 0; i < 10; i++) {
             connections.add(pool.getConnection());
         }
-        Assert.assertEquals(10,connections.size());
+        Assert.assertEquals(10, connections.size());
         pool.closeAllConnections();
         connections.get(1).commit();
     }

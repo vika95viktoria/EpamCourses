@@ -115,7 +115,7 @@ public class Validator {
         return ServiceMessage.OK;
     }
 
-    public static ServiceMessage validateEditFlightForm(String economyPrice, String businessPrice, String timeFrom, String timeTo,  String password) {
+    public static ServiceMessage validateEditFlightForm(String economyPrice, String businessPrice, String timeFrom, String timeTo, String password) {
 
         if (!check(PRICE_REGEX, economyPrice)) {
             return ServiceMessage.PRICE_FAIL;

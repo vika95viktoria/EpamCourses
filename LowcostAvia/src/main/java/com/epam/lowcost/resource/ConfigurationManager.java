@@ -10,9 +10,9 @@ import java.util.Properties;
  * Created by Виктория on 18.02.2016.
  */
 public class ConfigurationManager {
+    private static Logger logger = Logger.getLogger(ConfigurationManager.class);
     private Properties prop = new Properties();
     private ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-    private static Logger logger = Logger.getLogger(ConfigurationManager.class);
 
     public void loadProperties(String filename) {
         try (InputStream input = classLoader.getResourceAsStream(filename)) {

@@ -3,11 +3,12 @@ package com.epam.lowcost.dao;
 import com.epam.lowcost.connection.ConnectionPool;
 import com.epam.lowcost.domain.City;
 import com.epam.lowcost.exception.DAOException;
-import static com.epam.lowcost.util.DAOConstants.*;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.epam.lowcost.util.DAOConstants.*;
 
 /**
  * Created by Виктория on 22.02.2016.
@@ -37,7 +38,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
             statement = connection.prepareStatement(SQL_SELECT_CITY_BY_ID);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 city.setId(resultSet.getLong(ID));
                 city.setName(resultSet.getString(NAME));
             }

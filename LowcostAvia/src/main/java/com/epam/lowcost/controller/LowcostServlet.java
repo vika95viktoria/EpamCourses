@@ -2,8 +2,6 @@ package com.epam.lowcost.controller;
 
 import com.epam.lowcost.command.ActionCommand;
 import com.epam.lowcost.factory.ActionFactory;
-import static com.epam.lowcost.util.CommandConstants.*;
-import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.epam.lowcost.util.CommandConstants.PARAM_NAME_COMMAND;
+
 /**
  * Created by Виктория on 20.02.2016.
  */
 @WebServlet("/airepam")
 public class LowcostServlet extends HttpServlet {
-
-    private static Logger logger = Logger.getLogger(LowcostServlet.class);
 
 
     @Override

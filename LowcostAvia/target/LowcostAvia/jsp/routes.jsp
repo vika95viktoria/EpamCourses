@@ -78,12 +78,6 @@
 
     $(document).ready(function () {
         $('#routes').DataTable();
-            messageResource.init({
-                filePath : 'resource/'
-            });
-            var name = 'error_'+'${language}'
-            messageResource.load(name);
-
     });
 
 </script>

@@ -4,11 +4,12 @@ import com.epam.lowcost.connection.ConnectionPool;
 import com.epam.lowcost.domain.City;
 import com.epam.lowcost.domain.Route;
 import com.epam.lowcost.exception.DAOException;
-import static com.epam.lowcost.util.DAOConstants.*;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.epam.lowcost.util.DAOConstants.*;
 
 /**
  * Created by Виктория on 22.02.2016.
@@ -91,6 +92,14 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
 
     }
 
+    /**
+     * Find route id for cities
+     *
+     * @param cityFrom
+     * @param cityTo
+     * @return long
+     * @throws DAOException
+     */
     public long findRouteIdByCities(String cityFrom, String cityTo) throws DAOException {
         Long routeId = -1L;
         Connection connection;

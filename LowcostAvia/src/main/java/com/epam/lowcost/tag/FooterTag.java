@@ -8,7 +8,6 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
@@ -22,7 +21,8 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class FooterTag extends TagSupport {
     private static Logger logger = Logger.getLogger(FooterTag.class);
-    private String getFilename(){
+
+    private String getFilename() {
         String finalPath = "";
         try {
             String path = getClass().getClassLoader().getResource("").getPath();
@@ -41,7 +41,7 @@ public class FooterTag extends TagSupport {
         try {
             JspWriter out = pageContext.getOut();
             List<String> lines = Files.readAllLines(Paths.get(getFilename()), StandardCharsets.UTF_8);
-            for(String line:lines){
+            for (String line : lines) {
                 out.write(line);
             }
         } catch (IOException e) {
@@ -49,6 +49,7 @@ public class FooterTag extends TagSupport {
         }
         return SKIP_BODY;
     }
+
     @Override
     public int doEndTag() throws JspException {
         return EVAL_PAGE;
