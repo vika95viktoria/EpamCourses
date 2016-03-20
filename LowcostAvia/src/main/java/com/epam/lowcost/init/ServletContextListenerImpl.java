@@ -4,6 +4,8 @@ import com.epam.lowcost.connection.ConnectionPool;
 import com.epam.lowcost.domain.City;
 import com.epam.lowcost.exception.ServiceException;
 import com.epam.lowcost.service.CityService;
+import static com.epam.lowcost.util.CommandConstants.*;
+
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -15,15 +17,14 @@ import java.util.List;
  */
 @WebListener
 public class ServletContextListenerImpl implements ServletContextListener {
-
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         CityService cityService = CityService.getInstance();
         try {
             List<City> cities = cityService.getAllCities();
-            sce.getServletContext().setAttribute("cities", cities);
+            sce.getServletContext().setAttribute(ATTRIBUTE_NAME_CITIES, cities);
         } catch (ServiceException e) {
-            //TODO
+            throw new RuntimeException();
         }
         ConnectionPool.getInstance();
     }

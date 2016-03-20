@@ -1,7 +1,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<fmt:setBundle basename="pagecontent" />
+<%@ taglib prefix="ctg" uri="customtags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +23,6 @@
 </head>
 <body class="main">
 <div id="content">
-
     <%@include file="/jsp/header.jsp" %>
     <div id="welcome">
         <h1>
@@ -99,7 +98,7 @@
     </div>
 
 </div>
-<%@ include file="/jsp/footer.jsp" %>
+<ctg:footer/>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -127,6 +126,22 @@
         if ('' != '${errorLoginPassMessage}') {
             $('#login-form').modal('show');
         }
+
+        /*var name = 'error_'+'${language}'
+        console.log(name);
+        messageResource.load(name);*/
+        $("#loginForm").validate({
+            rules: {
+                password: "required",
+                username: "required"
+            },
+            messages: {
+                username: messageResource.get('error.login', 'error_ru_RU'),
+                password: messageResource.get( 'error.password', 'error_ru_RU')
+
+            }
+        });
+        console.log(messageResource.get( 'error.password', 'error_ru_RU'));
     });
 
 </script>

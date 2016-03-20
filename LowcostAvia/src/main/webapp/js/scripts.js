@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
     $('#tabs').tooltipster({
@@ -214,19 +215,18 @@ $(document).ready(function () {
             cityName: "Please type the name of the city"
         }
     });
-
     $("#loginForm").validate({
-
         rules: {
             password: "required",
             username: "required"
         },
         messages: {
-            username: "Please enter a username",
-            password: "Please provide a password"
+            username:  "Please provide username",
+            password: "Please provide password"
 
         }
     });
+
     $("#signupForm").validate({
         rules: {
             name: "required",
@@ -286,7 +286,12 @@ function changeToRus(){
         url: s,
         processData: false,
         success: function (data) {
-           location.reload();
+            if(window.location.href == "http://localhost:8080/airepam?command=logout") {
+                window.location = window.location.href.split("?")[0];
+            }
+            else{
+                location.reload();
+            }
         }
     });
 }
@@ -297,7 +302,12 @@ function changeToEng(){
         url: s,
         processData: false,
         success: function (data) {
-            location.reload();
+            if(window.location.href == "http://localhost:8080/airepam?command=logout") {
+                window.location = window.location.href.split("?")[0];
+            }
+            else{
+                location.reload();
+            }
         }
     });
 }

@@ -1,6 +1,7 @@
 package com.epam.lowcost.command;
 
-import org.apache.log4j.Logger;
+import com.epam.lowcost.resource.ConfigurationManager;
+import static com.epam.lowcost.util.CommandConstants.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,11 +13,12 @@ import java.io.IOException;
  * Created by Виктория on 18.02.2016.
  */
 public class LogoutCommand extends ActionCommand {
-    private static Logger logger = Logger.getLogger(LogoutCommand.class);
 
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String page = "/index.jsp";
+        ConfigurationManager configurationManager = new ConfigurationManager();
+        configurationManager.loadProperties(PATH_PROPERTIES_FILE);
+        String page = configurationManager.getProperty(INDEX_PATH);
         request.getSession().invalidate();
         RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(page);
         dispatcher.forward(request, response);

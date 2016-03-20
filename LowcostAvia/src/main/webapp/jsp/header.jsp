@@ -1,6 +1,4 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:choose>
     <c:when test="${not empty language && language=='ru_RU'}">
 <fmt:setLocale value="ru_RU" scope="session" />
@@ -16,7 +14,7 @@
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -164,7 +162,7 @@
                     <div class="alert alert-dismissible alert-danger container-fluid"
                          style="text-align: center; width:90%">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>${errorLoginPassMessage}</strong>
+                        <strong><fmt:message key="errorLoginPassMessage" /></strong>
                     </div>
                 </c:if>
                 <div class="modal-body">
@@ -180,7 +178,7 @@
 
                     <p>
                     <div class="clearfix">
-                        <button type="reset" class="btn btn-default"><fmt:message key="button.cancel" /></button>
+                        <button type="reset" class="btn btn-default" ><fmt:message key="button.cancel" /></button>
                         <button type="submit" class="btn btn-primary"><fmt:message key="label.login" /></button>
                     </div>
                     </p>

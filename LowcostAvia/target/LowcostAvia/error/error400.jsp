@@ -36,7 +36,12 @@
 <fmt:message key="error400.first" />
 <br>
 <fmt:message key="error400.second" />
- </span>
+</span>
+        <br>
+    <span id="errorMessage">
+${errorMessage}
+</span>
+
     </div>
 </div>
 
@@ -50,10 +55,5 @@
 <script src="js/select2.js"></script>
 <script src="js/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="js/jquery.tooltipster.min.js"></script>
-<script>
-
-
-
-</script>
 </body>
 </html>

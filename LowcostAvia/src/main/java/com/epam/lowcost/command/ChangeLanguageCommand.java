@@ -2,6 +2,7 @@ package com.epam.lowcost.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static com.epam.lowcost.util.CommandConstants.*;
 
 /**
  * Created by Виктория on 12.03.2016.
@@ -9,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 public class ChangeLanguageCommand extends ActionCommand {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) {
-        String name = request.getParameter("lang");
-        if ("rus".equals(name)) {
-            request.getSession().setAttribute("language", "ru_RU");
+        String language = request.getParameter(PARAM_NAME_LANGUAGE);
+        if (ATTRIBUTE_NAME_RUS.equals(language)) {
+            request.getSession().setAttribute(ATTRIBUTE_NAME_LANGUAGE, RUS_LOCALE);
         } else {
-            request.getSession().setAttribute("language", "en_US");
+            request.getSession().setAttribute(ATTRIBUTE_NAME_LANGUAGE, ENG_LOCALE);
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.epam.lowcost.util;
 
+import com.epam.lowcost.domain.ServiceMessage;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,32 +22,32 @@ public class Validator {
     private static final String DATE_REGEX = "^(3[01]|[12][0-9]|0?[1-9])-(1[0-2]|0?[1-9])-(?:[0-9]{2})?[0-9]{2}$";
     private static final String DAY_REGEX = "[0-6]";
 
-    public static boolean validateRegistrationForm(String username, String password, String name, String surname, String email, String number, String cardType, String amount) {
+    public static ServiceMessage validateRegistrationForm(String username, String password, String name, String surname, String email, String number, String cardType, String amount) {
         if (!check(PASSWORD_USERNAME_REGEX, username)) {
-            return false;
+            return ServiceMessage.USERNAME_FAIL;
         }
         if (!check(PASSWORD_USERNAME_REGEX, password)) {
-            return false;
+            return ServiceMessage.PASSWORD_FAIL;
         }
         if (!check(NAME_SURNAME_REGEX, name)) {
-            return false;
+            return ServiceMessage.NAME_FAIL;
         }
         if (!check(NAME_SURNAME_REGEX, surname)) {
-            return false;
+            return ServiceMessage.SURNAME_FAIL;
         }
         if (!check(EMAIL_REGEX, email)) {
-            return false;
+            return ServiceMessage.EMAIL_FAIL;
         }
         if (!check(CARD_NUMBER_REGEX, number)) {
-            return false;
+            return ServiceMessage.CARD_NUMBER_FAIL;
         }
         if (!check(CARD_TYPE_REGEX, cardType)) {
-            return false;
+            return ServiceMessage.CARD_TYPE_FAIL;
         }
         if (!check(AMOUNT_REGEX, amount)) {
-            return false;
+            return ServiceMessage.AMOUNT_FAIL;
         }
-        return true;
+        return ServiceMessage.OK;
     }
 
     public static boolean validateLoginForm(String username, String password) {
@@ -58,79 +60,79 @@ public class Validator {
         return true;
     }
 
-    public static boolean validateAddRouteForm(String from, String to, String economyCount, String businessCount, String economyPrice, String businessPrice, String timeFrom, String timeTo, String dateFrom, String dateTo, String[] days) {
+    public static ServiceMessage validateAddRouteForm(String from, String to, String economyCount, String businessCount, String economyPrice, String businessPrice, String timeFrom, String timeTo, String dateFrom, String dateTo, String[] days) {
         if (!check(CITY_REGEX, from)) {
-            return false;
+            return ServiceMessage.CITY_INPUT_FAIL;
         }
         if (!check(CITY_REGEX, to)) {
-            return false;
+            return ServiceMessage.CITY_INPUT_FAIL;
         }
         if (!check(PRICE_REGEX, economyCount)) {
-            return false;
+            return ServiceMessage.COUNT_FAIL;
         }
         if (!check(PRICE_REGEX, businessCount)) {
-            return false;
+            return ServiceMessage.COUNT_FAIL;
         }
         if (!check(PRICE_REGEX, economyPrice)) {
-            return false;
+            return ServiceMessage.PRICE_FAIL;
         }
         if (!check(PRICE_REGEX, businessPrice)) {
-            return false;
+            return ServiceMessage.PRICE_FAIL;
         }
         if (!check(TIME_REGEX, timeFrom)) {
-            return false;
+            return ServiceMessage.TIME_FAIL;
         }
         if (!check(TIME_REGEX, timeTo)) {
-            return false;
+            return ServiceMessage.TIME_FAIL;
         }
         if (!check(DATE_REGEX, dateFrom)) {
-            return false;
+            return ServiceMessage.DATE_FAIL;
         }
         if (!check(DATE_REGEX, dateTo)) {
-            return false;
+            return ServiceMessage.DATE_FAIL;
         }
         for (String day : days) {
             if (!check(DAY_REGEX, day)) {
-                return false;
+                return ServiceMessage.DAY_FAIL;
             }
         }
-        return true;
+        return ServiceMessage.OK;
     }
 
     public static boolean validateAddCityForm(String city) {
         return check(CITY_REGEX, city);
     }
 
-    public static boolean validateDeleteFlightsForm(String password, String[] ids) {
+    public static ServiceMessage validateDeleteFlightsForm(String password, String[] ids) {
         if (!check(PASSWORD_USERNAME_REGEX, password)) {
-            return false;
+            return ServiceMessage.PASSWORD_FAIL;
         }
         for (String id : ids) {
             if (!check(ID_REGEX, id)) {
-                return false;
+                return ServiceMessage.ID_FAIL;
             }
         }
-        return true;
+        return ServiceMessage.OK;
     }
 
-    public static boolean validateEditFlightForm(String economyPrice, String businessPrice, String timeFrom, String timeTo,  String password) {
+    public static ServiceMessage validateEditFlightForm(String economyPrice, String businessPrice, String timeFrom, String timeTo,  String password) {
 
         if (!check(PRICE_REGEX, economyPrice)) {
-            return false;
+            return ServiceMessage.PRICE_FAIL;
         }
         if (!check(PRICE_REGEX, businessPrice)) {
-            return false;
+            return ServiceMessage.PRICE_FAIL;
         }
         if (!check(TIME_REGEX, timeFrom)) {
-            return false;
+            return ServiceMessage.TIME_FAIL;
         }
         if (!check(TIME_REGEX, timeTo)) {
-            return false;
+            return ServiceMessage.TIME_FAIL;
         }
         if (!check(PASSWORD_USERNAME_REGEX, password)) {
-            return false;
+            return ServiceMessage.PASSWORD_FAIL;
         }
-        return true;
+        return ServiceMessage.OK;
     }
 
     private static boolean check(String regex, String forCheck) {

@@ -1,5 +1,7 @@
 package com.epam.lowcost.util;
 
+import org.apache.log4j.Logger;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,29 +13,10 @@ import java.util.Locale;
  * Created by Виктория on 26.02.2016.
  */
 public class DateUtils {
-    private static Locale locale = new Locale("en", "US");
     private static long DAY = 86400000;
     private static long WEEK = 604800000;
+    private static Logger logger = Logger.getLogger(DateUtils.class);
 
-    public static String formateDate(Date date, String locale) {
-        Locale locale1 = new Locale(locale.substring(0, 2), locale.substring(3, 5));
-        Locale.setDefault(locale1);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d");
-        return format(date, dateFormat);
-    }
-
-    public static String formateDateForCabinet(Date date, String locale) {
-        Locale locale1 = new Locale(locale.substring(0, 2), locale.substring(3, 5));
-        Locale.setDefault(locale1);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm MMM d");
-        return format(date, dateFormat);
-    }
-
-    private static String format(Date date, SimpleDateFormat dateFormat) {
-        Locale.setDefault(locale);
-        String formDate = dateFormat.format(date);
-        return formDate;
-    }
 
     public static Date addWeek(Date startDate) {
         Long time = startDate.getTime() + WEEK;
@@ -58,8 +41,8 @@ public class DateUtils {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
         SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm a", Locale.getDefault());
         Calendar calendar = GregorianCalendar.getInstance();
-        Date date = new Date();
-        Date timeForDate = new Date();
+        Date date;
+        Date timeForDate;
         try {
             date = dateFormatter.parse(dateInString);
             timeForDate = timeFormatter.parse(time);
@@ -74,7 +57,7 @@ public class DateUtils {
             calendar.add(Calendar.MINUTE, minutes);
             calendar.getTime();
         } catch (ParseException e) {
-            System.err.println(e);
+            logger.error(e);
         }
         return calendar.getTime();
     }
@@ -82,7 +65,7 @@ public class DateUtils {
     public static Date parseDate(Date date, String time) {
         SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm a", Locale.getDefault());
         Calendar calendar = GregorianCalendar.getInstance();
-        Date timeForDate = new Date();
+        Date timeForDate;
         try {
             timeForDate = timeFormatter.parse(time);
             calendar.setTime(timeForDate);
@@ -96,7 +79,7 @@ public class DateUtils {
             calendar.add(Calendar.MINUTE, minutes);
             calendar.getTime();
         } catch (ParseException e) {
-            System.err.println(e);
+            logger.error(e);
         }
         return calendar.getTime();
     }

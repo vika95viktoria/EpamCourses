@@ -1,6 +1,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="ctg" uri="customtags" %>
 <fmt:setBundle basename="pagecontent" />
 <!DOCTYPE html>
 <html>
@@ -31,6 +32,7 @@
 <body>
 <div id="content">
     <%@include file="header.jsp" %>
+
     <div class="container">
         <div class="container-fluid center">
             <div class="navbar-header " id="tabs">
@@ -52,7 +54,6 @@
                 <div class="tab-pane fade active in" id="ticket">
                     <div class="container-fluid clearfix" id="ticket-form">
                         <div class="datesSlide container-fluid centerSlide">
-                            <jsp:useBean id="DateUtils" class="com.epam.lowcost.util.DateUtils"/>
                             <c:forEach var="element" items="${flights}">
                                 <div style=" text-align: center;" data-toggle="tooltip2"
                                      title="You can edit flight conditions on double click" class="centered"
@@ -60,7 +61,7 @@
                                      ondblclick="edit(${element.dateOut.getTime()},${element.dateIn.getTime()},${element.economyPrice},${element.businessPrice},${element.id},false)"
                                      onclick="getTicket( ${element.dateOut.getTime()},${element.dateIn.getTime()}, ${element.economyPrice},${element.businessPrice},${element.id})">
                             <span>
-                           <c:out value="${DateUtils.formateDate(element.dateOut,sessionScope.language)}"/>
+                                <ctg:flightsDate date="${element.dateOut}" locale="${sessionScope.language}"/>
                                 <p>
                                     <c:out value="${element.economyPrice} "/>
                                     &euro;
@@ -80,7 +81,7 @@
                             <c:choose>
                                 <c:when test="${not empty errorFlight}">
                           <span style="text-align:center">
-                            <h4>${errorFlight}</h4></span>
+                            <h4><fmt:message key="errorFlight" /></h4></span>
                                 </c:when>
                                 <c:otherwise>
                                     <table class="table  table-bordered">
@@ -135,7 +136,7 @@
                                          ondblclick="edit(${element.dateOut.getTime()},${element.dateIn.getTime()},${element.economyPrice},${element.businessPrice},${element.id},true)"
                                          onclick="getTicket2( ${element.dateOut.getTime()},${element.dateIn.getTime()}, ${element.economyPrice},${element.businessPrice},${element.id})">
                             <span>
-                           <c:out value="${DateUtils.formateDate(element.dateOut,sessionScope.language)}"/>
+                            <ctg:flightsDate date="${element.dateOut}" locale="${sessionScope.language}"/>
                                 <p>
                                     <c:out value="${element.economyPrice} "/>
                                     &euro;
@@ -154,7 +155,7 @@
                                 <c:choose>
                                     <c:when test="${not empty errorReturn}">
                            <span style="text-align:center">
-                            <h4>${errorReturn}</h4></span>
+                            <h4><fmt:message key="errorFlight" /></h4></span>
                                     </c:when>
                                     <c:otherwise>
                                         <table class="table  table-bordered">
@@ -441,7 +442,7 @@
         </div>
     </div>
 </div>
-<%@ include file="footer.jsp" %>
+<ctg:footer/>
 <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -613,7 +614,7 @@
                 url: url,
                 data: $("#editFlight").serialize(),
                 success: function (data) {
-                    if (data == 'Incorrect password') {
+                    if ('${not empty error}') {
                         document.getElementById("incorrect").style.display = "block";
                     }
                     else {
@@ -755,7 +756,6 @@
         });
         $('[data-toggle="tooltip"]').tooltip();
         $('[data-toggle="tooltip2"]').tooltip();
-
     });
 </script>
 </body>

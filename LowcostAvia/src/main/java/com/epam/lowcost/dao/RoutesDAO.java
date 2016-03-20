@@ -4,6 +4,7 @@ import com.epam.lowcost.connection.ConnectionPool;
 import com.epam.lowcost.domain.City;
 import com.epam.lowcost.domain.Route;
 import com.epam.lowcost.exception.DAOException;
+import static com.epam.lowcost.util.DAOConstants.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -39,13 +40,13 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
                     statement.executeQuery(SQL_SELECT_ALL_ROUTES);
             while (resultSet.next()) {
                 Route route = new Route();
-                route.setId(resultSet.getLong("id"));
+                route.setId(resultSet.getLong(ID));
                 City cityFrom = new City();
-                cityFrom.setId(resultSet.getLong("idFrom"));
-                cityFrom.setName(resultSet.getString("name"));
+                cityFrom.setId(resultSet.getLong(ID_FROM));
+                cityFrom.setName(resultSet.getString(NAME));
                 CityDAO cityDAO = CityDAO.getInstance();
                 route.setCityFrom(cityFrom);
-                route.setCityTo(cityDAO.findEntityById(resultSet.getLong("idTo")));
+                route.setCityTo(cityDAO.findEntityById(resultSet.getLong(ID_TO)));
                 routes.add(route);
             }
         } catch (SQLException e) {
@@ -73,11 +74,11 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
             route.setId(id);
             City cityFrom = new City();
             City cityTo = new City();
-            cityFrom.setId(resultSet.getLong("id"));
-            cityFrom.setName(resultSet.getString("name"));
+            cityFrom.setId(resultSet.getLong(ID));
+            cityFrom.setName(resultSet.getString(NAME));
             resultSet.next();
-            cityTo.setId(resultSet.getLong("id"));
-            cityTo.setName(resultSet.getString("name"));
+            cityTo.setId(resultSet.getLong(ID));
+            cityTo.setName(resultSet.getString(NAME));
             route.setCityFrom(cityFrom);
             route.setCityTo(cityTo);
         } catch (SQLException e) {
@@ -101,7 +102,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
             statement.setString(2, cityTo);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                routeId = resultSet.getLong("id");
+                routeId = resultSet.getLong(ID);
             }
         } catch (SQLException e) {
             throw new DAOException(e);

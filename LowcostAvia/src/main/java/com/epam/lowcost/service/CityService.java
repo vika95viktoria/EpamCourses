@@ -47,11 +47,11 @@ public class CityService {
         city.setName(name);
         try {
             if (!cityDAO.create(city)) {
-                return ServiceMessage.CITYFAIL;
+                return ServiceMessage.CITY_FAIL;
             }
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
-        return ServiceMessage.CITYOK;
+        return ServiceMessage.CITY_OK;
     }
 }

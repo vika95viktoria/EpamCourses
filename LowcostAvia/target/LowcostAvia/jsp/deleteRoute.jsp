@@ -1,6 +1,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="ctg" uri="customtags" %>
 <fmt:setBundle basename="pagecontent" />
 <!DOCTYPE html>
 <html>
@@ -121,7 +122,7 @@
 
     </div>
 </div>
-<%@ include file="footer.jsp" %>
+<ctg:footer/>
 <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -137,6 +138,41 @@
 <script type="text/javascript"
         src="http://cdn.datatables.net/plug-ins/f3e99a6c02/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 <script type="text/javascript" src="../js/controllers/deleteRouteController.js"></script>
+<script>
+    $("#deleteForm").submit(function (e) {
+
+        var url = "http://localhost:8080/airepam?command=deleteFlights";
+        if ($("#deleteForm").valid()) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $("#deleteForm").serialize(),
+                success: function (data) {
+                    if ('${not empty error}') {
+                        document.getElementById("incorrect").style.display = "block";
+                    }
+                    else {
+                        document.getElementById("password").value = "";
+                        document.getElementById("deleteForm").reset();
+                        document.getElementById("incorrect").style.display = "none";
+                        document.getElementById("result").innerHTML = data;
+                        $('#confirmation').modal('show');
+                    }
+                }
+            });
+
+            e.preventDefault();
+        }
+    });
+
+    $(document).ready(function () {
+        messageResource.init({
+            filePath : 'resource/'
+        });
+        var name = 'error_'+'${language}'
+        messageResource.load(name);
+    });
+</script>
 </body>
 </html>
 

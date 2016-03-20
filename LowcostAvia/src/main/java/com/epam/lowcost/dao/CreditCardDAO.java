@@ -4,6 +4,7 @@ import com.epam.lowcost.connection.ConnectionPool;
 import com.epam.lowcost.domain.CreditCard;
 import com.epam.lowcost.domain.ServiceMessage;
 import com.epam.lowcost.exception.DAOException;
+import static com.epam.lowcost.util.DAOConstants.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,9 +39,9 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
-            creditCard.setId(resultSet.getLong("id"));
-            creditCard.setType(resultSet.getString("type"));
-            creditCard.setAmount(resultSet.getDouble("amount"));
+            creditCard.setId(resultSet.getLong(ID));
+            creditCard.setType(resultSet.getString(TYPE));
+            creditCard.setAmount(resultSet.getDouble(AMOUNT));
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
@@ -89,7 +90,7 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
             statement.setDouble(3, price);
             if (statement.executeUpdate() == 0) {
                 connection.rollback();
-                return ServiceMessage.NOMONEY;
+                return ServiceMessage.NO_MONEY;
             }
             connection.commit();
         } catch (SQLException e) {
@@ -99,7 +100,7 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
             ConnectionPool.getInstance().releaseConnection();
 
         }
-        return ServiceMessage.OKEDIT;
+        return ServiceMessage.OK_EDIT;
     }
 
     @Override

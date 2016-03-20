@@ -6,7 +6,6 @@ import java.util.Date;
  * Created by Виктория on 07.03.2016.
  */
 public class PriceGenerator {
-    private static long DAY = 86400000;
     private static long WEEK = 604800000;
     private static long MONTH = 2629746000L;
     private int purchasedTickets;

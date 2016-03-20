@@ -3,8 +3,10 @@ package com.epam.lowcost.command;
 import com.epam.lowcost.domain.Ticket;
 import com.epam.lowcost.domain.User;
 import com.epam.lowcost.exception.ServiceException;
+import com.epam.lowcost.resource.ConfigurationManager;
 import com.epam.lowcost.service.TicketService;
 import com.epam.lowcost.service.UserService;
+import static com.epam.lowcost.util.CommandConstants.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,16 +22,17 @@ import java.util.List;
 public class ManageCommand extends ActionCommand {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServiceException, ServletException, IOException {
-        String page = "/jsp/cabinet.jsp";
+        ConfigurationManager configurationManager = new ConfigurationManager();
+        configurationManager.loadProperties(PATH_PROPERTIES_FILE);
+        String page = configurationManager.getProperty(CABINET_PATH);
         TicketService ticketService = TicketService.getInstance();
         UserService userService = UserService.getInstance();
         HttpSession session = request.getSession();
-        Long userId = Long.parseLong(session.getAttribute("userId").toString());
+        Long userId = Long.parseLong(session.getAttribute(ATTRIBUTE_NAME_USER_ID).toString());
         User user = userService.findUserById(userId);
         List<Ticket> tickets = ticketService.getAllTicketsForUser(userId);
-        request.setAttribute("tickets", tickets);
-        request.setAttribute("user", user);
-
+        request.setAttribute(ATTRIBUTE_NAME_TICKETS, tickets);
+        request.setAttribute(ATTRIBUTE_NAME_USER_CURRENT, user);
         RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(page);
         dispatcher.forward(request, response);
 

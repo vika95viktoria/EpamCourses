@@ -1,6 +1,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="ctg" uri="customtags" %>
 <fmt:setBundle basename="pagecontent" />
 
 <!DOCTYPE html>
@@ -66,13 +67,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <jsp:useBean id="DateUtils" class="com.epam.lowcost.util.DateUtils"/>
                     <c:forEach var="element" items="${tickets}" varStatus="a">
                         <tr>
                             <td><c:out value="${element.flight.route.cityFrom.name}"/></td>
                             <td><c:out value="${element.flight.route.cityTo.name}"/></td>
-                            <td><c:out value="${DateUtils.formateDateForCabinet(element.flight.dateOut, sessionScope.language)}"/></td>
-                            <td><c:out value="${DateUtils.formateDateForCabinet(element.flight.dateIn,sessionScope.language)}"/></td>
+                            <td><ctg:cabinetDate date="${element.flight.dateOut}" locale="${sessionScope.language}"/></td>
+                            <td><ctg:cabinetDate date="${element.flight.dateIn}" locale="${sessionScope.language}"/></td>
                             <td>
                                 <button type="button" class="btn btn-info " id="ticketInfoButton" data-toggle="modal"
                                         data-target="#ticketInfo${a.count}"><fmt:message key="cabinet.info" />
@@ -110,9 +110,9 @@
                                                     <c:out value="${element.flight.route.cityTo.name}"/>
                                                 </p>
                                                 <p>
-                                                        ${DateUtils.formateDateForCabinet(element.flight.dateOut,sessionScope.language)}
+                                                    <ctg:cabinetDate date="${element.flight.dateOut}" locale="${sessionScope.language}"/>
                                                     <i class="fa fa-long-arrow-right icon-black"></i>
-                                                        ${DateUtils.formateDateForCabinet(element.flight.dateIn,sessionScope.language)}
+                                                    <ctg:cabinetDate date="${element.flight.dateIn}" locale="${sessionScope.language}"/>
                                                 </p>
                                             </div>
                                         </div>
@@ -230,7 +230,7 @@
     </div>
 
 </div>
-<%@ include file="footer.jsp" %>
+<ctg:footer/>
 <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>

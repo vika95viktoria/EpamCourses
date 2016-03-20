@@ -12,7 +12,9 @@ import com.epam.lowcost.resource.ConfigurationManager;
 public class CardService {
     private static CardService cardService = new CardService();
     private CreditCardDAO cardDAO = CreditCardDAO.getInstance();
-
+    private static final String PRICE_PROPERTIES_FILE = "price.properties";
+    private static final String LUGGAGE = "luggage";
+    private static final String PRIORITY_PRICE = "priorityPrice";
     private CardService() {
     }
 
@@ -22,15 +24,15 @@ public class CardService {
 
     public ServiceMessage editTicket(int priority, int luggage, Long userId, boolean luggageChange, boolean priorChange) throws ServiceException {
         ConfigurationManager priceManager = new ConfigurationManager();
-        priceManager.loadProperties("price.properties");
+        priceManager.loadProperties(PRICE_PROPERTIES_FILE);
         ServiceMessage message;
         double price = 0;
         if (luggage != 0 && luggageChange) {
-            String luggageKey = "luggage" + luggage;
+            String luggageKey = LUGGAGE + luggage;
             price += Double.parseDouble(priceManager.getProperty(luggageKey));
         }
         if (priority != 0 && priorChange) {
-            price += Double.parseDouble(priceManager.getProperty("priority"));
+            price += Double.parseDouble(priceManager.getProperty(PRIORITY_PRICE));
         }
         try {
             message = cardDAO.updateAmount(price, userId);

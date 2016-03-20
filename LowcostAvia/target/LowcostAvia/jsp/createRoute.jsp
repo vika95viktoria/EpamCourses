@@ -1,6 +1,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="ctg" uri="customtags" %>
 <fmt:setBundle basename="pagecontent" />
 <!DOCTYPE html>
 <html>
@@ -181,7 +182,7 @@
         </div>
     </div>
 </div>
-<%@ include file="footer.jsp" %>
+<ctg:footer/>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -195,5 +196,14 @@
 <script src="./js/jquery.validate.js"></script>
 <script type="text/javascript" src="./js/jquery.tooltipster.min.js"></script>
 <script type="text/javascript" src="../js/controllers/createRouteController.js"></script>
+<script>
+    $(document).ready(function () {
+        messageResource.init({
+            filePath : 'resource/'
+        });
+        var name = 'error_'+'${language}'
+        messageResource.load(name);
+    });
+</script>
 </body>
 </html>

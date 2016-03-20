@@ -79,6 +79,6 @@ public class UserService {
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
-        return ServiceMessage.USERNAMEPERSIST;
+        return ServiceMessage.USERNAME_PERSIST;
     }
 }

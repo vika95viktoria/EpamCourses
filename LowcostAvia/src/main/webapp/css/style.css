@@ -12,7 +12,12 @@ html, body {
 .test.modal-open {
     overflow: auto;
 }
-
+#errorMessage{
+    font-size: 2em;
+    color: red;
+    vertical-align: middle;
+    font-style: italic;
+}
 .center {
     margin: auto;
     width: 60%;

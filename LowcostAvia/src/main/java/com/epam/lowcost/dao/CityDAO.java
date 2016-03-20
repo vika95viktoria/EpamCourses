@@ -3,6 +3,7 @@ package com.epam.lowcost.dao;
 import com.epam.lowcost.connection.ConnectionPool;
 import com.epam.lowcost.domain.City;
 import com.epam.lowcost.exception.DAOException;
+import static com.epam.lowcost.util.DAOConstants.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -36,9 +37,10 @@ public class CityDAO extends AbstractDAO<Long, City> {
             statement = connection.prepareStatement(SQL_SELECT_CITY_BY_ID);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            city.setId(resultSet.getLong("id"));
-            city.setName(resultSet.getString("name"));
+            while(resultSet.next()) {
+                city.setId(resultSet.getLong(ID));
+                city.setName(resultSet.getString(NAME));
+            }
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
@@ -95,8 +97,8 @@ public class CityDAO extends AbstractDAO<Long, City> {
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_CITIES);
             while (resultSet.next()) {
                 City city = new City();
-                city.setId(resultSet.getLong("id"));
-                city.setName(resultSet.getString("name"));
+                city.setId(resultSet.getLong(ID));
+                city.setName(resultSet.getString(NAME));
                 cities.add(city);
             }
         } catch (SQLException e) {
@@ -120,7 +122,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
             statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                City city = findEntityById(resultSet.getLong("idTo"));
+                City city = findEntityById(resultSet.getLong(ID_TO));
                 cities.add(city);
             }
         } catch (SQLException e) {

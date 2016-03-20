@@ -5,6 +5,9 @@ import com.epam.lowcost.domain.*;
 import com.epam.lowcost.exception.DAOException;
 import com.epam.lowcost.resource.ConfigurationManager;
 
+import static com.epam.lowcost.util.DAOConstants.*;
+import static com.epam.lowcost.util.CommandConstants.*;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -53,14 +56,14 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
-            flight.setEconomyPrice(resultSet.getDouble("economyPrice"));
-            flight.setBusinessPrice(resultSet.getDouble("businessPrice"));
-            flight.setId(resultSet.getLong("id"));
-            flight.setRoute(routesDAO.findEntityById(resultSet.getLong("routeId")));
-            flight.setBusinessCount(resultSet.getInt("businessCount"));
-            flight.setEconomyCount(resultSet.getInt("economyCount"));
-            flight.setDateOut(resultSet.getTimestamp("DateOut"));
-            flight.setDateIn(resultSet.getTimestamp("DateIn"));
+            flight.setEconomyPrice(resultSet.getDouble(ECONOMY_PRICE));
+            flight.setBusinessPrice(resultSet.getDouble(BUSINESS_PRICE));
+            flight.setId(resultSet.getLong(ID));
+            flight.setRoute(routesDAO.findEntityById(resultSet.getLong(ROUTE_ID)));
+            flight.setBusinessCount(resultSet.getInt(BUSINESS_COUNT));
+            flight.setEconomyCount(resultSet.getInt(ECONOMY_COUNT));
+            flight.setDateOut(resultSet.getTimestamp(DATE_OUT));
+            flight.setDateIn(resultSet.getTimestamp(DATE_IN));
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
@@ -101,7 +104,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             statement.setTimestamp(2, new Timestamp(entity.getDateOut().getTime()));
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                flightId = resultSet.getLong("id");
+                flightId = resultSet.getLong(ID);
             }
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -190,14 +193,14 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Flight flight = new Flight();
-                flight.setEconomyPrice(resultSet.getDouble("economyPrice"));
-                flight.setBusinessPrice(resultSet.getDouble("businessPrice"));
-                flight.setId(resultSet.getLong("id"));
-                flight.setRoute(routesDAO.findEntityById(resultSet.getLong("routeId")));
-                flight.setBusinessCount(resultSet.getInt("businessCount"));
-                flight.setEconomyCount(resultSet.getInt("economyCount"));
-                flight.setDateOut(resultSet.getTimestamp("DateOut"));
-                flight.setDateIn(resultSet.getTimestamp("DateIn"));
+                flight.setEconomyPrice(resultSet.getDouble(ECONOMY_PRICE));
+                flight.setBusinessPrice(resultSet.getDouble(BUSINESS_PRICE));
+                flight.setId(resultSet.getLong(ID));
+                flight.setRoute(routesDAO.findEntityById(resultSet.getLong(ROUTE_ID)));
+                flight.setBusinessCount(resultSet.getInt(BUSINESS_COUNT));
+                flight.setEconomyCount(resultSet.getInt(ECONOMY_COUNT));
+                flight.setDateOut(resultSet.getTimestamp(DATE_OUT));
+                flight.setDateIn(resultSet.getTimestamp(DATE_IN));
                 flights.add(flight);
             }
         } catch (SQLException e) {
@@ -234,21 +237,21 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
                 City from = new City();
                 City to = new City();
                 Route route = new Route();
-                from.setId(resultSet.getLong("idFrom"));
+                from.setId(resultSet.getLong(ID_FROM));
                 from.setName(cityFrom);
-                to.setId(resultSet.getLong("idTo"));
+                to.setId(resultSet.getLong(ID_TO));
                 to.setName(cityTo);
-                route.setId(resultSet.getLong("routeId"));
+                route.setId(resultSet.getLong(ROUTE_ID));
                 route.setCityFrom(from);
                 route.setCityTo(to);
-                flight.setEconomyPrice(resultSet.getDouble("economyPrice"));
-                flight.setBusinessPrice(resultSet.getDouble("businessPrice"));
-                flight.setId(resultSet.getLong("id"));
+                flight.setEconomyPrice(resultSet.getDouble(ECONOMY_PRICE));
+                flight.setBusinessPrice(resultSet.getDouble(BUSINESS_PRICE));
+                flight.setId(resultSet.getLong(ID));
                 flight.setRoute(route);
-                flight.setBusinessCount(resultSet.getInt("businessCount"));
-                flight.setEconomyCount(resultSet.getInt("economyCount"));
-                flight.setDateOut(resultSet.getTimestamp("DateOut"));
-                flight.setDateIn(resultSet.getTimestamp("DateIn"));
+                flight.setBusinessCount(resultSet.getInt(ECONOMY_COUNT));
+                flight.setEconomyCount(resultSet.getInt(BUSINESS_COUNT));
+                flight.setDateOut(resultSet.getTimestamp(DATE_OUT));
+                flight.setDateIn(resultSet.getTimestamp(DATE_IN));
                 flights.add(flight);
             }
         } catch (SQLException e) {
@@ -274,7 +277,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             statement.setTimestamp(2, new Timestamp(date.getTime()));
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                price = resultSet.getDouble("economyPrice");
+                price = resultSet.getDouble(ECONOMY_PRICE);
             }
 
         } catch (SQLException e) {
@@ -313,7 +316,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
 
     public ServiceMessage buyTicket(Long userId, List<TicketModel> ticketModels) throws DAOException {
         ConfigurationManager priceManager = new ConfigurationManager();
-        priceManager.loadProperties("price.properties");
+        priceManager.loadProperties(PRICE_PROPERTIES_FILE);
         Connection connection = null;
         Connection connection2 = null;
         PreparedStatement checkTickets = null;
@@ -328,8 +331,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             for (TicketModel model : ticketModels) {
                 for (int i = 0; i < model.getNames().size(); i++) {
                     double price = model.getPrice();
-                    String luggageKey = "luggage" + model.getLuggage();
-                    String priorityKey = "priority";
+                    String luggageKey = PARAM_NAME_LUGGAGE + model.getLuggage();
                     if (model.getIsBusiness()) {
                         checkTickets = connection.prepareStatement(SQL_UPDATE_BUSINESS_COUNT);
                     } else {
@@ -340,7 +342,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
                         price += luggagePrice;
                     }
                     if (i < model.getPriorityCount()) {
-                        double priorityPrice = Double.parseDouble(priceManager.getProperty(priorityKey));
+                        double priorityPrice = Double.parseDouble(priceManager.getProperty(PRIORITY_PRICE));
                         price += priorityPrice;
                     }
 
@@ -351,10 +353,10 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
                     getMoney.setDouble(3, price);
                     if (checkTickets.executeUpdate() == 0) {
                         rollback(connection, connection2);
-                        return ServiceMessage.NOTICKET;
+                        return ServiceMessage.NO_TICKET;
                     } else if (getMoney.executeUpdate() == 0) {
                         rollback(connection, connection2);
-                        return ServiceMessage.NOMONEY;
+                        return ServiceMessage.NO_MONEY;
                     }
                 }
             }
@@ -370,15 +372,15 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             ConnectionPool.getInstance().releaseConnection();
 
         }
-        return ServiceMessage.OKBUY;
+        return ServiceMessage.OK_BUY;
     }
 
-    private void rollback(Connection connection, Connection connection2) {
+    private void rollback(Connection connection, Connection connection2) throws DAOException{
         try {
             connection.rollback();
             connection2.rollback();
         } catch (SQLException ex) {
-            System.err.println(ex);
+            throw new DAOException(ex);
         }
     }
 

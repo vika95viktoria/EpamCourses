@@ -1,67 +1,41 @@
 package com.epam.lowcost.domain;
 
+import com.epam.lowcost.resource.ConfigurationManager;
+
 /**
  * Created by Виктория on 01.03.2016.
  */
 public enum ServiceMessage {
-    NOTICKET {
-        {
-            this.value = "Sorry, there is no such tickets anymore on this flight";
-        }
-    },
-    CITYOK {
-        {
-            this.value = "City added successfully";
-        }
-    },
-    ERRORPASSWORD {
-        {
-            this.value = "Incorrect password";
-        }
-    },
-    USERNAMEPERSIST {
-        {
-            this.value = "Choose another username,please";
-        }
-    },
-    CITYFAIL {
-        {
-            this.value = "Failed to add this city";
-        }
-    },
-    NOMONEY {
-        {
-            this.value = "Sorry, you haven't enought money to buy this ticket";
-        }
-    },
-    OKEDIT {
-        {
-            this.value = "All changes accepted";
-        }
-    },
-    OKADD {
-        {
-            this.value = "Flights sucessfully added";
-        }
-    },
-    OKBUY {
-        {
-            this.value = "You successfully buy the ticket";
-        }
-    },
-    FAIL {
-        {
-            this.value = "Operation cancelled";
-        }
-    },
-    OK {
-        {
-            this.value = "Operation success";
-        }
-    };
-    String value;
+    NO_TICKET,
+    CITY_OK,
+    ERROR_PASSWORD,
+    USERNAME_PERSIST,
+    CITY_FAIL,
+    NO_MONEY,
+    OK_EDIT,
+    OK_BUY,
+    OK,
+    CITY_INPUT_FAIL,
+    COUNT_FAIL,
+    PRICE_FAIL,
+    DATE_FAIL,
+    TIME_FAIL,
+    DAY_FAIL,
+    ID_FAIL,
+    PASSWORD_FAIL,
+    LOGIN_FAIL,
+    USERNAME_FAIL,
+    NAME_FAIL,
+    SURNAME_FAIL,
+    EMAIL_FAIL,
+    CARD_NUMBER_FAIL,
+    CARD_TYPE_FAIL,
+    AMOUNT_FAIL;
 
-    public String getValue() {
-        return this.value;
+    public String getValue(String language) {
+        ConfigurationManager manager = new ConfigurationManager();
+        String filename = "pagecontent_"+language+".properties";
+        manager.loadProperties(filename);
+        return manager.getProperty(this.toString());
     }
 }

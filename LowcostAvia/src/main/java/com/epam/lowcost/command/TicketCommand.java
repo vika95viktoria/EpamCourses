@@ -5,6 +5,7 @@ import com.epam.lowcost.domain.TicketModel;
 import com.epam.lowcost.exception.ServiceException;
 import com.epam.lowcost.service.FlightService;
 import com.epam.lowcost.service.TicketService;
+import static com.epam.lowcost.util.CommandConstants.*;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
@@ -23,12 +24,12 @@ public class TicketCommand extends ActionCommand {
     public void action(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException {
         HttpSession session = request.getSession();
         ObjectMapper mapper = new ObjectMapper();
-        String jsonInString = request.getParameter("ticketInfo");
+        String jsonInString = request.getParameter(PARAM_NAME_TICKET_INFO);
         List<TicketModel> ticketModels;
 
         ticketModels = mapper.readValue(jsonInString, new TypeReference<List<TicketModel>>() {
         });
-        Long userId = Long.parseLong(session.getAttribute("userId").toString());
+        Long userId = Long.parseLong(session.getAttribute(ATTRIBUTE_NAME_USER_ID).toString());
         for (TicketModel model : ticketModels) {
             if (model.getLuggageCount() == 0) {
                 model.setLuggage(0);
@@ -37,14 +38,15 @@ public class TicketCommand extends ActionCommand {
         boolean buy = false;
         FlightService flightService = FlightService.getInstance();
         ServiceMessage message = flightService.buyTicket(userId, ticketModels);
-        if (message.equals(ServiceMessage.OKBUY)) {
+        if (message.equals(ServiceMessage.OK_BUY)) {
             buy = true;
         }
         if (buy) {
             TicketService ticketService = TicketService.getInstance();
             ticketService.createTickets(ticketModels, userId);
         }
-        response.getWriter().print(message.getValue());
+        String language = (String)session.getAttribute(ATTRIBUTE_NAME_LANGUAGE);
+        response.getWriter().print(message.getValue(language));
 
     }
 }

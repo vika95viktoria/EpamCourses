@@ -4,6 +4,7 @@ import com.epam.lowcost.connection.ConnectionPool;
 import com.epam.lowcost.domain.CreditCard;
 import com.epam.lowcost.domain.User;
 import com.epam.lowcost.exception.DAOException;
+import static com.epam.lowcost.util.DAOConstants.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,17 +40,17 @@ public class UserDAO extends AbstractDAO<Long, User> {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
-            user.setId(resultSet.getLong("id"));
-            user.setUsername(resultSet.getString("username"));
-            user.setPassword(resultSet.getString("password"));
-            user.setEmail(resultSet.getString("email"));
-            user.setName(resultSet.getString("name"));
-            user.setSurname(resultSet.getString("surname"));
-            user.setAdmin(resultSet.getBoolean("isAdmin"));
+            user.setId(resultSet.getLong(ID));
+            user.setUsername(resultSet.getString(USERNAME));
+            user.setPassword(resultSet.getString(PASSWORD));
+            user.setEmail(resultSet.getString(EMAIL));
+            user.setName(resultSet.getString(NAME));
+            user.setSurname(resultSet.getString(SURNAME));
+            user.setAdmin(resultSet.getBoolean(IS_ADMIN));
             CreditCard creditCard = new CreditCard();
-            creditCard.setId(resultSet.getLong("cardId"));
-            creditCard.setAmount(resultSet.getDouble("amount"));
-            creditCard.setType(resultSet.getString("type"));
+            creditCard.setId(resultSet.getLong(CARD_ID));
+            creditCard.setAmount(resultSet.getDouble(AMOUNT));
+            creditCard.setType(resultSet.getString(TYPE));
             user.setCard(creditCard);
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -72,17 +73,17 @@ public class UserDAO extends AbstractDAO<Long, User> {
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                user.setId(resultSet.getLong("id"));
-                user.setUsername(resultSet.getString("username"));
-                user.setPassword(resultSet.getString("password"));
-                user.setEmail(resultSet.getString("email"));
-                user.setName(resultSet.getString("name"));
-                user.setSurname(resultSet.getString("surname"));
-                user.setAdmin(resultSet.getBoolean("isAdmin"));
+                user.setId(resultSet.getLong(ID));
+                user.setUsername(resultSet.getString(USERNAME));
+                user.setPassword(resultSet.getString(PASSWORD));
+                user.setEmail(resultSet.getString(EMAIL));
+                user.setName(resultSet.getString(NAME));
+                user.setSurname(resultSet.getString(SURNAME));
+                user.setAdmin(resultSet.getBoolean(IS_ADMIN));
                 CreditCard creditCard = new CreditCard();
-                creditCard.setId(resultSet.getLong("cardId"));
-                creditCard.setAmount(resultSet.getDouble("amount"));
-                creditCard.setType(resultSet.getString("type"));
+                creditCard.setId(resultSet.getLong(CARD_ID));
+                creditCard.setAmount(resultSet.getDouble(AMOUNT));
+                creditCard.setType(resultSet.getString(TYPE));
                 user.setCard(creditCard);
             }
         } catch (SQLException e) {
@@ -105,7 +106,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
             statement.setString(1, username);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                id = resultSet.getLong("id");
+                id = resultSet.getLong(ID);
             }
         } catch (SQLException e) {
             throw new DAOException(e);

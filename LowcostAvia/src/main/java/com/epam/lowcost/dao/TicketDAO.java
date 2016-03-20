@@ -4,6 +4,7 @@ import com.epam.lowcost.connection.ConnectionPool;
 import com.epam.lowcost.domain.*;
 import com.epam.lowcost.exception.DAOException;
 import com.epam.lowcost.util.PriceGenerator;
+import static com.epam.lowcost.util.DAOConstants.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -128,13 +129,13 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
             statement.setLong(1, flightId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                priceGenerator.setPurchasedTickets(resultSet.getInt("count"));
+                priceGenerator.setPurchasedTickets(resultSet.getInt(COUNT));
                 if (!isBusiness) {
-                    priceGenerator.setRemainedTickets(resultSet.getInt("economyCount"));
+                    priceGenerator.setRemainedTickets(resultSet.getInt(ECONOMY_COUNT));
                 } else {
-                    priceGenerator.setRemainedTickets(resultSet.getInt("businessCount"));
+                    priceGenerator.setRemainedTickets(resultSet.getInt(BUSINESS_COUNT));
                 }
-                priceGenerator.setDateOut(resultSet.getTimestamp("DateOut"));
+                priceGenerator.setDateOut(resultSet.getTimestamp(DATE_OUT));
             }
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -171,20 +172,20 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Ticket ticket = new Ticket();
-                ticket.setId(resultSet.getLong("id"));
-                ticket.setLuggage(resultSet.getInt("luggage"));
-                ticket.setName(resultSet.getString("passName"));
-                ticket.setSurname(resultSet.getString("passSurname"));
-                ticket.setIsBusiness(resultSet.getBoolean("isBusiness"));
-                ticket.setHasPriority(resultSet.getBoolean("priority"));
+                ticket.setId(resultSet.getLong(ID));
+                ticket.setLuggage(resultSet.getInt(LUGGAGE));
+                ticket.setName(resultSet.getString(PASSENGER_NAME));
+                ticket.setSurname(resultSet.getString(PASSENGER_SURNAME));
+                ticket.setIsBusiness(resultSet.getBoolean(IS_BUSINESS));
+                ticket.setHasPriority(resultSet.getBoolean(PRIORITY));
                 Flight flight = new Flight();
-                flight.setId(resultSet.getLong("flightId"));
-                flight.setDateIn(resultSet.getTimestamp("DateIn"));
-                flight.setDateOut(resultSet.getTimestamp("DateOut"));
+                flight.setId(resultSet.getLong(FLIGHT_ID));
+                flight.setDateIn(resultSet.getTimestamp(DATE_IN));
+                flight.setDateOut(resultSet.getTimestamp(DATE_IN));
                 Route route = new Route();
                 City cityFrom = new City();
-                cityFrom.setName(resultSet.getString("name"));
-                City cityTo = cityDAO.findEntityById(resultSet.getLong("idTo"));
+                cityFrom.setName(resultSet.getString(NAME));
+                City cityTo = cityDAO.findEntityById(resultSet.getLong(ID_TO));
                 route.setCityTo(cityTo);
                 route.setCityFrom(cityFrom);
                 flight.setRoute(route);
