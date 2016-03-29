@@ -1,5 +1,0 @@
-05.01.2016 22:59:01 [main] INFO  by.bsu.xml.action.ValidatorSAXXSD  - data/tariffs.xml is valid.
-05.01.2016 22:59:43 [main] INFO  by.bsu.xml.action.ValidatorSAXXSD  - data/tariffs.xml is valid.
-05.01.2016 22:59:48 [main] INFO  by.bsu.xml.action.TariffMarshal  - JAXB-context has an error javax.xml.bind.MarshalException
- - with linked exception:
-[com.sun.istack.internal.SAXException2: unable to marshal type "by.bsu.xml.entity.Tariff" as an element because it is missing an @XmlRootElement annotation]
