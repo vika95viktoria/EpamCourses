@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
-<fmt:setBundle basename="pagecontent" />
+<fmt:setBundle basename="pagecontent"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,15 +29,15 @@
     <%@include file="header.jsp" %>
     <div class="container-fluid centered">
         <div style="text-align:center; ">
-            <h3 style="color:red"><fmt:message key="deleteRoute.choose" /></h3>
+            <h3 style="color:red"><fmt:message key="deleteRoute.choose"/></h3>
         </div>
         <form action="/airepam" method="POST" id="deleteForm">
             <input type="hidden" name="command" value="deleteFlights"/>
             <table id="routes" class="table table-striped" cellspacing="0" width="100%">
                 <thead>
                 <tr>
-                    <th><h3><fmt:message key="deleteRoute.from" /></h3></th>
-                    <th><h3><fmt:message key="deleteRoute.to" /></h3></th>
+                    <th><h3><fmt:message key="deleteRoute.from"/></h3></th>
+                    <th><h3><fmt:message key="deleteRoute.to"/></h3></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -53,7 +53,7 @@
                                     <input id="checkbox" class="styled" type="checkbox" name="toBeDeleted"
                                            value="${element.id}">
                                     <label for="checkbox">
-                                        <h4> <fmt:message key="deleteRoute.delete" /></h4>
+                                        <h4><fmt:message key="deleteRoute.delete"/></h4>
                                     </label>
                                 </div>
                             </td>
@@ -65,7 +65,8 @@
             <br>
             <br>
             <div class="clearfix">
-                <button type="button" class="btn btn-danger btn-lg" style="float:right" onclick="checkboxValid()"><fmt:message key="deleteRoute.delete.selected" />
+                <button type="button" class="btn btn-danger btn-lg" style="float:right" onclick="checkboxValid()">
+                    <fmt:message key="deleteRoute.delete.selected"/>
                 </button>
             </div>
             <div id="passCheck" class="modal fade" role="dialog">
@@ -75,17 +76,18 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"><fmt:message key="deleteRoute.password" /></h4>
+                            <h4 class="modal-title"><fmt:message key="deleteRoute.password"/></h4>
                         </div>
                         <div class="modal-body">
                             <div class="alert alert-dismissible alert-danger container-fluid"
                                  style="text-align: center; width:90%; display: none" id="incorrect">
-                                <strong><fmt:message key="deleteRoute.password.incorrect" /></strong>
+                                <strong><fmt:message key="deleteRoute.password.incorrect"/></strong>
                             </div>
                             <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary"><fmt:message key="deleteRoute.delete" /></button>
+                            <button type="submit" class="btn btn-primary"><fmt:message
+                                    key="deleteRoute.delete"/></button>
                         </div>
                     </div>
 
@@ -114,7 +116,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                     <div class="alert alert-danger fade in center" style="width: 100%">
-                        <strong><fmt:message key="deleteRoute.select" /></strong>
+                        <strong><fmt:message key="deleteRoute.select"/></strong>
                     </div>
                 </div>
             </div>

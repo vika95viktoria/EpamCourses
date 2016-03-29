@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="customtags" %>
-<fmt:setBundle basename="pagecontent" />
+<fmt:setBundle basename="pagecontent"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,9 +31,9 @@
         <table id="routes" class="table table-striped" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th><h3><fmt:message key="deleteRoute.from" /></h3></th>
-                <th><h3><fmt:message key="deleteRoute.to" /></h3></th>
-                <th><h3><fmt:message key="routes.min" /> &euro;</h3></th>
+                <th><h3><fmt:message key="deleteRoute.from"/></h3></th>
+                <th><h3><fmt:message key="deleteRoute.to"/></h3></th>
+                <th><h3><fmt:message key="routes.min"/> &euro;</h3></th>
                 <th></th>
             </tr>
             </thead>

@@ -88,4 +88,5 @@ $RECYCLE.BIN/
 *.ear
 *.log
 *.logs
-/logs/
+*/logs
+*/target

@@ -12,12 +12,14 @@ html, body {
 .test.modal-open {
     overflow: auto;
 }
-#errorMessage{
+
+#errorMessage {
     font-size: 2em;
     color: red;
     vertical-align: middle;
     font-style: italic;
 }
+
 .center {
     margin: auto;
     width: 60%;
@@ -106,13 +108,13 @@ h1 {
     color: white;
 }
 
-#sadcomp{
-    height:500px;
-    width:500px;
+#sadcomp {
+    height: 500px;
+    width: 500px;
 
 }
 
-#sorry{
+#sorry {
     color: white;
     position: absolute;
     bottom: 10%;
@@ -120,14 +122,15 @@ h1 {
     font-size: 2em;
 }
 
-#sorry500{
+#sorry500 {
     position: absolute;
-    top:30%;
+    top: 30%;
     font-size: 3em;
     color: black;
     vertical-align: middle;
     font-weight: bold;
 }
+
 .page404 {
     background-image: url(../pictures/error_404.png);
     -webkit-background-size: cover;
@@ -139,6 +142,7 @@ h1 {
     background-position: center;
     background-attachment: fixed;
 }
+
 h2 {
     font-family: 'Goudy Old Style', Garamond, 'Big Caslon', 'Times New Roman', serif;
     left: 0;

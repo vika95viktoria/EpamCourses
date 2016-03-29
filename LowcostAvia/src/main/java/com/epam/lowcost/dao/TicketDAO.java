@@ -215,7 +215,7 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
                 Flight flight = new Flight();
                 flight.setId(resultSet.getLong(FLIGHT_ID));
                 flight.setDateIn(resultSet.getTimestamp(DATE_IN));
-                flight.setDateOut(resultSet.getTimestamp(DATE_IN));
+                flight.setDateOut(resultSet.getTimestamp(DATE_OUT));
                 Route route = new Route();
                 City cityFrom = new City();
                 cityFrom.setName(resultSet.getString(NAME));

@@ -1,6 +1,6 @@
-<%@ page isErrorPage="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isErrorPage="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<fmt:setBundle basename="pagecontent" />
+<fmt:setBundle basename="pagecontent"/>
 <html>
 <head>
 
@@ -14,24 +14,24 @@
     <link rel="stylesheet" href="../css/select2.css">
     <link rel="stylesheet" href="../css/bootstrap-timepicker.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/tooltipster.css" />
+    <link rel="stylesheet" type="text/css" href="../css/tooltipster.css"/>
 
     <meta charset="UTF-8">
 
 
     <title>500 Error</title>
 </head>
-<body >
+<body>
 <div id="content">
-    <div class = "col-xs-6">
+    <div class="col-xs-6">
         <img src="../pictures/sad_airplane.png" id="sadplane">
     </div>
-    <div class = "col-xs-6" >
+    <div class="col-xs-6">
 <span id="sorry500">
 <br>
-<fmt:message key="error500.first" />
+<fmt:message key="error500.first"/>
 <br>
-<fmt:message key="error500.second" />
+<fmt:message key="error500.second"/>
  </span>
     </div>
 </div>
@@ -47,7 +47,6 @@
 <script src="../js/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="../js/jquery.tooltipster.min.js"></script>
 <script>
-
 
 
 </script>

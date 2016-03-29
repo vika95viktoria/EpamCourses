@@ -16,8 +16,6 @@ import java.util.List;
  * Created by Виктория on 20.03.2016.
  */
 public class ConnectionPoolTest {
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Test(expected = MySQLNonTransientConnectionException.class)
     public void testPoolSize() throws SQLException {
