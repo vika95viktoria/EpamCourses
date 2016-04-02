@@ -38,7 +38,7 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
 
     @Override
     public boolean remove(Long id) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -49,7 +49,7 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return true;
@@ -69,7 +69,7 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
      */
 
     public void createTickets(List<TicketModel> models, Long userId) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -98,7 +98,7 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
     }
@@ -112,7 +112,7 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
      * @throws DAOException
      */
     public void updateLuggageAndPriority(int luggage, int priority, Long ticketId) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             ConnectionPool pool = ConnectionPool.getInstance();
@@ -126,7 +126,7 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
     }
@@ -141,7 +141,7 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
      */
 
     public PriceGenerator getTicketInfo(Long flightId, boolean isBusiness) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         PriceGenerator priceGenerator = new PriceGenerator();
         try {
@@ -167,7 +167,7 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return priceGenerator;
@@ -194,7 +194,7 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
 
     public List<Ticket> findAllForUserId(Long userId) throws DAOException {
         List<Ticket> tickets = new ArrayList<>();
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         CityDAO cityDAO = CityDAO.getInstance();
         try {
@@ -230,7 +230,7 @@ public class TicketDAO extends AbstractDAO<Long, Ticket> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
         }
         return tickets;
     }

@@ -31,7 +31,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
     @Override
     public List<Route> findAll() throws DAOException {
         List<Route> routes = new ArrayList<>();
-        Connection connection;
+        Connection connection = null;
         Statement statement = null;
         try {
             ConnectionPool pool = ConnectionPool.getInstance();
@@ -54,7 +54,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return routes;
@@ -63,7 +63,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
     @Override
     public Route findEntityById(Long id) throws DAOException {
         Route route = new Route();
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -86,7 +86,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
         }
         return route;
 
@@ -102,7 +102,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
      */
     public long findRouteIdByCities(String cityFrom, String cityTo) throws DAOException {
         Long routeId = -1L;
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -117,7 +117,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return routeId;
@@ -130,7 +130,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
 
     @Override
     public boolean create(Route entity) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -142,7 +142,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return true;

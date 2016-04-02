@@ -33,7 +33,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
     @Override
     public User findEntityById(Long id) throws DAOException {
         User user = new User();
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -57,7 +57,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
         }
         return user;
 
@@ -74,7 +74,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
 
     public User findByUsernamePassword(String username, String password) throws DAOException {
         User user = new User();
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -100,7 +100,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return user;
@@ -115,7 +115,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
      */
     public long persist(String username) throws DAOException {
         long id = -1;
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -129,7 +129,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
         }
         return id;
     }
@@ -141,7 +141,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
 
     @Override
     public boolean create(User entity) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -160,7 +160,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return true;

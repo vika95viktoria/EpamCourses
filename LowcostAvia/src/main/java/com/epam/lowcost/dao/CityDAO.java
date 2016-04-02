@@ -31,7 +31,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
     @Override
     public City findEntityById(Long id) throws DAOException {
         City city = new City();
-        Connection connection;
+        Connection connection=null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -46,7 +46,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return city;
@@ -59,7 +59,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
 
     @Override
     public boolean create(City entity) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -70,7 +70,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return true;
@@ -89,7 +89,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
     @Override
     public List<City> findAll() throws DAOException {
         List<City> cities = new ArrayList<>();
-        Connection connection;
+        Connection connection = null;
         Statement statement = null;
         try {
             ConnectionPool pool = ConnectionPool.getInstance();
@@ -106,7 +106,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return cities;
@@ -114,7 +114,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
 
     public List<City> findAllForCity(String name) throws DAOException {
         List<City> cities = new ArrayList<>();
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             ConnectionPool pool = ConnectionPool.getInstance();
@@ -130,7 +130,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return cities;

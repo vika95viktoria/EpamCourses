@@ -47,7 +47,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
     @Override
     public Flight findEntityById(Long id) throws DAOException {
         Flight flight = new Flight();
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         RoutesDAO routesDAO = RoutesDAO.getInstance();
         try {
@@ -68,7 +68,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return flight;
@@ -76,7 +76,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
 
     @Override
     public boolean remove(Long id) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -87,7 +87,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return true;
@@ -102,7 +102,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
      */
     private long persist(Flight entity) throws DAOException {
         Long flightId = -1L;
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -117,7 +117,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return flightId;
@@ -125,7 +125,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
 
     @Override
     public boolean create(Flight entity) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         if (persist(entity) == -1) {
             try {
@@ -143,7 +143,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
                 throw new DAOException(e);
             } finally {
                 close(statement);
-                ConnectionPool.getInstance().releaseConnection();
+                ConnectionPool.getInstance().releaseConnection(connection);
 
             }
 
@@ -153,7 +153,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
 
     @Override
     public Flight update(Flight entity) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             ConnectionPool pool = ConnectionPool.getInstance();
@@ -169,7 +169,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return entity;
@@ -187,7 +187,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
 
     public List<Flight> findAllByRouteId(Long id) throws DAOException {
         List<Flight> flights = new ArrayList<>();
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         RoutesDAO routesDAO = RoutesDAO.getInstance();
         try {
@@ -214,7 +214,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return flights;
@@ -222,7 +222,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
 
     public List<Flight> findAllByCitiesName(String cityFrom, String cityTo, long date) throws DAOException {
         List<Flight> flights = new ArrayList<>();
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         Date dateFrom = new Date(date - TWO_WEEKS);
         Date currentDate = new Date(Calendar.getInstance().getTimeInMillis());
@@ -265,7 +265,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return flights;
@@ -279,7 +279,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
      * @throws DAOException
      */
     public Double findMinPrice(Long id) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         Double price = 0d;
         try {
@@ -298,7 +298,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return price;
@@ -306,7 +306,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
     }
 
     public void updateTicketCount(Long id, boolean isBusiness) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             ConnectionPool pool = ConnectionPool.getInstance();
@@ -322,7 +322,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
     }
@@ -391,7 +391,8 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             lock.unlock();
             close(checkTickets);
             close(getMoney);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            ConnectionPool.getInstance().releaseConnection(connection2);
 
         }
         return ServiceMessage.OK_BUY;

@@ -32,7 +32,7 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
     @Override
     public CreditCard findEntityById(Long id) throws DAOException {
         CreditCard creditCard = new CreditCard();
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -47,7 +47,7 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return creditCard;
@@ -60,7 +60,7 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
 
     @Override
     public boolean create(CreditCard entity) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -73,7 +73,7 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return true;
@@ -89,7 +89,7 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
      */
 
     public ServiceMessage updateAmount(double price, Long userId) throws DAOException {
-        Connection connection;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -107,7 +107,7 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
             throw new DAOException(e);
         } finally {
             close(statement);
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
         }
         return ServiceMessage.OK_EDIT;

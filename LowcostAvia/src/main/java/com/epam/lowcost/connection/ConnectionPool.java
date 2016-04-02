@@ -116,18 +116,20 @@ public class ConnectionPool {
     /**
      * Get connection from busy, add to available, check autocommit and read-only properties
      */
-    public void releaseConnection() {
-        ProxyConnection connection = busyConnections.poll();
-        try {
-            if (!connection.getAutoCommit()) {
-                connection.setAutoCommit(true);
+    public void releaseConnection(Connection connection) {
+        if(connection!=null) {
+            busyConnections.remove(connection);
+            try {
+                if (!connection.getAutoCommit()) {
+                    connection.setAutoCommit(true);
+                }
+                if (!connection.isReadOnly()) {
+                    connection.setReadOnly(true);
+                }
+                availableConnections.put((ProxyConnection) connection);
+            } catch (InterruptedException | SQLException e) {
+                logger.error(e);
             }
-            if (!connection.isReadOnly()) {
-                connection.setReadOnly(true);
-            }
-            availableConnections.put(connection);
-        } catch (InterruptedException | SQLException e) {
-            logger.error(e);
         }
     }
 
@@ -140,10 +142,14 @@ public class ConnectionPool {
             TimeUnit.SECONDS.sleep(1);
             try {
                 for (Connection connection : availableConnections) {
-                    connection.close();
+                    if(connection!=null) {
+                        connection.close();
+                    }
                 }
                 for (Connection connection : busyConnections) {
-                    connection.close();
+                    if(connection!=null) {
+                        connection.close();
+                    }
                 }
             } catch (SQLException e) {
                 logger.error(e);
