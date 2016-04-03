@@ -503,7 +503,7 @@
         var m2 = addZero(d2.getMinutes());
         x.innerHTML = h + ":" + m;
         x2.innerHTML = h2 + ":" + m2;
-        if ('${language == "ru_RU"}' == 'true') {
+        if (${language == "ru_RU"}) {
             x3.innerHTML = d.getDate() + " " + monthNamesRus[d.getMonth()];
         }
         else {
@@ -528,7 +528,7 @@
         var m2 = addZero(d2.getMinutes());
         x.innerHTML = h + ":" + m;
         x2.innerHTML = h2 + ":" + m2;
-        if ('${language == "ru_RU"}' == 'true') {
+        if (${language == "ru_RU"}) {
             x3.innerHTML = d.getDate() + " " + monthNamesRus[d.getMonth()];
         }
         else {
@@ -586,7 +586,7 @@
         }
         var priorityCount = document.getElementById("boardCount").value;
         final = numberOfPassengers * price + priorityCount * '${priorityPrice}' + luggageCount * luggagePrice;
-        if ('${not empty returnFlights }' == 'true') {
+        if (${not empty returnFlights }) {
             var returnPrice = document.getElementById("currentPrice2").value;
             var luggage2 = $('input[name=luggage2]:checked', '#buyTicket').val();
             var luggageCount2 = document.getElementById("luggCountReturn").value;
@@ -629,7 +629,7 @@
                 url: url,
                 data: $("#editFlight").serialize(),
                 success: function (data) {
-                    if ('${not empty error}') {
+                    if (${not empty error}) {
                         document.getElementById("incorrect").style.display = "block";
                     }
                     else {
@@ -645,7 +645,7 @@
     });
 
     function edit(dateOut, dateIn, economyPrice, businessPrice, id, isReturn) {
-        if ('${role}' == 'admin') {
+        if (${role == "admin"}) {
             var d = new Date(dateOut);
             var d2 = new Date(dateIn);
             var x = document.getElementById("EditEconomyPrice");
@@ -670,7 +670,7 @@
             else {
                 var timeOut = h2 + ":" + m2 + " AM";
             }
-            if ('${language == "ru_RU"}' == 'true') {
+            if (${language == "ru_RU"}) {
                 x3.innerHTML = d.getDate() + " " + monthNamesRus[d.getMonth()] + " " + h + ":" + m + " - " + h2 + ":" + m2;
             }
             else {
@@ -700,7 +700,7 @@
             var count = 0;
             var names = new Array();
             var surnames = new Array();
-            if ('${not empty flights }' == 'true') {
+            if (${not empty flights }) {
                 $('.names').each(function () {
                     names[count] = $(this).val();
                     count++;
@@ -724,7 +724,7 @@
                 ticket.price = document.getElementById("currentPrice").value;
                 ticketInfo.push(ticket);
             }
-            if ('${not empty returnFlights }' == 'true') {
+            if (${not empty returnFlights }) {
                 returnTicket.names = ticket.names;
                 returnTicket.surnames = ticket.surnames;
                 returnTicket.luggage = 0;

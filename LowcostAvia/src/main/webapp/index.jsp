@@ -125,7 +125,7 @@
         });
         $(".select2-container--default").css("width", "42%");
         $(".select2-container--default").css("margin", "10px");
-        if ('' != '${errorLoginPassMessage}') {
+        if (${not empty errorLoginPassMessage}) {
             $('#login-form').modal('show');
         }
     })
