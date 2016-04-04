@@ -1,7 +1,7 @@
 package com.epam.lowcost.controller;
 
 import com.epam.lowcost.command.ActionCommand;
-import com.epam.lowcost.factory.ActionFactory;
+import com.epam.lowcost.command.ActionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

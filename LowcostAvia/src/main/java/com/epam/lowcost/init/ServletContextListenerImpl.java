@@ -25,7 +25,7 @@ public class ServletContextListenerImpl implements ServletContextListener {
             List<City> cities = cityService.getAllCities();
             sce.getServletContext().setAttribute(ATTRIBUTE_NAME_CITIES, cities);
         } catch (ServiceException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 

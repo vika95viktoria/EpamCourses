@@ -1,6 +1,7 @@
 package com.epam.lowcost.dao;
 
 import com.epam.lowcost.connection.ConnectionPool;
+import com.epam.lowcost.connection.ProxyConnection;
 import com.epam.lowcost.domain.CreditCard;
 import com.epam.lowcost.domain.User;
 import com.epam.lowcost.exception.DAOException;
@@ -33,7 +34,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
     @Override
     public User findEntityById(Long id) throws DAOException {
         User user = new User();
-        Connection connection = null;
+        ProxyConnection connection=null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -74,7 +75,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
 
     public User findByUsernamePassword(String username, String password) throws DAOException {
         User user = new User();
-        Connection connection = null;
+        ProxyConnection connection=null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -115,7 +116,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
      */
     public long persist(String username) throws DAOException {
         long id = -1;
-        Connection connection = null;
+        ProxyConnection connection=null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -141,7 +142,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
 
     @Override
     public boolean create(User entity) throws DAOException {
-        Connection connection = null;
+        ProxyConnection connection=null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();

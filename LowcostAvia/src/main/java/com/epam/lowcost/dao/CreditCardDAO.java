@@ -1,6 +1,7 @@
 package com.epam.lowcost.dao;
 
 import com.epam.lowcost.connection.ConnectionPool;
+import com.epam.lowcost.connection.ProxyConnection;
 import com.epam.lowcost.domain.CreditCard;
 import com.epam.lowcost.domain.ServiceMessage;
 import com.epam.lowcost.exception.DAOException;
@@ -32,7 +33,7 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
     @Override
     public CreditCard findEntityById(Long id) throws DAOException {
         CreditCard creditCard = new CreditCard();
-        Connection connection = null;
+        ProxyConnection connection=null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -60,7 +61,7 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
 
     @Override
     public boolean create(CreditCard entity) throws DAOException {
-        Connection connection = null;
+        ProxyConnection connection=null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -89,7 +90,7 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
      */
 
     public ServiceMessage updateAmount(double price, Long userId) throws DAOException {
-        Connection connection = null;
+        ProxyConnection connection=null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();

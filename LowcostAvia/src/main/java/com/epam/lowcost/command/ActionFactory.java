@@ -1,4 +1,4 @@
-package com.epam.lowcost.factory;
+package com.epam.lowcost.command;
 
 
 import com.epam.lowcost.command.*;

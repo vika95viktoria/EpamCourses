@@ -1,6 +1,7 @@
 package com.epam.lowcost.dao;
 
 import com.epam.lowcost.connection.ConnectionPool;
+import com.epam.lowcost.connection.ProxyConnection;
 import com.epam.lowcost.domain.City;
 import com.epam.lowcost.domain.Route;
 import com.epam.lowcost.exception.DAOException;
@@ -31,7 +32,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
     @Override
     public List<Route> findAll() throws DAOException {
         List<Route> routes = new ArrayList<>();
-        Connection connection = null;
+        ProxyConnection connection=null;
         Statement statement = null;
         try {
             ConnectionPool pool = ConnectionPool.getInstance();
@@ -63,7 +64,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
     @Override
     public Route findEntityById(Long id) throws DAOException {
         Route route = new Route();
-        Connection connection = null;
+        ProxyConnection connection=null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -102,7 +103,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
      */
     public long findRouteIdByCities(String cityFrom, String cityTo) throws DAOException {
         Long routeId = -1L;
-        Connection connection = null;
+        ProxyConnection connection=null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -130,7 +131,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
 
     @Override
     public boolean create(Route entity) throws DAOException {
-        Connection connection = null;
+        ProxyConnection connection=null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
