@@ -49,7 +49,7 @@ public class RegisterCommand extends ActionCommand {
             request.setAttribute(ERROR_MESSAGE, message.getValue(language));
             throw new ValidationException();
         }
-        if (!userService.persist(username)) {
+        if (userService.persist(username)) {
             request.setAttribute(ERROR_MESSAGE, ServiceMessage.USERNAME_PERSIST.getValue(language));
             throw new ValidationException();
         }

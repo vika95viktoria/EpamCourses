@@ -18,9 +18,9 @@ import static com.epam.lowcost.util.DAOConstants.*;
  * Created by Виктория on 22.02.2016.
  */
 public class CityDAO extends AbstractDAO<Long, City> {
-    private static final String SQL_SELECT_CITY_BY_ID = "SELECT * FROM cities where id = ?";
+    private static final String SQL_SELECT_CITY_BY_ID = "SELECT id,name FROM cities where id = ?";
     private static final String SQL_INSERT_CITY = "INSERT INTO cities (name)  VALUES (?)";
-    private static final String SQL_SELECT_ALL_CITIES = "SELECT * FROM cities ORDER BY name";
+    private static final String SQL_SELECT_ALL_CITIES = "SELECT id,name FROM cities ORDER BY name";
     private static final String SQL_SELECT_ID_BY_CITY_FROM = "SELECT idTo FROM routes where idFrom = (select id from cities where name=?)";
     private static CityDAO cityDAO = new CityDAO();
 

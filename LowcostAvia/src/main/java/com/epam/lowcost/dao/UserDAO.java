@@ -40,7 +40,22 @@ public class UserDAO extends AbstractDAO<Long, User> {
             statement = connection.prepareStatement(SQL_SELECT_USER_BY_ID);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
+            while (resultSet.next()) {
+                user = createUser(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            close(statement);
+            ConnectionPool.getInstance().releaseConnection(connection);
+        }
+        return user;
+
+    }
+
+    private User createUser(ResultSet resultSet) throws DAOException {
+        User user = new User();
+        try {
             user.setId(resultSet.getLong(ID));
             user.setUsername(resultSet.getString(USERNAME));
             user.setPassword(resultSet.getString(PASSWORD));
@@ -55,12 +70,8 @@ public class UserDAO extends AbstractDAO<Long, User> {
             user.setCard(creditCard);
         } catch (SQLException e) {
             throw new DAOException(e);
-        } finally {
-            close(statement);
-            ConnectionPool.getInstance().releaseConnection(connection);
         }
         return user;
-
     }
 
     /**
@@ -83,18 +94,7 @@ public class UserDAO extends AbstractDAO<Long, User> {
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                user.setId(resultSet.getLong(ID));
-                user.setUsername(resultSet.getString(USERNAME));
-                user.setPassword(resultSet.getString(PASSWORD));
-                user.setEmail(resultSet.getString(EMAIL));
-                user.setName(resultSet.getString(NAME));
-                user.setSurname(resultSet.getString(SURNAME));
-                user.setAdmin(resultSet.getBoolean(IS_ADMIN));
-                CreditCard creditCard = new CreditCard();
-                creditCard.setId(resultSet.getLong(CARD_ID));
-                creditCard.setAmount(resultSet.getDouble(AMOUNT));
-                creditCard.setType(resultSet.getString(TYPE));
-                user.setCard(creditCard);
+                user = createUser(resultSet);
             }
         } catch (SQLException e) {
             throw new DAOException(e);

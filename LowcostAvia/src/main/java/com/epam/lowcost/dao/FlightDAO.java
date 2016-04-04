@@ -27,8 +27,8 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
     private static final String SQL_UPDATE_FLIGHT_INFO = "update flight set economyPrice=?, businessPrice=?,DateOut=?,DateIn=? where id=?";
     private static final String SQL_DELETE_FLIGTHS_BY_ROUTE = "delete FROM flight where id not in (select flightId from tickets) and routeId =? ";
     private static final String SQL_SELECT_FLIGHTS_BY_ROUTEID_AND_DATE = "SELECT id FROM flight where routeId = ? and DateOut=?";
-    private static final String SQL_SELECT_FLIGHTS_BY_ROUTEID = "SELECT * FROM flight where routeId = ? and DateOut>=? ORDER BY DateOut";
-    private static final String SQL_SELECT_FLIGHT_BY_ID = "SELECT * FROM flight where id = ?";
+    private static final String SQL_SELECT_FLIGHTS_BY_ROUTEID = "SELECT id,routeId,businessCount,economyCount,DateOut,DateIn,economyPrice,businessPrice FROM flight where routeId = ? and DateOut>=? ORDER BY DateOut";
+    private static final String SQL_SELECT_FLIGHT_BY_ID = "SELECT id,routeId,businessCount,economyCount,DateOut,DateIn,economyPrice,businessPrice FROM flight where id = ?";
     private static final String SQL_ADD_BUSINESS_COUNT = "UPDATE flight SET businessCount = businessCount+1 where id = ?";
     private static final String SQL_ADD_ECONOMY_COUNT = "UPDATE flight SET economyCount = economyCount+1 where id = ?";
     private static final String SQL_SELECT_FLIGHT_MIN_PRICE = "SELECT MIN(economyPrice) as economyPrice from flight where routeId= ? and DateOut>=?";
@@ -59,15 +59,16 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
             statement = connection.prepareStatement(SQL_SELECT_FLIGHT_BY_ID);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            flight.setEconomyPrice(resultSet.getDouble(ECONOMY_PRICE));
-            flight.setBusinessPrice(resultSet.getDouble(BUSINESS_PRICE));
-            flight.setId(resultSet.getLong(ID));
-            flight.setRoute(routesDAO.findEntityById(resultSet.getLong(ROUTE_ID)));
-            flight.setBusinessCount(resultSet.getInt(BUSINESS_COUNT));
-            flight.setEconomyCount(resultSet.getInt(ECONOMY_COUNT));
-            flight.setDateOut(resultSet.getTimestamp(DATE_OUT));
-            flight.setDateIn(resultSet.getTimestamp(DATE_IN));
+            while (resultSet.next()) {
+                flight.setEconomyPrice(resultSet.getDouble(ECONOMY_PRICE));
+                flight.setBusinessPrice(resultSet.getDouble(BUSINESS_PRICE));
+                flight.setId(resultSet.getLong(ID));
+                flight.setRoute(routesDAO.findEntityById(resultSet.getLong(ROUTE_ID)));
+                flight.setBusinessCount(resultSet.getInt(BUSINESS_COUNT));
+                flight.setEconomyCount(resultSet.getInt(ECONOMY_COUNT));
+                flight.setDateOut(resultSet.getTimestamp(DATE_OUT));
+                flight.setDateIn(resultSet.getTimestamp(DATE_IN));
+            }
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {

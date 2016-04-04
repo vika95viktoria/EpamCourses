@@ -37,8 +37,7 @@ public class TicketCommand extends ActionCommand {
         String jsonInString = request.getParameter(PARAM_NAME_TICKET_INFO);
         List<TicketModel> ticketModels;
 
-        ticketModels = mapper.readValue(jsonInString, new TypeReference<List<TicketModel>>() {
-        });
+        ticketModels = mapper.readValue(jsonInString, new TypeReference<List<TicketModel>>() {});
         Long userId = Long.parseLong(session.getAttribute(ATTRIBUTE_NAME_USER_ID).toString());
         for (TicketModel model : ticketModels) {
             if (model.getLuggageCount() == 0) {

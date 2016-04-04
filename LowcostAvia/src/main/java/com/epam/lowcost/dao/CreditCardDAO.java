@@ -18,7 +18,7 @@ import static com.epam.lowcost.util.DAOConstants.*;
  */
 public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
     private static final String SQL_INSERT_USER_INFO = "INSERT INTO creditcard  VALUES (?, ?, ?)";
-    private static final String SQL_SELECT_CARD_BY_ID = "SELECT * FROM creditcard where id = ?";
+    private static final String SQL_SELECT_CARD_BY_ID = "SELECT id,amount,type FROM creditcard where id = ?";
     private static final String SQL_UPDATE_AMOUNT = "UPDATE creditcard  join users on creditcard.id = (select users.cardId from users where id = ?) SET creditcard.amount = CASE WHEN creditcard.amount>?  THEN  creditcard.amount-? ELSE creditcard.amount END";
     private static CreditCardDAO creditCardDAO = new CreditCardDAO();
 
@@ -39,10 +39,11 @@ public class CreditCardDAO extends AbstractDAO<Long, CreditCard> {
             statement = connection.prepareStatement(SQL_SELECT_CARD_BY_ID);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            creditCard.setId(resultSet.getLong(ID));
-            creditCard.setType(resultSet.getString(TYPE));
-            creditCard.setAmount(resultSet.getDouble(AMOUNT));
+            while (resultSet.next()) {
+                creditCard.setId(resultSet.getLong(ID));
+                creditCard.setType(resultSet.getString(TYPE));
+                creditCard.setAmount(resultSet.getDouble(AMOUNT));
+            }
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {

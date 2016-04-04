@@ -21,7 +21,7 @@ import static com.epam.lowcost.util.DAOConstants.*;
 public class RoutesDAO extends AbstractDAO<Long, Route> {
     private static final String SQL_SELECT_ALL_ROUTES = "SELECT routes.*, cities.id as cityId, cities.name FROM routes join cities on routes.idFrom = cities.id";
     private static final String SQL_SELECT_ROUTE_BY_ID = "SELECT cities.id,cities.name FROM routes join cities on cities.id = routes.idFrom where routes.id=? union  (SELECT  cities.id,cities.name FROM routes join cities on cities.id = routes.idTo where routes.id=?)";
-    private static final String SQL_SELECT_ROUTE_BY_CITIES = "SELECT * FROM routes where idFrom = (select id from cities where name = ?) and idTo = (select id from cities where name = ?)";
+    private static final String SQL_SELECT_ROUTE_BY_CITIES = "SELECT id,idFrom,idTo FROM routes where idFrom = (select id from cities where name = ?) and idTo = (select id from cities where name = ?)";
     private static final String SQL_CREATE_ROUTE_BY_CITIES = "insert into routes (idFrom,idTo) values ( (select id from cities where name = ?) , (select id from cities where name = ?))";
     private static RoutesDAO routesDAO = new RoutesDAO();
 
@@ -41,8 +41,7 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
             ConnectionPool pool = ConnectionPool.getInstance();
             connection = pool.getConnection();
             statement = connection.createStatement();
-            ResultSet resultSet =
-                    statement.executeQuery(SQL_SELECT_ALL_ROUTES);
+            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_ROUTES);
             while (resultSet.next()) {
                 Route route = new Route();
                 route.setId(resultSet.getLong(ID));
@@ -75,17 +74,18 @@ public class RoutesDAO extends AbstractDAO<Long, Route> {
             statement.setLong(1, id);
             statement.setLong(2, id);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            route.setId(id);
-            City cityFrom = new City();
-            City cityTo = new City();
-            cityFrom.setId(resultSet.getLong(ID));
-            cityFrom.setName(resultSet.getString(NAME));
-            resultSet.next();
-            cityTo.setId(resultSet.getLong(ID));
-            cityTo.setName(resultSet.getString(NAME));
-            route.setCityFrom(cityFrom);
-            route.setCityTo(cityTo);
+            while (resultSet.next()) {
+                route.setId(id);
+                City cityFrom = new City();
+                City cityTo = new City();
+                cityFrom.setId(resultSet.getLong(ID));
+                cityFrom.setName(resultSet.getString(NAME));
+                resultSet.next();
+                cityTo.setId(resultSet.getLong(ID));
+                cityTo.setName(resultSet.getString(NAME));
+                route.setCityFrom(cityFrom);
+                route.setCityTo(cityTo);
+            }
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
