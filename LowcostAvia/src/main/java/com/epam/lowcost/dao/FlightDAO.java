@@ -6,7 +6,10 @@ import com.epam.lowcost.domain.*;
 import com.epam.lowcost.exception.DAOException;
 import com.epam.lowcost.resource.ConfigurationManager;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -48,7 +51,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
     @Override
     public Flight findEntityById(Long id) throws DAOException {
         Flight flight = new Flight();
-        ProxyConnection connection=null;
+        ProxyConnection connection = null;
         PreparedStatement statement = null;
         RoutesDAO routesDAO = RoutesDAO.getInstance();
         try {
@@ -77,7 +80,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
 
     @Override
     public boolean remove(Long id) throws DAOException {
-        ProxyConnection connection=null;
+        ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -103,7 +106,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
      */
     private long persist(Flight entity) throws DAOException {
         Long flightId = -1L;
-        ProxyConnection connection=null;
+        ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -126,7 +129,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
 
     @Override
     public boolean create(Flight entity) throws DAOException {
-        ProxyConnection connection=null;
+        ProxyConnection connection = null;
         PreparedStatement statement = null;
         if (persist(entity) == -1) {
             try {
@@ -154,7 +157,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
 
     @Override
     public Flight update(Flight entity) throws DAOException {
-        ProxyConnection connection=null;
+        ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
             ConnectionPool pool = ConnectionPool.getInstance();
@@ -188,7 +191,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
 
     public List<Flight> findAllByRouteId(Long id) throws DAOException {
         List<Flight> flights = new ArrayList<>();
-        ProxyConnection connection=null;
+        ProxyConnection connection = null;
         PreparedStatement statement = null;
         RoutesDAO routesDAO = RoutesDAO.getInstance();
         try {
@@ -223,7 +226,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
 
     public List<Flight> findAllByCitiesName(String cityFrom, String cityTo, long date) throws DAOException {
         List<Flight> flights = new ArrayList<>();
-        ProxyConnection connection=null;
+        ProxyConnection connection = null;
         PreparedStatement statement = null;
         Date dateFrom = new Date(date - TWO_WEEKS);
         Date currentDate = new Date(Calendar.getInstance().getTimeInMillis());
@@ -280,7 +283,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
      * @throws DAOException
      */
     public Double findMinPrice(Long id) throws DAOException {
-        ProxyConnection connection=null;
+        ProxyConnection connection = null;
         PreparedStatement statement = null;
         Double price = 0d;
         try {
@@ -307,7 +310,7 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
     }
 
     public void updateTicketCount(Long id, boolean isBusiness) throws DAOException {
-        ProxyConnection connection=null;
+        ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
             ConnectionPool pool = ConnectionPool.getInstance();
@@ -340,8 +343,8 @@ public class FlightDAO extends AbstractDAO<Long, Flight> {
     public ServiceMessage buyTicket(Long userId, List<TicketModel> ticketModels) throws DAOException {
         ConfigurationManager priceManager = new ConfigurationManager();
         priceManager.loadProperties(PRICE_PROPERTIES_FILE);
-        ProxyConnection connection=null;
-        ProxyConnection connection2=null;
+        ProxyConnection connection = null;
+        ProxyConnection connection2 = null;
         PreparedStatement checkTickets = null;
         PreparedStatement getMoney = null;
         try {

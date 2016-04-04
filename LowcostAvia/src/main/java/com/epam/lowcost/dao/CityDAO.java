@@ -5,7 +5,10 @@ import com.epam.lowcost.connection.ProxyConnection;
 import com.epam.lowcost.domain.City;
 import com.epam.lowcost.exception.DAOException;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +35,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
     @Override
     public City findEntityById(Long id) throws DAOException {
         City city = new City();
-        ProxyConnection connection=null;
+        ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -60,7 +63,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
 
     @Override
     public boolean create(City entity) throws DAOException {
-        ProxyConnection connection=null;
+        ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
             connection = ConnectionPool.getInstance().getConnection();
@@ -90,7 +93,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
     @Override
     public List<City> findAll() throws DAOException {
         List<City> cities = new ArrayList<>();
-        ProxyConnection connection=null;
+        ProxyConnection connection = null;
         Statement statement = null;
         try {
             ConnectionPool pool = ConnectionPool.getInstance();
@@ -115,7 +118,7 @@ public class CityDAO extends AbstractDAO<Long, City> {
 
     public List<City> findAllForCity(String name) throws DAOException {
         List<City> cities = new ArrayList<>();
-        ProxyConnection connection=null;
+        ProxyConnection connection = null;
         PreparedStatement statement = null;
         try {
             ConnectionPool pool = ConnectionPool.getInstance();

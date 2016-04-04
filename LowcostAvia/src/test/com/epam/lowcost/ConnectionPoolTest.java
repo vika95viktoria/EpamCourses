@@ -3,9 +3,7 @@ package com.epam.lowcost;
 import com.epam.lowcost.connection.ConnectionPool;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException;
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import java.sql.Connection;
 import java.sql.SQLException;

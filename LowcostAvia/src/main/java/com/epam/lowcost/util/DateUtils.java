@@ -13,8 +13,8 @@ import java.util.Locale;
  * Created by Виктория on 26.02.2016.
  */
 public class DateUtils {
-    private static long DAY = 24*60*60*1000;
-    private static long WEEK = 7*DAY;
+    private static long DAY = 24 * 60 * 60 * 1000;
+    private static long WEEK = 7 * DAY;
     private static Logger logger = Logger.getLogger(DateUtils.class);
 
 

@@ -3,7 +3,6 @@ package com.epam.lowcost.connection;
 import com.epam.lowcost.resource.ConfigurationManager;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.concurrent.ArrayBlockingQueue;

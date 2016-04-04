@@ -1,8 +1,6 @@
 package com.epam.lowcost.command;
 
 
-import com.epam.lowcost.command.*;
-
 import java.util.HashMap;
 
 import static com.epam.lowcost.util.Commands.*;
